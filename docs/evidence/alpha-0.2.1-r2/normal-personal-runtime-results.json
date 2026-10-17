@@ -1,0 +1,69 @@
+{
+    "checks": [
+        {
+            "name": "Moment capture binds to native input",
+            "passed": true
+        },
+        {
+            "name": "Study UI saves start and end timestamps",
+            "passed": true
+        },
+        {
+            "name": "Saved section loops through native playback",
+            "passed": true
+        },
+        {
+            "name": "Markdown contains saved study note",
+            "passed": true
+        },
+        {
+            "name": "Native metadata scan discovers duration",
+            "passed": true
+        },
+        {
+            "name": "Live library tags persist",
+            "passed": true
+        },
+        {
+            "name": "Export writes complete Markdown to disk",
+            "passed": true
+        },
+        {
+            "name": "Background parsing discovers unplayed fixture durations",
+            "passed": true
+        },
+        {
+            "name": "Custom rule editor creates a live filtered collection",
+            "passed": true
+        },
+        {
+            "name": "Workspace fits compact and large windows",
+            "passed": true
+        },
+        {
+            "name": "Home editor saves section visibility and pinned collections",
+            "passed": true
+        },
+        {
+            "name": "Command palette finds real advanced settings",
+            "passed": true
+        },
+        {
+            "name": "Command palette executes Study navigation",
+            "passed": true
+        },
+        {
+            "name": "Four Coneic shortcuts are installed",
+            "passed": true
+        },
+        {
+            "name": "Transport has prominent playback target",
+            "passed": true
+        },
+        {
+            "name": "Palette opens and focuses the selected native setting",
+            "passed": true
+        }
+    ],
+    "passed": true
+}

@@ -10,6 +10,8 @@ Coneic is a Windows x64 media player built as a source fork of **VideoLAN VLC 3.
 
 ![Actual native Coneic interface](docs/screenshots/main-window.png)
 
+**Local 0.2.1 Alpha branch:** Moment Cards, Study Mode, Smart Collections, media relinking, portable library backup, a command palette, customisable Home and refined transport controls. This update is not published. See [Alpha instructions](docs/ALPHA-0.2.1.md) and [local refinement details](docs/ALPHA-0.2.1-REFINEMENTS.md).
+
 ## Run
 
 Download the Windows portable ZIP from [Releases](https://github.com/sadiqgarba2553/coneic/releases), extract it, and open **Coneic.exe**. Keep its DLLs, plugins, locale, Lua, skins and data folders together. `vlc.exe` is retained as a compatibility alias. Settings use `%APPDATA%\coneic`.

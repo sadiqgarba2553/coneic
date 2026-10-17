@@ -8,6 +8,7 @@
 #include "dialogs_provider.hpp"
 #include "coneic_thumbnails.hpp"
 #include "coneic_personal.hpp"
+#include "coneic_home_options.hpp"
 #include <QListWidget>
 #include <QFileDialog>
 #include <QDirIterator>
@@ -39,23 +40,28 @@ class ConeicHome : public QWidget
     static bool isAudio(const QString &suffix) {static const QStringList formats=QStringLiteral(EXTENSIONS_AUDIO).toLower().split(';');return formats.contains("*."+suffix.toLower());}
     static bool isPlaylist(const QString &suffix) {static const QStringList formats=QStringLiteral(EXTENSIONS_PLAYLIST).toLower().split(';');return formats.contains("*."+suffix.toLower());}
     static bool isVideo(const QString &suffix) {static const QStringList formats=QStringLiteral(EXTENSIONS_VIDEO).toLower().split(';');return formats.contains("*."+suffix.toLower());}
+    void layoutCards() {
+        if(!cards)return;const int available=qMax(180,cards->viewport()->width()-2*cards->spacing());const int columns=qMax(1,(available+cards->spacing())/(210+cards->spacing()));const int cell=qMin(280,(available-(columns-1)*cards->spacing())/columns);const int imageHeight=(cell-16)*9/16;cards->setIconSize(QSize(cell-16,imageHeight));
+        for(int i=0;i<cards->count();i++){auto item=cards->item(i);const bool heading=item->data(Qt::UserRole+1).toBool();const QSize size=heading?QSize(available,40):QSize(cell,imageHeight+68);if(item->sizeHint()!=size)item->setSizeHint(size);if(!heading){auto lines=item->data(Qt::UserRole+4).toString().split('\n');for(QString &line:lines)line=cards->fontMetrics().elidedText(line,Qt::ElideRight,cell-24);const auto caption=lines.join("\n");if(item->text()!=caption)item->setText(caption);}}
+    }
     void refresh()
     {
         cards->clear();
         const int mode=qMax(0,navigation->currentRow());
         title->setText(navigation->item(mode)->text());
         section->setText(qtr("Your media"));section->setVisible(mode!=0);
-        QStringList files=RecentsMRL::getInstance(intf)->recentList();
+        auto personal=ConeicPersonalStore::instance(intf);QStringList files;for(const QString &uri:RecentsMRL::getInstance(intf)->recentList())files.append(personal->resolve(uri));
         QSet<QString> seen=QSet<QString>::fromList(files);
-        if(mode!=1)for(const QString &f:libraryFiles)if(!seen.contains(f)){seen.insert(f);files.append(f);}
+        if(mode!=1)for(const QString &f:libraryFiles){const QString resolved=personal->resolve(f);if(!seen.contains(resolved)){seen.insert(resolved);files.append(resolved);}}
+        if(mode!=1)for(const QString &uri:personal->media().keys())if(!seen.contains(uri)){seen.insert(uri);files.append(uri);}
         if(!search->text().isEmpty()) {
             QStringList filtered;
             for(const QString &mrl:files){const QUrl url=QUrl::fromEncoded(mrl.toUtf8());QString label=QFileInfo(url.path()).completeBaseName();if(label.isEmpty())label=url.host();if(label.contains(search->text(),Qt::CaseInsensitive))filtered.append(mrl);}
             files=filtered;
         }
-        QMap<QString,QString> headings;
+        QMap<QString,QString> headings;QMap<QString,QJsonObject> moments,collections;
         if(mode==0) {
-            QList<QStringList> groups;for(int i=0;i<6;i++)groups.append(QStringList());
+            QList<QStringList> groups;for(int i=0;i<8;i++)groups.append(QStringList());
             for(const QString &mrl:files) {
                 const QUrl url=QUrl::fromEncoded(mrl.toUtf8());
                 const QString suffix=QFileInfo(url.path()).suffix();
@@ -63,14 +69,25 @@ class ConeicHome : public QWidget
                 const int group=!url.isLocalFile()?4:(isPlaylist(suffix)?1:(isVideo(suffix)?2:(isAudio(suffix)?3:5)));
                 groups[group].append(mrl);
             }
-            const QStringList titles={qtr("Continue Watching"),qtr("Playlists"),qtr("New Videos"),qtr("New Music"),qtr("Network Streams"),qtr("Recent Media")};
+            const auto saved=personal->moments();for(int i=saved.size()-1;i>=0&&groups[6].size()<6;i--){auto m=saved.at(i).toObject();if(!search->text().isEmpty()&&!m.value("title").toString().contains(search->text(),Qt::CaseInsensitive))continue;const QString marker="coneic-moment:"+m.value("id").toString();moments.insert(marker,m);groups[6].append(marker);}
+            QJsonArray choices{QJsonObject{{"id","all"},{"name",qtr("All media")}},QJsonObject{{"id","unfinished"},{"name",qtr("Unfinished")}},QJsonObject{{"id","week"},{"name",qtr("Added this week")}},QJsonObject{{"id","short"},{"name",qtr("Under 20 minutes")}}};for(auto c:personal->collections())choices.append(c);
+            for(auto pin:personal->home().value("pinnedCollections").toArray())for(auto c:choices)if(c.toObject().value("id")==pin){const QString marker="coneic-collection:"+pin.toString();collections.insert(marker,c.toObject());groups[7].append(marker);break;}
+            const QStringList titles=ConeicHomeOptions::names();
             files.clear();
-            for(int i=0;i<groups.size();i++)if(!groups[i].isEmpty()) {
+            QStringList order,hidden;for(auto id:personal->home().value("sections").toArray())if(ConeicHomeOptions::defaults().contains(id.toString())&&!order.contains(id.toString()))order.append(id.toString());for(const auto &id:ConeicHomeOptions::defaults())if(!order.contains(id))order.append(id);for(auto id:personal->home().value("hidden").toArray())hidden.append(id.toString());
+            for(const QString &id:order){int i=id.toInt();if(!hidden.contains(id)&&!groups[i].isEmpty()) {
                 const QString marker=QStringLiteral("coneic-section:")+QString::number(i);
                 files.append(marker);headings[marker]=titles[i];files.append(groups[i]);
-            }
+            }}
         }
         for(const QString &mrl:files) {
+            if(moments.contains(mrl)||collections.contains(mrl)) {
+                const bool moment=moments.contains(mrl);const auto m=moment?moments.value(mrl):collections.value(mrl);
+                const QString label=moment?m.value("title").toString()+"\n"+ConeicPersonalStore::stamp(qint64(m.value("positionMs").toDouble())):m.value("name").toString();
+                auto item=new QListWidgetItem(QIcon(moment?":/coneic/bookmarks.svg":":/coneic/playlists.svg"),label,cards);item->setData(Qt::UserRole,mrl);item->setData(Qt::UserRole+2,m);item->setData(Qt::UserRole+3,moment?"moment":"collection");item->setData(Qt::UserRole+4,label);item->setToolTip(label);item->setSizeHint(QSize(192,150));
+                if(moment){const QUrl url=QUrl::fromEncoded(m.value("uri").toString().toUtf8());if(url.isLocalFile()&&isVideo(QFileInfo(url.path()).suffix())){QPointer<ConeicHome> guard(this);ConeicThumbnails::instance(QFileInfo(intf->p_sys->mainSettings->fileName()).absolutePath()+"/thumbnails")->request(url.toLocalFile(),int(m.value("positionMs").toDouble()/1000),[guard,mrl](const QString &path){if(guard&&!path.isEmpty())for(int i=0;i<guard->cards->count();i++)if(guard->cards->item(i)->data(Qt::UserRole).toString()==mrl)guard->cards->item(i)->setIcon(QIcon(path));});}}
+                continue;
+            }
             if(headings.contains(mrl)) {
                 auto heading=new QListWidgetItem(headings[mrl],cards);
                 heading->setData(Qt::UserRole+1,true);heading->setFlags(Qt::ItemIsEnabled);
@@ -101,6 +118,7 @@ class ConeicHome : public QWidget
             int resume=RecentsMRL::getInstance(intf)->time(mrl);
             if(resume>0) label+=QString("\n%1 %2:%3").arg(qtr("Resume")).arg(resume/60000).arg((resume/1000)%60,2,10,QChar('0'));
             auto item=new QListWidgetItem(icon,label,cards);
+            item->setData(Qt::UserRole+4,label);
             item->setData(Qt::UserRole,mrl);item->setToolTip(QUrl::fromEncoded(mrl.toUtf8()).toDisplayString(QUrl::RemoveUserInfo));
             item->setSizeHint(QSize(192,150));
             if(!hasCover && url.isLocalFile() && isVideo(suffix) && cards->count()<=32) {
@@ -118,6 +136,7 @@ class ConeicHome : public QWidget
         empty->setVisible(cards->count()==0);
         empty->setText(search->text().isEmpty()?qtr("Your library starts here.\nOpen a file or add a media folder to continue."):qtr("No media matches your search."));
         cards->setVisible(cards->count()!=0);
+        layoutCards();
     }
     void addFolder()
     {
@@ -150,13 +169,7 @@ protected:
     }
     void showEvent(QShowEvent *event) override {QWidget::showEvent(event);refresh();}
     bool eventFilter(QObject *object,QEvent *event) override {
-        if(cards && object==cards->viewport() && event->type()==QEvent::Resize) {
-            const int available=qMax(180,cards->viewport()->width()-2*cards->spacing());
-            const int columns=qMax(1,(available+cards->spacing())/(210+cards->spacing()));
-            const int cell=qMin(280,(available-(columns-1)*cards->spacing())/columns);
-            cards->setIconSize(QSize(cell-16,(cell-16)*9/16));
-            for(int i=0;i<cards->count();i++)cards->item(i)->setSizeHint(cards->item(i)->data(Qt::UserRole+1).toBool()?QSize(available,40):QSize(cell,(cell-16)*9/16+52));
-        }
+        if(cards && object==cards->viewport() && event->type()==QEvent::Resize)layoutCards();
         return QWidget::eventFilter(object,event);
     }
 public:
@@ -188,16 +201,17 @@ public:
         auto add=new QPushButton(qtr("Add media"),main);auto addMenu=new QMenu(add);
         connect(addMenu->addAction(QIcon(":/coneic/menu-folder.svg"),qtr("Media folder")),&QAction::triggered,this,[this](){addFolder();});
         connect(addMenu->addAction(QIcon(":/coneic/menu-network.svg"),qtr("Network stream")),&QAction::triggered,DialogsProvider::getInstance(intf),&DialogsProvider::openNetDialog);
-        add->setMenu(addMenu);actions->addWidget(add);actions->addStretch();content->addLayout(actions);
+        add->setMenu(addMenu);actions->addWidget(add);actions->addStretch();auto customise=new QToolButton(main);customise->setIcon(QIcon(":/coneic/menu-customize.svg"));customise->setToolTip(qtr("Customise Home"));customise->setAccessibleName(qtr("Customise Home"));customise->setFixedSize(36,36);customise->setObjectName("ConeicCustomiseHome");connect(customise,&QToolButton::clicked,this,[this](){ConeicHomeOptions::open(intf,window());});actions->addWidget(customise);content->addLayout(actions);
         section=new QLabel(main);section->setObjectName("ConeicSectionTitle");content->addWidget(section);
         cards=new QListWidget(main);cards->setObjectName("ConeicMediaCards");cards->setViewMode(QListView::IconMode);cards->setResizeMode(QListView::Adjust);cards->setMovement(QListView::Static);cards->setWordWrap(true);cards->setIconSize(QSize(170,96));cards->setSpacing(12);cards->setSelectionMode(QAbstractItemView::SingleSelection);
         cards->viewport()->installEventFilter(this);
-        connect(cards,&QListWidget::itemActivated,this,[this](QListWidgetItem *item){const QString mrl=item->data(Qt::UserRole).toString();if(!mrl.isEmpty())RecentsMRL::getInstance(intf)->playMRL(mrl);});content->addWidget(cards,1);
+        connect(cards,&QListWidget::itemActivated,this,[this](QListWidgetItem *item){if(item->data(Qt::UserRole+3).toString()=="moment"){ConeicPersonalDialog::open(intf,window())->playSaved(item->data(Qt::UserRole+2).toJsonObject());return;}if(item->data(Qt::UserRole+3).toString()=="collection"){ConeicPersonalDialog::open(intf,window(),2)->selectCollection(item->data(Qt::UserRole+2).toJsonObject().value("id").toString());return;}const QString mrl=item->data(Qt::UserRole).toString();if(!mrl.isEmpty()){const auto url=QUrl::fromEncoded(mrl.toUtf8());if(url.isLocalFile()&&!QFileInfo::exists(url.toLocalFile()))ConeicLibraryTools::locate(intf,window(),mrl);else RecentsMRL::getInstance(intf)->playMRL(mrl);}});content->addWidget(cards,1);
         empty=new QLabel(qtr("Your library starts here.\nOpen a file or add a media folder to continue."),main);empty->setObjectName("ConeicLibraryEmpty");empty->setWordWrap(true);empty->setAlignment(Qt::AlignCenter);content->addWidget(empty,1);
         layout->addWidget(main,1);navigation->setCurrentRow(0);
         connect(navigation,&QListWidget::currentRowChanged,this,[this](){refresh();});connect(search,&QLineEdit::textChanged,this,[this](){refresh();});
         QSettings &settingsStore=*intf->p_sys->mainSettings;for(const QString &folder:settingsStore.value("Coneic/library-folders").toStringList())indexFolder(folder);
         ConeicPersonalStore::instance(intf)->catalog(RecentsMRL::getInstance(intf)->recentList());
+        ConeicPersonalStore::instance(intf)->watch(this,[this](){if(isVisible())refresh();});
         refresh();
     }
 };

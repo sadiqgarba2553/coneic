@@ -1,0 +1,61 @@
+{
+    "checks": [
+        {
+            "name": "Relinking rejects unavailable replacement",
+            "passed": true
+        },
+        {
+            "name": "Relinking moves saved notes and tags",
+            "passed": true
+        },
+        {
+            "name": "Old references resolve to the selected replacement",
+            "passed": true
+        },
+        {
+            "name": "Relinking never changes the media file",
+            "passed": true
+        },
+        {
+            "name": "Home choices save",
+            "passed": true
+        },
+        {
+            "name": "Home order, visibility and pins survive restart",
+            "passed": true
+        },
+        {
+            "name": "Portable backup exports",
+            "passed": true
+        },
+        {
+            "name": "Restore merges and retains identifier conflicts separately",
+            "passed": true
+        },
+        {
+            "name": "Restore keeps Home layout and tags",
+            "passed": true
+        },
+        {
+            "name": "Restoring the same backup is idempotent",
+            "passed": true
+        },
+        {
+            "name": "Restore creates recovery snapshots",
+            "passed": true
+        },
+        {
+            "name": "Invalid backups leave saved notes unchanged",
+            "passed": true
+        },
+        {
+            "name": "Backup cannot overwrite active library file",
+            "passed": true
+        },
+        {
+            "name": "Merged library survives restart",
+            "passed": true
+        }
+    ],
+    "passed": true
+}

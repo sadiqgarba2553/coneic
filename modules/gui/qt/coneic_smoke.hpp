@@ -29,6 +29,7 @@
 #include "dialogs_provider.hpp"
 #include "coneic_settings.hpp"
 #include "coneic_personal_smoke.hpp"
+#include "coneic_library_smoke.hpp"
 
 namespace ConeicSmoke {
 inline void schedule(QApplication &app, intf_thread_t *intf)
@@ -38,6 +39,7 @@ inline void schedule(QApplication &app, intf_thread_t *intf)
         return;
     QDir().mkpath(directory);
     ConeicPersonalSmoke::persistence(directory);
+    const bool libraryTools=ConeicLibrarySmoke::run(directory);qApp->setProperty("coneicLibraryToolsPassed",libraryTools);
     struct State {
         QJsonArray results;
         int index = 0;
@@ -149,6 +151,7 @@ inline void schedule(QApplication &app, intf_thread_t *intf)
                     if (widget->isVisible() && widget->isWindow() && !widget->inherits("QMainWindow") && !widget->windowTitle().isEmpty()) {
                         visible = true;
                         if (current.first=="prefsDialog") {
+                            auto company=widget->findChild<QLabel*>("ConeicCompanyLink");const bool credited=company&&company->openExternalLinks()&&company->text().contains("https://bluecloudai.online");state->results.append(QJsonObject{{"name",QStringLiteral("Settings contains clickable BLUECLOUD credit")},{"passed",credited}});state->allPassed &= credited;
                             timer->stop();
                             QWidget *settings=widget->findChild<QWidget*>(QStringLiteral("ConeicGlobalSettings"));
                             QListWidget *navigation=widget->findChild<QListWidget*>(QStringLiteral("ConeicSettingsNavigation"));

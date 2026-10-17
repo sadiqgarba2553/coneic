@@ -223,7 +223,7 @@ public:
         navigation=new QListWidget(sidebar);navigation->setObjectName("ConeicSettingsNavigation");navigation->setFrameShape(QFrame::NoFrame);
         const QStringList icons={"general","interface","privacy","controls","playback","video","audio","subtitles","library","network","performance","recording","extensions"};
         for(int i=0;i<titles.size();i++) {auto item=new QListWidgetItem(QIcon(":/coneic/settings-"+icons[i]+".svg"),titles[i],navigation);item->setSizeHint(QSize(180,36));}
-        side->addWidget(navigation,1);layout->addWidget(sidebar);
+        side->addWidget(navigation,1);auto company=new QLabel(QStringLiteral("Made by <a href=\"https://bluecloudai.online\">BLUECLOUD</a>"),sidebar);company->setObjectName("ConeicCompanyLink");company->setOpenExternalLinks(true);company->setWordWrap(true);QFont creditFont=company->font();creditFont.setPointSizeF(8.5);company->setFont(creditFont);company->setContentsMargins(8,12,8,4);side->addWidget(company);layout->addWidget(sidebar);
         QWidget *right=new QWidget(this);QVBoxLayout *content=new QVBoxLayout(right);content->setContentsMargins(24,16,24,16);
         heading=new QLabel(right);heading->setObjectName("ConeicSettingsHeading");content->addWidget(heading);
         scroll=new QScrollArea(right);scroll->setFrameShape(QFrame::NoFrame);scroll->setWidgetResizable(true);

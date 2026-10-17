@@ -675,6 +675,7 @@ SoundSlider::SoundSlider( QWidget *_parent, float _i_step,
     b_isMuted = false;
 
     setFixedSize( WLENGTH, WHEIGHT );
+    if(!ConeicDesign::highContrast())setFixedSize(100,32);
 
     pixOutside = ImageHelper::loadSvgToPixmap(":/toolbar/volslide-outside.svg", width(), height() );
 
@@ -856,12 +857,9 @@ void SoundSlider::paintEvent( QPaintEvent *e )
     if(!ConeicDesign::highContrast())
     {
         QPainter p(this);p.setRenderHint(QPainter::Antialiasing);
-        p.drawPixmap(rect(),ImageHelper::loadSvgToPixmap(":/coneic/volume-background.svg",width(),height()));
-        p.save();p.setClipRect(QRectF(0,0,width()*qBound(0.0,value()/qreal(qMax(1,maximum())),1.0),height()));
-        if(b_isMuted)p.setOpacity(.35);
-        p.drawPixmap(rect().adjusted(1,1,-1,-1),ImageHelper::loadSvgToPixmap(":/coneic/volume-fill.svg",width(),height()));p.restore();
-        QFont f=font();f.setPixelSize(10);p.setFont(f);p.setPen(palette().color(QPalette::WindowText));
-        p.drawText(rect().adjusted(0,0,-4,0),Qt::AlignCenter,QString::number(value())+"%");
+        const QRectF track(PADDINGL,height()-8,width()-PADDINGL-PADDINGR,4);p.setPen(Qt::NoPen);p.setBrush(palette().color(QPalette::Mid));p.drawRoundedRect(track,2,2);
+        const qreal ratio=qBound(0.0,value()/qreal(qMax(1,maximum())),1.0);const qreal x=track.left()+ratio*track.width();p.setBrush(b_isMuted?palette().color(QPalette::Mid):palette().color(QPalette::Highlight));p.drawRoundedRect(QRectF(track.left(),track.top(),ratio*track.width(),track.height()),2,2);p.drawEllipse(QPointF(x,track.center().y()),4,4);
+        QFont f=font();f.setPointSizeF(8.5);p.setFont(f);p.setPen(palette().color(QPalette::WindowText));p.drawText(QRect(0,0,width(),height()-10),Qt::AlignCenter,QString::number(value())+"%");
         if(hasFocus()){p.setPen(QPen(palette().color(QPalette::Highlight),1));p.setBrush(Qt::NoBrush);p.drawRoundedRect(rect().adjusted(0,0,-1,-1),3,3);}
         e->accept();return;
     }

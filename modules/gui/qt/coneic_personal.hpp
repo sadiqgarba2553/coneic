@@ -3,6 +3,7 @@
 #define CONEIC_PERSONAL_HPP
 #include "coneic_personal_store.hpp"
 #include "coneic_thumbnails.hpp"
+#include "coneic_library_tools.hpp"
 #include "recents.hpp"
 #include <QDialog>
 #include <QDialogButtonBox>
@@ -50,7 +51,7 @@ class ConeicPersonalDialog : public QDialog
     void updateRange(){range->setText(ConeicPersonalStore::stamp(draftStart)+(draftEnd>draftStart?"  -  "+ConeicPersonalStore::stamp(draftEnd):QString()) );}
     void newDraft(){draftUri=ConeicPersonalStore::currentUri(intf);draftStart=ConeicPersonalStore::currentTime(intf);draftEnd=0;noteTitle->clear();note->clear();updateRange();}
     void activate(const QJsonObject &m) {
-        const QString uri=m["uri"].toString();if(uri.isEmpty())return;
+        const QString uri=store->resolve(m["uri"].toString());if(uri.isEmpty())return;
         const QUrl url=QUrl::fromEncoded(uri.toUtf8());if(url.isLocalFile()&&!QFileInfo::exists(url.toLocalFile())){message(qtr("This file has moved or is unavailable. Your saved note is still kept."),true);return;}
         pendingUri=uri;pendingTime=qint64(m["positionMs"].toDouble());pendingTries=0;
         if(ConeicPersonalStore::currentUri(intf)!=uri)Open::openMRL(intf,uri);
@@ -154,7 +155,7 @@ public:
         setObjectName("ConeicPersonalDialog");setWindowTitle(qtr("Your space · Coneic 0.2.1 Alpha"));setAttribute(Qt::WA_DeleteOnClose);setMinimumSize(560,480);
         const QRect screen=QGuiApplication::primaryScreen()->availableGeometry();resize(qMin(940,screen.width()-48),qMin(720,screen.height()-64));
         auto layout=new QVBoxLayout(this);layout->setContentsMargins(24,20,24,20);layout->setSpacing(16);
-        auto heading=new QLabel(qtr("Your space"),this);heading->setObjectName("ConeicHomeTitle");layout->addWidget(heading);
+        auto headingRow=new QHBoxLayout;auto heading=new QLabel(qtr("Your space"),this);heading->setObjectName("ConeicHomeTitle");headingRow->addWidget(heading,1);auto tools=new QPushButton(qtr("Library tools"),this);headingRow->addWidget(tools);layout->addLayout(headingRow);connect(tools,&QPushButton::clicked,this,[this](){ConeicLibraryTools::open(intf,this);});
         tabs=new QTabWidget(this);tabs->setObjectName("ConeicPersonalTabs");layout->addWidget(tabs,1);
         auto moments=new QWidget(tabs);auto ml=new QVBoxLayout(moments);ml->setContentsMargins(0,16,0,0);ml->setSpacing(16);auto mr=row(ml);
         capture=button(qtr("Save current moment"),mr);capture->setObjectName("ConeicCaptureMoment");momentSearch=new QLineEdit(moments);momentSearch->setPlaceholderText(qtr("Search moments"));momentSearch->setAccessibleName(qtr("Search moments"));mr->addWidget(momentSearch,1);
@@ -194,6 +195,8 @@ public:
     bool saveCurrentMoment(){if(!ConeicPersonalStore::seekable(intf)){message(qtr("Open a seekable video or audio file first."),true);return false;}const QString uri=ConeicPersonalStore::currentUri(intf);const qint64 time=ConeicPersonalStore::currentTime(intf);bool ok=store->saveMoment({{"uri",uri},{"title",QString(qtr("Moment at ")+ConeicPersonalStore::stamp(time))},{"note",QString()},{"positionMs",double(time)}});result(ok,qtr("Moment saved. Select Edit to add a title or note."));return ok;}
     bool exportNotesTo(const QString &path,const QString &uri){bool ok;writeFile(path,store->markdown(uri).toUtf8(),ok);message(ok?qtr("Notes exported."):qtr("Could not write the export file."),!ok);return ok;}
     void setPage(int index){tabs->setCurrentIndex(index);}
+    void playSaved(const QJsonObject &moment){activate(moment);}
+    void selectCollection(const QString &id){setPage(2);for(int i=0;i<collection->count();i++)if(collection->itemData(i).toJsonObject().value("id").toString()==id){collection->setCurrentIndex(i);break;}}
     static ConeicPersonalDialog *open(intf_thread_t *p,QWidget *parent,int page=0){
         ConeicPersonalDialog *dialog=nullptr;for(QWidget *w:qApp->topLevelWidgets())if(w->objectName()=="ConeicPersonalDialog"){dialog=static_cast<ConeicPersonalDialog*>(w);break;}
         if(!dialog)dialog=new ConeicPersonalDialog(p,parent);dialog->setPage(page);dialog->show();dialog->raise();dialog->activateWindow();return dialog;

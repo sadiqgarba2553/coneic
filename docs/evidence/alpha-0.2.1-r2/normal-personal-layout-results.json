@@ -1,0 +1,16 @@
+[
+    {
+        "actualHeight": 600,
+        "actualWidth": 640,
+        "minimumHeight": 228,
+        "requestedHeight": 600,
+        "requestedWidth": 640
+    },
+    {
+        "actualHeight": 800,
+        "actualWidth": 1280,
+        "minimumHeight": 228,
+        "requestedHeight": 800,
+        "requestedWidth": 1280
+    }
+]

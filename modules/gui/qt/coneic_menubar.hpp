@@ -6,6 +6,7 @@
 #include "input_manager.hpp"
 #include "dialogs_provider.hpp"
 #include "coneic_personal.hpp"
+#include "coneic_command_palette.hpp"
 #include <QMenuBar>
 #include <QMenu>
 #include <QPainter>
@@ -20,6 +21,7 @@ class ConeicMenuBar : public QMenuBar
     QWidget *header=nullptr;
     QMenu *popup;
     intf_thread_t *intf;
+    QList<QAction*> personalActions;
     void rebuildMenu()
     {
         popup->clear();
@@ -27,6 +29,7 @@ class ConeicMenuBar : public QMenuBar
         const QList<QAction*> original=actions();
         if(!original.isEmpty() && original.first()->menu())popup->addActions(original.first()->menu()->actions());
         popup->addSeparator();
+        popup->addActions(personalActions);
         auto personal=popup->addAction(QIcon(":/coneic/bookmarks.svg"),qtr("Your space · Moments, Study & Collections"));
         connect(personal,&QAction::triggered,this,[this](){ConeicPersonalDialog::open(intf,parentWidget());});
         QAction *settings=popup->addAction(QIcon(":/coneic/menu-settings.svg"),qtr("Settings"));
@@ -60,6 +63,14 @@ public:
         auto add=new QToolButton(header);add->setIcon(QIcon(":/coneic/add.svg"));add->setToolTip(qtr("Open media"));add->setAccessibleName(qtr("Open media"));add->setFixedSize(32,32);
         connect(add,&QToolButton::clicked,DialogsProvider::getInstance(intf),&DialogsProvider::simpleOpenDialog);layout->addWidget(add);
         header->setGeometry(rect());header->show();header->raise();
+        QSet<QString> occupied;size_t moduleCount=0;auto modules=module_list_get(&moduleCount);
+        for(size_t i=0;i<moduleCount;i++){unsigned count=0;auto c=module_config_get(modules[i],&count);if(!c)continue;for(unsigned j=0;j<count;j++)if(c[j].i_type==CONFIG_ITEM_KEY&&c[j].psz_name){char *value=var_InheritString(intf,c[j].psz_name);const QString configured=qfu(value);free(value);for(const auto &part:configured.split('\t'))occupied.insert(QKeySequence(part).toString().toLower());}module_config_free(c);}module_list_free(modules);
+        auto command=[this,parent,&occupied](const QString &name,const QString &key,std::function<void()> run){auto action=new QAction(name,this);if(!occupied.contains(QKeySequence(key).toString().toLower())){action->setShortcut(QKeySequence(key));action->setShortcutContext(Qt::ApplicationShortcut);}parent->addAction(action);connect(action,&QAction::triggered,this,[run](){if(!QApplication::activeModalWidget())run();});personalActions.append(action);};
+        command(qtr("Command palette"),"Ctrl+Shift+P",[this,parent](){ConeicCommandPalette::open(intf,parent);});
+        command(qtr("Save current moment"),"Ctrl+Shift+M",[this,parent](){ConeicPersonalDialog::open(intf,parent)->saveCurrentMoment();});
+        command(qtr("Study notes"),"Ctrl+Shift+N",[this,parent](){ConeicPersonalDialog::open(intf,parent,1);});
+        command(qtr("Library / player"),"Ctrl+Shift+H",library);
+        auto searchButton=new QToolButton(header);searchButton->setIcon(QIcon(":/coneic/library-search.svg"));searchButton->setAccessibleName(qtr("Command palette"));searchButton->setToolTip(qtr("Command palette · Ctrl+Shift+P"));searchButton->setFixedSize(32,32);layout->insertWidget(layout->count()-2,searchButton);connect(searchButton,&QToolButton::clicked,this,[this,parent](){ConeicCommandPalette::open(intf,parent);});
     }
     QSize sizeHint() const override {return QSize(600,42);}
     QSize minimumSizeHint() const override {return QSize(240,42);}

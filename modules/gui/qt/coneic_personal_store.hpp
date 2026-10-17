@@ -69,6 +69,54 @@ class ConeicPersonalStore : public QObject
     }
 public:
     QString error;
+    QJsonObject home()const{return data.value("home").toObject();}
+    bool saveHome(const QJsonObject &preferences){return change([=](QJsonObject &root){root.insert("home",preferences);});}
+    QString resolve(QString uri)const {
+        const auto aliases=data.value("relocations").toObject();QSet<QString> seen;
+        while(aliases.contains(uri)&&!seen.contains(uri)){seen.insert(uri);uri=aliases.value(uri).toString();}return uri;
+    }
+    bool relink(const QString &oldUri,const QString &replacement) {
+        const QUrl url=QUrl::fromEncoded(replacement.toUtf8());
+        if(oldUri.isEmpty() || oldUri==replacement || !url.isLocalFile() || !QFileInfo(url.toLocalFile()).isFile()){error=qtr("Choose an existing replacement media file.");return false;}
+        if(!flush())return false;
+        const bool ok=change([=](QJsonObject &root){
+            auto media=root.value("media").toObject();auto old=media.value(oldUri).toObject();auto current=media.value(replacement).toObject();
+            for(auto it=current.begin();it!=current.end();++it)if(!old.contains(it.key()))old.insert(it.key(),it.value());
+            QStringList tags;for(auto value:old.value("tags").toArray())tags.append(value.toString());for(auto value:current.value("tags").toArray())if(!tags.contains(value.toString(),Qt::CaseInsensitive))tags.append(value.toString());
+            old.insert("tags",QJsonArray::fromStringList(tags));old.insert("uri",replacement);old.insert("title",title(replacement));media.remove(oldUri);media.insert(replacement,old);root.insert("media",media);
+            auto notes=root.value("moments").toArray();for(int i=0;i<notes.size();i++){auto m=notes.at(i).toObject();if(m.value("uri").toString()==oldUri){m.insert("uri",replacement);notes.replace(i,m);}}root.insert("moments",notes);
+            auto aliases=root.value("relocations").toObject();for(const QString &key:aliases.keys())if(aliases.value(key).toString()==oldUri)aliases.insert(key,replacement);
+            aliases.insert(oldUri,replacement);aliases.remove(replacement);root.insert("relocations",aliases);
+        });
+        if(ok){queued.remove(replacement);catalog({replacement});}return ok;
+    }
+    static bool validLibrary(const QJsonObject &root) {
+        if(root.value("version").toInt()!=1 || !root.value("media").isObject() || !root.value("moments").isArray() || !root.value("collections").isArray())return false;
+        for(auto v:root.value("moments").toArray()){if(!v.isObject())return false;auto m=v.toObject();if(m.value("id").toString().isEmpty()||m.value("uri").toString().isEmpty()||!m.value("positionMs").isDouble()||m.value("positionMs").toDouble()<0||!m.value("title").isString()||!m.value("note").isString())return false;const double end=m.value("endMs").toDouble();if(end>0&&end<=m.value("positionMs").toDouble())return false;}
+        const auto media=root.value("media").toObject();for(auto it=media.begin();it!=media.end();++it)if(!it.value().isObject()||it.key().isEmpty()||it.value().toObject().value("uri").toString()!=it.key())return false;
+        for(auto v:root.value("collections").toArray()){auto c=v.toObject();if(c.value("id").toString().isEmpty()||c.value("name").toString().isEmpty()||!QStringList({"tag","recent","duration","unfinished"}).contains(c.value("rule").toString()))return false;}
+        return true;
+    }
+    bool exportBackup(const QString &destination) {
+        const QFileInfo target(destination),active(path);const QString targetPath=target.exists()?target.canonicalFilePath():target.absoluteFilePath();const QString activePath=active.exists()?active.canonicalFilePath():active.absoluteFilePath();
+        if(targetPath.compare(activePath,Qt::CaseInsensitive)==0){error=qtr("Choose a backup file outside the active library file.");return false;}
+        if(!flush())return false;QJsonObject latest;if(!read(latest))return false;
+        const QJsonObject wrapper{{"format","coneic-library-backup"},{"version",1},{"createdMs",double(QDateTime::currentMSecsSinceEpoch())},{"library",latest}};
+        QSaveFile file(destination);const auto bytes=QJsonDocument(wrapper).toJson();if(!file.open(QIODevice::WriteOnly)||file.write(bytes)!=bytes.size()||!file.commit()){error=qtr("Could not write the backup file.");return false;}error.clear();return true;
+    }
+    bool importBackup(const QString &source) {
+        QFile file(source);if(file.size()>32*1024*1024 || !file.open(QIODevice::ReadOnly)){error=qtr("Choose a readable Coneic backup smaller than 32 MB.");return false;}
+        QJsonParseError parse;const auto doc=QJsonDocument::fromJson(file.readAll(),&parse);const auto wrapper=doc.object();const auto incoming=wrapper.value("library").toObject();
+        if(parse.error!=QJsonParseError::NoError || wrapper.value("format").toString()!="coneic-library-backup" || wrapper.value("version").toInt()!=1 || !validLibrary(incoming)){error=qtr("This backup is invalid or uses an unsupported version. Your library has not been replaced.");return false;}
+        if(!exportBackup(path+".before-restore-"+QUuid::createUuid().toString()+".json"))return false;
+        return change([=](QJsonObject &root){
+            auto media=root.value("media").toObject();const auto other=incoming.value("media").toObject();
+            for(auto it=other.begin();it!=other.end();++it){auto current=media.value(it.key()).toObject();auto added=it.value().toObject();if(current.isEmpty()){media.insert(it.key(),added);continue;}for(auto field=added.begin();field!=added.end();++field)if(!current.contains(field.key()))current.insert(field.key(),field.value());QStringList tags;for(auto t:current.value("tags").toArray())tags.append(t.toString());for(auto t:added.value("tags").toArray())if(!tags.contains(t.toString(),Qt::CaseInsensitive))tags.append(t.toString());current.insert("tags",QJsonArray::fromStringList(tags));media.insert(it.key(),current);}root.insert("media",media);
+            for(const QString &key:QStringList({"moments","collections"})){auto target=root.value(key).toArray();for(auto v:incoming.value(key).toArray()){auto row=v.toObject();bool duplicate=false,collision=false;auto content=row;content.remove("id");for(auto existing:target){auto old=existing.toObject();collision|=old.value("id")==row.value("id");old.remove("id");if(old==content){duplicate=true;break;}}if(!duplicate){if(collision)row.insert("id",QUuid::createUuid().toString());target.append(row);}}root.insert(key,target);}
+            if(!root.contains("home")&&incoming.value("home").isObject())root.insert("home",incoming.value("home"));
+            auto aliases=root.value("relocations").toObject();const auto incomingAliases=incoming.value("relocations").toObject();for(auto it=incomingAliases.begin();it!=incomingAliases.end();++it)if(!aliases.contains(it.key())&&it.value().isString())aliases.insert(it.key(),it.value());root.insert("relocations",aliases);
+        });
+    }
     static QString title(const QString &uri){const QUrl url=QUrl::fromEncoded(uri.toUtf8());QString s=QFileInfo(url.path()).completeBaseName();return s.isEmpty()?url.host():s;}
     static QString stamp(qint64 ms){ms=qMax<qint64>(0,ms);return QString("%1:%2:%3").arg(ms/3600000,2,10,QChar('0')).arg(ms/60000%60,2,10,QChar('0')).arg(ms/1000%60,2,10,QChar('0'));}
     static QString currentUri(intf_thread_t *p){input_item_t *item=MainInputManager::getInstance(p)->currentInputItem();if(!item)return {};char *u=input_item_GetURI(item);QString uri=qfu(u);free(u);return uri;}
@@ -79,7 +127,7 @@ public:
         if(!p)return; // Isolated acceptance fixtures can exercise persistence without a player.
         auto im=MainInputManager::getInstance(p)->getIM();
         connect(im,&InputManager::positionUpdated,this,[this](float pos,int64_t time,int length){
-            if(pos<0 || time<0)return;const QString uri=currentUri(intf);if(uri.isEmpty())return;
+            if(pos<0 || time<0)return;const QString uri=resolve(currentUri(intf));if(uri.isEmpty())return;
             auto m=data["media"].toObject()[uri].toObject();m.insert("uri",uri);m.insert("title",title(uri));
             if(!m.contains("addedMs"))m.insert("addedMs",double(QDateTime::currentMSecsSinceEpoch()));
             m.insert("positionMs",double(time/1000));if(length>0)m.insert("durationMs",double(qint64(length)*1000));

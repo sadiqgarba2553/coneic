@@ -2,6 +2,7 @@
 #ifndef CONEIC_PERSONAL_SMOKE_HPP
 #define CONEIC_PERSONAL_SMOKE_HPP
 #include "coneic_personal.hpp"
+#include "coneic_command_palette.hpp"
 #include <QTemporaryDir>
 #include <memory>
 namespace ConeicPersonalSmoke {
@@ -66,8 +67,16 @@ inline void runtime(intf_thread_t *intf,const QString &directory,std::function<v
                 check("Custom rule editor creates a live filtered collection",custom&&dialog->findChild<QListWidget*>("ConeicCollectionMedia")->count()==1);
                 bool fits=true;QJsonArray sizes;for(auto size:QList<QSize>({QSize(640,600),QSize(1280,800)})){dialog->resize(size);qApp->processEvents();fits &= dialog->width()<=size.width()&&dialog->height()<=size.height();sizes.append(QJsonObject{{"requestedWidth",size.width()},{"requestedHeight",size.height()},{"actualWidth",dialog->width()},{"actualHeight",dialog->height()},{"minimumHeight",dialog->minimumSizeHint().height()}});dialog->grab().save(directory+QString("/alpha-space-%1.png").arg(size.width()));}check("Workspace fits compact and large windows",fits);
                 QFile geometry(directory+"/personal-layout-results.json");if(geometry.open(QIODevice::WriteOnly))geometry.write(QJsonDocument(sizes).toJson());
-                bool passed=qApp->property("coneicPersonalPersistencePassed").toBool();for(auto v:*results)passed&=v.toObject()["passed"].toBool();
-                QFile f(directory+"/personal-runtime-results.json");if(f.open(QIODevice::WriteOnly))f.write(QJsonDocument(QJsonObject{{"passed",passed},{"checks",*results}}).toJson());dialog->close();complete(passed);
+                const auto originalHome=store->home();ConeicHomeOptions::open(intf,main);qApp->processEvents();QWidget *editor=nullptr;for(auto w:qApp->topLevelWidgets())if(w->objectName()=="ConeicHomeEditor")editor=w;
+                bool edited=false;if(editor){auto sections=editor->findChild<QListWidget*>("ConeicHomeSections");auto pins=editor->findChild<QListWidget*>("ConeicHomePins");if(sections&&pins){for(int i=0;i<sections->count();i++)if(sections->item(i)->data(Qt::UserRole).toString()=="3")sections->item(i)->setCheckState(Qt::Unchecked);pins->item(1)->setCheckState(Qt::Checked);editor->findChild<QDialogButtonBox*>()->button(QDialogButtonBox::Save)->click();edited=store->home().value("hidden").toArray().contains("3")&&store->home().value("pinnedCollections").toArray().contains("unfinished");}}
+                check("Home editor saves section visibility and pinned collections",edited);if(main)if(auto home=main->findChild<QWidget*>("ConeicHome")){QEvent shown(QEvent::Show);QApplication::sendEvent(home,&shown);home->grab().save(directory+"/alpha-custom-home.png");}store->saveHome(originalHome);
+                auto palette=ConeicCommandPalette::open(intf,main);auto query=palette->findChild<QLineEdit*>("ConeicCommandQuery");auto matches=palette->findChild<QListWidget*>("ConeicCommandResults");query->setText("qt-video-autoresize");qApp->processEvents();check("Command palette finds real advanced settings",matches->count()>0&&matches->item(0)->text().contains("qt-video-autoresize"));palette->grab().save(directory+"/alpha-command-palette.png");query->setText("Study notes");QMetaObject::invokeMethod(query,"returnPressed",Qt::DirectConnection);qApp->processEvents();check("Command palette executes Study navigation",dialog->findChild<QTabWidget*>("ConeicPersonalTabs")->currentIndex()==1);
+                int keys=0;for(auto action:main->findChildren<QAction*>())if(QStringList({"Ctrl+Shift+P","Ctrl+Shift+M","Ctrl+Shift+N","Ctrl+Shift+H"}).contains(action->shortcut().toString()))keys++;check("Four Coneic shortcuts are installed",keys>=4);
+                auto play=main->findChild<QToolButton*>("ConeicPlayButton");check("Transport has prominent playback target",play&&play->width()>=64&&play->height()>=40);
+                auto settingsPalette=ConeicCommandPalette::open(intf,main);auto settingsQuery=settingsPalette->findChild<QLineEdit*>("ConeicCommandQuery");settingsQuery->setText("qt-video-autoresize");QMetaObject::invokeMethod(settingsQuery,"returnPressed",Qt::DirectConnection);
+                QTimer::singleShot(450,dialog,[=](){bool opened=false;for(auto w:qApp->topLevelWidgets())if(w->inherits("PrefsDialog")){if(auto settings=w->findChild<QWidget*>("ConeicGlobalSettings")){auto search=settings->findChild<QLineEdit*>();opened=settings->isVisible()&&search&&search->text()=="qt-video-autoresize";w->grab().save(directory+"/alpha-palette-setting.png");}QMetaObject::invokeMethod(w,"reject",Qt::DirectConnection);}check("Palette opens and focuses the selected native setting",opened);
+                    bool passed=qApp->property("coneicPersonalPersistencePassed").toBool()&&qApp->property("coneicLibraryToolsPassed").toBool();for(auto v:*results)passed&=v.toObject()["passed"].toBool();QFile f(directory+"/personal-runtime-results.json");if(f.open(QIODevice::WriteOnly))f.write(QJsonDocument(QJsonObject{{"passed",passed},{"checks",*results}}).toJson());dialog->close();complete(passed);
+                });
             });poll->start();
         });
     });

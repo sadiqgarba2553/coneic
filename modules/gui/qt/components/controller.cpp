@@ -107,9 +107,9 @@ void AbstractController::setupButton( QAbstractButton *aButton )
     sizePolicy.setVerticalStretch( 0 );
 
     aButton->setSizePolicy( sizePolicy );
-    aButton->setFixedSize( QSize( 34, 32 ) );
+    aButton->setFixedSize( QSize( 36, 36 ) );
     aButton->setAccessibleName(aButton->toolTip());
-    aButton->setIconSize( QSize( 20, 20 ) );
+    aButton->setIconSize( QSize( 24, 24 ) );
     aButton->setFocusPolicy( Qt::StrongFocus );
 }
 
@@ -198,6 +198,7 @@ void AbstractController::createAndAddWidget( QBoxLayout *controlLayout_,
             if( !buttonGroupLayout )
             {
                 buttonGroupLayout = new QHBoxLayout;
+                buttonGroupLayout->setSpacing(8);buttonGroupLayout->setContentsMargins(0,0,0,0);
 
             }
             buttonGroupLayout->addWidget( widg );
@@ -532,7 +533,7 @@ void AbstractController::applyAttributes( QToolButton *tmpButton, bool b_flat, b
             tmpButton->setAutoRaise( b_flat );
         if( b_big )
         {
-            tmpButton->setFixedSize( QSize( 32, 32 ) );
+            tmpButton->setFixedSize( tmpButton->objectName()==QStringLiteral("ConeicPlayButton")?QSize(76,42):QSize(40,40) );
             tmpButton->setIconSize( QSize( 26, 26 ) );
         }
     }
@@ -710,7 +711,7 @@ ControlsWidget::ControlsWidget( intf_thread_t *_p_i,
 #endif
     controlLayout = new QVBoxLayout( this );
     setObjectName("ConeicTransport");
-    controlLayout->setContentsMargins( 12, 5, 12, 5 );
+    controlLayout->setContentsMargins( 20, 8, 20, 4 );
     controlLayout->setSpacing( 0 );
     QHBoxLayout *controlLayout1 = new QHBoxLayout;
     controlLayout1->setSpacing( 0 ); controlLayout1->setContentsMargins( 0, 0, 0, 0 );
@@ -720,9 +721,10 @@ ControlsWidget::ControlsWidget( intf_thread_t *_p_i,
     parseAndCreate( line1, controlLayout1 );
 
     QHBoxLayout *controlLayout2 = new QHBoxLayout;
-    controlLayout2->setSpacing( 0 ); controlLayout2->setContentsMargins( 0, 0, 0, 0 );
+    controlLayout2->setSpacing( 8 ); controlLayout2->setContentsMargins( 0, 0, 0, 0 );
     QString line2 = getSettings()->value( "MainWindow/MainToolbar2", MAIN_TB2_DEFAULT )
                                         .toString();
+    if(line2==QStringLiteral("3;0-2;4;1;65;24;9;10;64;35-4;7"))line2=QStringLiteral(MAIN_TB2_DEFAULT);
     parseAndCreate( line2, controlLayout2 );
 
     grip = new QSizeGrip( this );
@@ -771,7 +773,7 @@ InputControlsWidget::InputControlsWidget( intf_thread_t *_p_i, QWidget *_parent 
     RTL_UNAFFECTED_WIDGET
     controlLayout = new QHBoxLayout( this );
     setObjectName("ConeicSeekRow");
-    controlLayout->setContentsMargins( 12, 2, 12, 8 );
+    controlLayout->setContentsMargins( 20, 4, 20, 12 );
     controlLayout->setSpacing( 8 );
 #ifdef DEBUG_LAYOUT
     setStyleSheet( "background: green ");
