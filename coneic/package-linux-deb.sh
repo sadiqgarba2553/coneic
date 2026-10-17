@@ -77,5 +77,6 @@ EOF
 # Temporary dpkg-shlibdeps inputs are not package payload.
 rm -r -- "$stage/debian"
 (cd "$stage" && find opt usr -type f -print0 | sort -z | xargs -0 md5sum) > "$stage/DEBIAN/md5sums"
-dpkg-deb --root-owner-group --build "$stage" "$output/coneic_${version}_amd64.deb"
-sha256sum "$output/coneic_${version}_amd64.deb"
+asset_version="${version//\~/-}"
+dpkg-deb --root-owner-group --build "$stage" "$output/coneic_${asset_version}_amd64.deb"
+sha256sum "$output/coneic_${asset_version}_amd64.deb"

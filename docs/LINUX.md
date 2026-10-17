@@ -7,7 +7,7 @@ The initial native target is **Ubuntu 24.04, x86-64 (amd64)**. It uses the same 
 Download the Ubuntu package, open a terminal in its folder, then run:
 
 ```sh
-sudo apt install ./coneic_0.2.1~alpha.1_amd64.deb
+sudo apt install ./coneic_0.2.1-alpha.1_amd64.deb
 coneic
 ```
 

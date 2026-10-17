@@ -18,7 +18,7 @@ Coneic is a desktop media player for Windows x64 and Ubuntu 24.04 x64 built as a
 
 Download the Windows portable ZIP from [Releases](https://github.com/sadiqgarba2553/coneic/releases), extract it, and open **Coneic.exe**. Keep its DLLs, plugins, locale, Lua, skins and data folders together. `vlc.exe` is retained as a compatibility alias. Settings use `%APPDATA%\coneic`.
 
-On **Ubuntu 24.04 x64**, install the downloaded package with `sudo apt install ./coneic_0.2.1~alpha.1_amd64.deb`, then launch **Coneic** from the application menu or run `coneic`. It installs privately under `/opt/coneic` alongside system VLC.
+On **Ubuntu 24.04 x64**, install the downloaded package with `sudo apt install ./coneic_0.2.1-alpha.1_amd64.deb`, then launch **Coneic** from the application menu or run `coneic`. It installs privately under `/opt/coneic` alongside system VLC.
 
 This is the native VLC/Qt source fork. The earlier WPF prototype is superseded and is not this repository's application.
 
