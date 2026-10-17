@@ -49,6 +49,9 @@ libqt_plugin_la_SOURCES = \
 	gui/qt/coneic_design.hpp \
 	gui/qt/coneic_settings.hpp \
 	gui/qt/coneic_home.hpp \
+	gui/qt/coneic_personal.hpp \
+	gui/qt/coneic_personal_store.hpp \
+	gui/qt/coneic_personal_smoke.hpp \
 	gui/qt/coneic_menubar.hpp \
 	gui/qt/coneic_thumbnails.hpp \
 	gui/qt/coneic_smoke.hpp \

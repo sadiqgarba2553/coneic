@@ -7,6 +7,7 @@
 #include "recents.hpp"
 #include "dialogs_provider.hpp"
 #include "coneic_thumbnails.hpp"
+#include "coneic_personal.hpp"
 #include <QListWidget>
 #include <QFileDialog>
 #include <QDirIterator>
@@ -23,13 +24,14 @@
 #include <QMap>
 #include <QSet>
 #include <QLineEdit>
+#include <QMenu>
 #include <functional>
 #include <memory>
 
 class ConeicHome : public QWidget
 {
     intf_thread_t *intf;
-    QListWidget *navigation,*cards;
+    QListWidget *navigation=nullptr,*cards=nullptr;
     QLabel *title,*section,*empty;
     QLineEdit *search;
     QStringList libraryFiles;
@@ -138,14 +140,23 @@ class ConeicHome : public QWidget
                     if(!libraryFiles.contains(mrl))libraryFiles.append(mrl);
                 }
             }
-            if(!iterator->hasNext()){timer->stop();timer->deleteLater();refresh();}
+            if(!iterator->hasNext()){timer->stop();timer->deleteLater();ConeicPersonalStore::instance(intf)->catalog(libraryFiles);refresh();}
         });timer->start();
     }
 protected:
+    void resizeEvent(QResizeEvent *event) override {
+        QWidget::resizeEvent(event);
+        if(auto sidebar=findChild<QWidget*>(QStringLiteral("ConeicLibrarySidebar")))sidebar->setFixedWidth(width()<850?178:210);
+    }
     void showEvent(QShowEvent *event) override {QWidget::showEvent(event);refresh();}
     bool eventFilter(QObject *object,QEvent *event) override {
-        if(object==cards->viewport() && event->type()==QEvent::Resize)
-            for(int i=0;i<cards->count();i++)if(cards->item(i)->data(Qt::UserRole+1).toBool())cards->item(i)->setSizeHint(QSize(qMax(200,cards->viewport()->width()-2*cards->spacing()),32));
+        if(cards && object==cards->viewport() && event->type()==QEvent::Resize) {
+            const int available=qMax(180,cards->viewport()->width()-2*cards->spacing());
+            const int columns=qMax(1,(available+cards->spacing())/(210+cards->spacing()));
+            const int cell=qMin(280,(available-(columns-1)*cards->spacing())/columns);
+            cards->setIconSize(QSize(cell-16,(cell-16)*9/16));
+            for(int i=0;i<cards->count();i++)cards->item(i)->setSizeHint(cards->item(i)->data(Qt::UserRole+1).toBool()?QSize(available,40):QSize(cell,(cell-16)*9/16+52));
+        }
         return QWidget::eventFilter(object,event);
     }
 public:
@@ -157,10 +168,11 @@ public:
         QVBoxLayout *side=new QVBoxLayout(sidebar);side->setContentsMargins(10,18,10,12);
         QLabel *brand=new QLabel("Coneic",sidebar);brand->setObjectName("ConeicBrand");side->addWidget(brand);
         navigation=new QListWidget(sidebar);navigation->setObjectName("ConeicLibraryNavigation");navigation->setFrameShape(QFrame::NoFrame);
-        const QStringList names={qtr("Home"),qtr("Recent"),qtr("Videos"),qtr("Music"),qtr("Playlists"),qtr("Network Streams")};
+        const QStringList names={qtr("Home"),qtr("Recent"),qtr("Videos"),qtr("Music"),qtr("Playlists"),qtr("Streams")};
         const QStringList icons={"home","recent","videos","music","playlists","network"};
         for(int i=0;i<names.size();i++){auto item=new QListWidgetItem(QIcon(":/coneic/"+icons[i]+".svg"),names[i],navigation);item->setSizeHint(QSize(170,36));}
         side->addWidget(navigation,1);
+        auto personal=new QPushButton(QIcon(":/coneic/bookmarks.svg"),qtr("Your space"),sidebar);connect(personal,&QPushButton::clicked,this,[this](){ConeicPersonalDialog::open(intf,window());});side->addWidget(personal);
         auto browseButton=new QPushButton(QIcon(":/coneic/folder.svg"),qtr("Browse"),sidebar);
         connect(browseButton,&QPushButton::clicked,this,[this](){browse();});side->addWidget(browseButton);
         auto settings=new QPushButton(QIcon(":/coneic/menu-settings.svg"),qtr("Settings"),sidebar);
@@ -169,12 +181,14 @@ public:
         QWidget *main=new QWidget(this);QVBoxLayout *content=new QVBoxLayout(main);content->setContentsMargins(28,22,28,18);content->setSpacing(16);
         QHBoxLayout *top=new QHBoxLayout;
         title=new QLabel(qtr("Home"),main);title->setObjectName("ConeicHomeTitle");top->addWidget(title,1);
-        search=new QLineEdit(main);search->setPlaceholderText(qtr("Search your media"));search->setAccessibleName(qtr("Search your media"));search->setMaximumWidth(250);search->setClearButtonEnabled(true);top->addWidget(search);content->addLayout(top);
+        search=new QLineEdit(main);search->setPlaceholderText(qtr("Search media"));search->setAccessibleName(qtr("Search your media"));search->setMinimumWidth(140);search->setMaximumWidth(260);search->setClearButtonEnabled(true);top->addWidget(search);content->addLayout(top);
         QHBoxLayout *actions=new QHBoxLayout;
         auto file=new QPushButton(QIcon(":/coneic/menu-file.svg"),qtr("Open File"),main);file->setObjectName("ConeicOpenFile");
         connect(file,&QPushButton::clicked,DialogsProvider::getInstance(intf),&DialogsProvider::simpleOpenDialog);actions->addWidget(file);
-        auto folder=new QPushButton(QIcon(":/coneic/menu-folder.svg"),qtr("Add Folder"),main);connect(folder,&QPushButton::clicked,this,[this](){addFolder();});actions->addWidget(folder);
-        auto network=new QPushButton(QIcon(":/coneic/menu-network.svg"),qtr("Network Stream"),main);connect(network,&QPushButton::clicked,DialogsProvider::getInstance(intf),&DialogsProvider::openNetDialog);actions->addWidget(network);actions->addStretch();content->addLayout(actions);
+        auto add=new QPushButton(qtr("Add media"),main);auto addMenu=new QMenu(add);
+        connect(addMenu->addAction(QIcon(":/coneic/menu-folder.svg"),qtr("Media folder")),&QAction::triggered,this,[this](){addFolder();});
+        connect(addMenu->addAction(QIcon(":/coneic/menu-network.svg"),qtr("Network stream")),&QAction::triggered,DialogsProvider::getInstance(intf),&DialogsProvider::openNetDialog);
+        add->setMenu(addMenu);actions->addWidget(add);actions->addStretch();content->addLayout(actions);
         section=new QLabel(main);section->setObjectName("ConeicSectionTitle");content->addWidget(section);
         cards=new QListWidget(main);cards->setObjectName("ConeicMediaCards");cards->setViewMode(QListView::IconMode);cards->setResizeMode(QListView::Adjust);cards->setMovement(QListView::Static);cards->setWordWrap(true);cards->setIconSize(QSize(170,96));cards->setSpacing(12);cards->setSelectionMode(QAbstractItemView::SingleSelection);
         cards->viewport()->installEventFilter(this);
@@ -183,6 +197,7 @@ public:
         layout->addWidget(main,1);navigation->setCurrentRow(0);
         connect(navigation,&QListWidget::currentRowChanged,this,[this](){refresh();});connect(search,&QLineEdit::textChanged,this,[this](){refresh();});
         QSettings &settingsStore=*intf->p_sys->mainSettings;for(const QString &folder:settingsStore.value("Coneic/library-folders").toStringList())indexFolder(folder);
+        ConeicPersonalStore::instance(intf)->catalog(RecentsMRL::getInstance(intf)->recentList());
         refresh();
     }
 };

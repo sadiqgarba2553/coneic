@@ -1,0 +1,81 @@
+{
+    "checks": [
+        {
+            "name": "New catalog persists",
+            "passed": true
+        },
+        {
+            "name": "Tags trim and deduplicate",
+            "passed": true
+        },
+        {
+            "name": "Unicode timestamped note saves",
+            "passed": true
+        },
+        {
+            "name": "Second writer merges latest data",
+            "passed": true
+        },
+        {
+            "name": "Restart retains notes and Unicode",
+            "passed": true
+        },
+        {
+            "name": "Editing replaces one record",
+            "passed": true
+        },
+        {
+            "name": "Invalid section is rejected",
+            "passed": true
+        },
+        {
+            "name": "Unfinished excludes completed media",
+            "passed": true
+        },
+        {
+            "name": "Duration filter excludes unknown duration",
+            "passed": true
+        },
+        {
+            "name": "Tag and recent rules select matching media",
+            "passed": true
+        },
+        {
+            "name": "Custom collection saves",
+            "passed": true
+        },
+        {
+            "name": "Custom collection survives restart",
+            "passed": true
+        },
+        {
+            "name": "New UI collections receive persistent identifiers",
+            "passed": true
+        },
+        {
+            "name": "Markdown retains full note and section times",
+            "passed": true
+        },
+        {
+            "name": "Concurrent writer lock protects data",
+            "passed": true
+        },
+        {
+            "name": "Deleting a moment keeps media and tags",
+            "passed": true
+        },
+        {
+            "name": "Deleting a collection keeps media",
+            "passed": true
+        },
+        {
+            "name": "Corrupt data refuses writes",
+            "passed": true
+        },
+        {
+            "name": "Corrupt bytes remain recoverable",
+            "passed": true
+        }
+    ],
+    "passed": true
+}

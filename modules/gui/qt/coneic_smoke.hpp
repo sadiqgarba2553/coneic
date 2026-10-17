@@ -28,6 +28,7 @@
 #include <functional>
 #include "dialogs_provider.hpp"
 #include "coneic_settings.hpp"
+#include "coneic_personal_smoke.hpp"
 
 namespace ConeicSmoke {
 inline void schedule(QApplication &app, intf_thread_t *intf)
@@ -36,6 +37,7 @@ inline void schedule(QApplication &app, intf_thread_t *intf)
     if (directory.isEmpty())
         return;
     QDir().mkpath(directory);
+    ConeicPersonalSmoke::persistence(directory);
     struct State {
         QJsonArray results;
         int index = 0;
@@ -120,7 +122,7 @@ inline void schedule(QApplication &app, intf_thread_t *intf)
                         }
                         auto poll=new QTimer(&app);poll->setInterval(200);
                         auto attempts=std::make_shared<int>(0);
-                        QObject::connect(poll,&QTimer::timeout,&app,[state,directory,&app,poll,attempts,complete](){
+                        QObject::connect(poll,&QTimer::timeout,&app,[state,directory,intf,&app,poll,attempts,complete](){
                             bool preview=false;
                             for(QWidget *widget:app.topLevelWidgets())if(widget->inherits("TimeTooltip") && widget->property("coneicHasPreview").toBool()) {
                                 preview=true;widget->grab().save(directory+QStringLiteral("/native-seek-preview.png"));
@@ -130,7 +132,7 @@ inline void schedule(QApplication &app, intf_thread_t *intf)
                             state->results.append(QJsonObject{{QStringLiteral("name"),QStringLiteral("Seek hover renders a real native VLC video thumbnail")},{QStringLiteral("passed"),preview}});state->allPassed &= preview;
                             const int thumbnails=app.property("coneicThumbnailCompleted").toInt()+app.property("coneicThumbnailCacheHits").toInt();
                             state->results.append(QJsonObject{{QStringLiteral("name"),QStringLiteral("Background video thumbnails generated or loaded")},{QStringLiteral("count"),thumbnails},{QStringLiteral("passed"),thumbnails>0}});state->allPassed &= thumbnails>0;
-                            complete();
+                            ConeicPersonalSmoke::runtime(intf,directory,[state,complete](bool passed){state->results.append(QJsonObject{{"name",QStringLiteral("Personal features acceptance checks")},{"passed",passed}});state->allPassed &= passed;complete();});
                         });poll->start();
                     });
                 } else complete();

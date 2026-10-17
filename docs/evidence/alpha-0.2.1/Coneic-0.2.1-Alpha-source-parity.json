@@ -1,0 +1,1096 @@
+{
+  "schema": "coneic-vlc-source-parity-v1",
+  "created_utc": "2026-10-17T17:04:14.338824+00:00",
+  "repo": "<SOURCE>",
+  "baseline_commit": "6de05adcbaf2e8b85fe86aad4169393098628119",
+  "baseline_tag": "3.0.24",
+  "status": "SOURCE CHECKS PASS; PRESENTATION CHANGES REQUIRE REVIEW",
+  "counts": {
+    "baseline_module_registrations": 479,
+    "current_module_registrations": 479,
+    "baseline_module_source_files": 1901,
+    "current_module_source_files": 1910,
+    "baseline_core_option_declarations": 405,
+    "current_core_option_declarations": 405,
+    "baseline_export_symbol_declarations": 1080,
+    "current_export_symbol_declarations": 1080,
+    "baseline_tracked_files": 4470,
+    "current_tracked_and_unignored_files": 4708,
+    "qt_workflow_source_files": 117,
+    "unchanged_qt_workflow_source_files": 109
+  },
+  "presentation_allowlist": [
+    "bin/vlc_win32_rc.rc.in",
+    "bin/winvlc.c",
+    "modules/gui/qt/Makefile.am",
+    "modules/gui/qt/components/controller.cpp",
+    "modules/gui/qt/components/controller.hpp",
+    "modules/gui/qt/components/interface_widgets.cpp",
+    "modules/gui/qt/components/simple_preferences.cpp",
+    "modules/gui/qt/components/simple_preferences.hpp",
+    "modules/gui/qt/coneic_design.hpp",
+    "modules/gui/qt/coneic_home.hpp",
+    "modules/gui/qt/coneic_menubar.hpp",
+    "modules/gui/qt/coneic_personal.hpp",
+    "modules/gui/qt/coneic_personal_smoke.hpp",
+    "modules/gui/qt/coneic_personal_store.hpp",
+    "modules/gui/qt/coneic_settings.hpp",
+    "modules/gui/qt/coneic_smoke.hpp",
+    "modules/gui/qt/coneic_thumbnails.hpp",
+    "modules/gui/qt/dialogs/help.cpp",
+    "modules/gui/qt/dialogs/preferences.cpp",
+    "modules/gui/qt/dialogs/preferences.hpp",
+    "modules/gui/qt/fonts/coneic/Inter-Medium.ttf",
+    "modules/gui/qt/fonts/coneic/Inter-Regular.ttf",
+    "modules/gui/qt/fonts/coneic/Inter-SemiBold.ttf",
+    "modules/gui/qt/fonts/coneic/LICENSE.txt",
+    "modules/gui/qt/fonts/coneic/README.md",
+    "modules/gui/qt/main_interface.cpp",
+    "modules/gui/qt/pixmaps/coneic-reference/ATTRIBUTION.md",
+    "modules/gui/qt/pixmaps/coneic-reference/README.md",
+    "modules/gui/qt/pixmaps/coneic-reference/add.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/audio.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/back.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/bookmarks.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/chapters.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/close.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/folder.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/fullscreen-exit.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/fullscreen.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/home-chevron.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/home.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/library-artist.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/library-back.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/library-expand.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/library-forward.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/library-more.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/library-search.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/library-sort.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/library-view.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/menu-about.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/menu-capture.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/menu-convert.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/menu-customize.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/menu-disc.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/menu-file.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/menu-folder.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/menu-hotkeys.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/menu-network.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/menu-profile.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/menu-recent.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/menu-settings.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/music.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/network.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/next.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/onboarding-accent-blue-active.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/onboarding-accent-blue.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/onboarding-accent-cyan-active.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/onboarding-accent-cyan.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/onboarding-accent-gray-active.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/onboarding-accent-gray.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/onboarding-accent-green-active.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/onboarding-accent-green.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/onboarding-accent-orange-active.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/onboarding-accent-orange.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/onboarding-accent-pink-active.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/onboarding-accent-pink.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/onboarding-accent-purple-active.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/onboarding-accent-purple.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/onboarding-accent-red-active.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/onboarding-accent-red.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/onboarding-accent-yellow-active.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/onboarding-accent-yellow.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/onboarding-cone.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/pause.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/play-accent.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/play.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/playback-settings.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/player-tab-audio.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/player-tab-bookmarks.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/player-tab-chapters.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/player-tab-playback.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/player-tab-queue.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/player-tab-subtitles.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/player-tab-video.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/playlists.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/previous.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/queue-drag.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/queue-remove.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/queue-repeat.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/queue-shuffle.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/queue.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/recent.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/remove.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/search.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-audio-active.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-audio.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-chevron.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-close.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-controls-active.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-controls.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-crop-link.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-extensions-active.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-extensions.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-general-active.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-general.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-info.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-interface-active.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-interface.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-keyedit.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-library-active.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-library.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-network-active.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-network.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-performance-active.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-performance.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-playback-active.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-playback.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-privacy-active.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-privacy.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-recording-active.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-recording.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-search.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-subtitles-active.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-subtitles.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-video-active.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-video.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/subtitles.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/videos.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/volume-background.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/volume-fill.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/volume-high.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/volume-low.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/volume-mask.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/volume-medium.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/volume-muted.svg",
+    "modules/gui/qt/pixmaps/coneic-supplement/ATTRIBUTION.md",
+    "modules/gui/qt/pixmaps/coneic-supplement/ab-complete.svg",
+    "modules/gui/qt/pixmaps/coneic-supplement/ab-idle.svg",
+    "modules/gui/qt/pixmaps/coneic-supplement/ab-start.svg",
+    "modules/gui/qt/pixmaps/coneic-supplement/ab.svg",
+    "modules/gui/qt/pixmaps/coneic-supplement/check.svg",
+    "modules/gui/qt/pixmaps/coneic-supplement/faster.svg",
+    "modules/gui/qt/pixmaps/coneic-supplement/frame.svg",
+    "modules/gui/qt/pixmaps/coneic-supplement/pause-accent.svg",
+    "modules/gui/qt/pixmaps/coneic-supplement/record.svg",
+    "modules/gui/qt/pixmaps/coneic-supplement/repeat-one.svg",
+    "modules/gui/qt/pixmaps/coneic-supplement/slower.svg",
+    "modules/gui/qt/pixmaps/coneic-supplement/snapshot.svg",
+    "modules/gui/qt/pixmaps/coneic-supplement/spinner.svg",
+    "modules/gui/qt/pixmaps/coneic-supplement/stop.svg",
+    "modules/gui/qt/pixmaps/coneic-supplement/wait1.svg",
+    "modules/gui/qt/pixmaps/coneic-supplement/wait2.svg",
+    "modules/gui/qt/pixmaps/coneic-supplement/wait3.svg",
+    "modules/gui/qt/pixmaps/coneic-supplement/wait4.svg",
+    "modules/gui/qt/pixmaps/coneic.svg",
+    "modules/gui/qt/qt.cpp",
+    "modules/gui/qt/util/input_slider.cpp",
+    "modules/gui/qt/util/timetooltip.cpp",
+    "modules/gui/qt/util/timetooltip.hpp",
+    "modules/gui/qt/vlc.qrc",
+    "share/Makefile.am",
+    "share/icons/vlc.ico",
+    "src/win32/dirs.c"
+  ],
+  "changed": [
+    {
+      "path": ".gitignore",
+      "baseline_sha256": "7654d5e0005142a5a2914e43101aabf0163806ac4c724e9bcb61ca67770b1d9b",
+      "current_sha256": "5429de38c07c507af6e7e9de5f185b59d92a970975e7525277a59571c502f781",
+      "allowed_presentation_review": false
+    },
+    {
+      "path": "bin/vlc_win32_rc.rc.in",
+      "baseline_sha256": "1911d8adbab2a31bee1b5d75ab4c7f321a424ad88807579cd7b034acc183c33a",
+      "current_sha256": "14e00ca877470a5191d60dfcc161fd018dc57c7465e15fb316fe81f4b4f081ad",
+      "allowed_presentation_review": true
+    },
+    {
+      "path": "bin/winvlc.c",
+      "baseline_sha256": "8cd93f4f06036e42baaae39dbb5274cff1a4e0ddbabafe56eaff28e3eeca9580",
+      "current_sha256": "98d8d8145d3ee6287ad7de3dc34bd58984b31bbd97cf4f6426984e9c4e82fe4b",
+      "allowed_presentation_review": true
+    },
+    {
+      "path": "modules/gui/qt/Makefile.am",
+      "baseline_sha256": "08c75bd9f9f4540ef854901d31cb37ef3d94782752055d57ed4ae2b8e119f023",
+      "current_sha256": "c30b013b012a421f6873a536d2e8622bb75afbf505a3453d096b5da982fb76b0",
+      "allowed_presentation_review": true
+    },
+    {
+      "path": "modules/gui/qt/components/controller.cpp",
+      "baseline_sha256": "0f951bdbc37c580bcb21fc2dcb5eec404ca30e50fe678dc64b0f8dad97cf168a",
+      "current_sha256": "f2c74419bdf48e014f5001848af894357d5ffee3305e651090b3cb438521c72d",
+      "allowed_presentation_review": true
+    },
+    {
+      "path": "modules/gui/qt/components/controller.hpp",
+      "baseline_sha256": "3400c254a576b5463335e540c4aed5cb348461c96e6dbed7c83ba9ff45b53f71",
+      "current_sha256": "7aeb80be3ad07436f87e0f15744c00ebeaf35c939485763847e01b530ddc8707",
+      "allowed_presentation_review": true
+    },
+    {
+      "path": "modules/gui/qt/components/interface_widgets.cpp",
+      "baseline_sha256": "bc14aa2dcf87c1936132bf6a2dbd9f832fbf1dfd7cb42d047954a8130a04d174",
+      "current_sha256": "9ea76ec35d5f6203cc65b2e18959009b2f507adc0e6506927c07baaf0b5e1543",
+      "allowed_presentation_review": true
+    },
+    {
+      "path": "modules/gui/qt/components/simple_preferences.cpp",
+      "baseline_sha256": "7ebb6bbb5cdba4146ce9a1bc131f05687583f41386b1f08666b990c07734563d",
+      "current_sha256": "d6203ca5e8bcb6c43a3ae7df4f1c79fcd282d70135cd1ba3cd240d1191b70efd",
+      "allowed_presentation_review": true
+    },
+    {
+      "path": "modules/gui/qt/components/simple_preferences.hpp",
+      "baseline_sha256": "05a9fba2c677356fadb39e50261e7f6e00a1f9fcf423712ec88f7a3deb4534f8",
+      "current_sha256": "c63d943bec8d7cc5df1e9ff9eb49c52617e464656911c0c86e0192320c5ff8ee",
+      "allowed_presentation_review": true
+    },
+    {
+      "path": "modules/gui/qt/dialogs/help.cpp",
+      "baseline_sha256": "5895b58a33569581fcca9a940c5bbcaf719dbef12c3ba6a9bdd31f106f0bd4b9",
+      "current_sha256": "814f17141b8852bb0d0514e16818e716f9ea5d90e7850fcf27cbbeace3df5d6b",
+      "allowed_presentation_review": true
+    },
+    {
+      "path": "modules/gui/qt/dialogs/preferences.cpp",
+      "baseline_sha256": "7af0be45dad285fbeffb478ee46e0112a502851ef30e59df4be319571852f107",
+      "current_sha256": "3a2c8c30e981c67ed718fc59b2a702afcfc422ef5ece9dc2c4a47a03bda8126b",
+      "allowed_presentation_review": true
+    },
+    {
+      "path": "modules/gui/qt/dialogs/preferences.hpp",
+      "baseline_sha256": "d9c7cae616c685b0d836e913e1966f226a78d3b6ee39c2d4a8c6007b594fdbba",
+      "current_sha256": "c0003bd61544335d4af3b1f4fa23aee1c33f69e8987e8e0147c7e3c36a8a155b",
+      "allowed_presentation_review": true
+    },
+    {
+      "path": "modules/gui/qt/main_interface.cpp",
+      "baseline_sha256": "2866ff4bc71eb70c72fdfc82fcb9af6c9f2cce4f5afd9d5775110addc52878d9",
+      "current_sha256": "c7e93b118220d0a8aa8979508b347e74c76758df752c972ddb384df203a4b412",
+      "allowed_presentation_review": true
+    },
+    {
+      "path": "modules/gui/qt/qt.cpp",
+      "baseline_sha256": "3cdb2e14ac57ab33116c48557603539f7eb9b0002b26c86ba5d328be6c4ad38e",
+      "current_sha256": "7e0b5950ea062715e406490e470b272359f7ceec01099f92819ed5d1b175ca6c",
+      "allowed_presentation_review": true
+    },
+    {
+      "path": "modules/gui/qt/util/input_slider.cpp",
+      "baseline_sha256": "8040e152e66a4412dc75b9ece5f96e13b099625feacc55ff9a507a38fa1c29e3",
+      "current_sha256": "b0ab092307eb5974649d461b8642a4517de12737581efe251a86b2588301c507",
+      "allowed_presentation_review": true
+    },
+    {
+      "path": "modules/gui/qt/util/timetooltip.cpp",
+      "baseline_sha256": "b50d209e883b3a1631d2f4b6db0b56138318068ec8d5c284d9d344b81cae43f8",
+      "current_sha256": "48838720ee5f9c6ad73c06a0049b4aa559d2a2c1b900743c20bb37c52c2a568f",
+      "allowed_presentation_review": true
+    },
+    {
+      "path": "modules/gui/qt/util/timetooltip.hpp",
+      "baseline_sha256": "9e1e2f88cc0fde694e4a90c7504b514fc48410db74fb0df85861eef09c6f9c87",
+      "current_sha256": "6123ea14b27712dc5b905721879e913ea7745d88f2ed2b64e997724051badf9d",
+      "allowed_presentation_review": true
+    },
+    {
+      "path": "modules/gui/qt/vlc.qrc",
+      "baseline_sha256": "1b066fa1592633e1f563614bfd191976e701fc2c35af4e54f99d526d704a6f0c",
+      "current_sha256": "1eb6a6776ef8315e5078e0414c39ea29a51ab3d8fe089c14101cefe6a525d328",
+      "allowed_presentation_review": true
+    },
+    {
+      "path": "share/Makefile.am",
+      "baseline_sha256": "c1ffe7515cfdd2345ba94841e348beda23ab424d77336e5c9140613560dcae47",
+      "current_sha256": "9adef6be14790b6af0bdc19210d40e84858df2e0e5d215b35ba0e9beee2c46e7",
+      "allowed_presentation_review": true
+    },
+    {
+      "path": "share/icons/vlc.ico",
+      "baseline_sha256": "e65adb3cd7a08d343c0d2c4d1c20e0213b01429a8a8113ea9d2732f4433979c2",
+      "current_sha256": "712156dd7feeeee12ec65f2708b17e66c8354729b5100a7442bb12897d6c2409",
+      "allowed_presentation_review": true
+    },
+    {
+      "path": "src/win32/dirs.c",
+      "baseline_sha256": "a0f430cef77723ef4c815776594e5f6324680aee1b91ce8fc1acacea9110f388",
+      "current_sha256": "a948921ea4cecb0d1fb398e991bfbda206d77cd22db8ced4ca5394f8b370aef4",
+      "allowed_presentation_review": true
+    }
+  ],
+  "removed": [],
+  "added": [
+    ".github/workflows/source-preservation.yml",
+    "CONEIC.md",
+    "CONTRIBUTING.md",
+    "README.md",
+    "coneic/build-win64.sh",
+    "coneic/mingw_compat.c",
+    "coneic/presentation-paths.json",
+    "coneic/rebuild-matroska.sh",
+    "coneic/rebuild-vpx.sh",
+    "coneic/stage-notices.py",
+    "coneic/tests/build_catalogs.py",
+    "coneic/tests/fixtures/A quiet moment.wav",
+    "coneic/tests/fixtures/Coneic motion.avi",
+    "coneic/tests/fixtures/Coneic motion.srt",
+    "coneic/tests/fixtures/embedding-repro.mp4",
+    "coneic/tests/inventory_payload.py",
+    "coneic/tests/mingw_runtime_probe.c",
+    "coneic/tests/native_api_probe.c",
+    "coneic/tests/run-mingw-runtime-probe.ps1",
+    "coneic/tests/validate_cli.py",
+    "coneic/tests/validate_native.py",
+    "coneic/tests/verify_package.py",
+    "coneic/tests/verify_parity.py",
+    "docs/ALPHA-0.2.1.md",
+    "docs/ARCHITECTURE.md",
+    "docs/BUILD.md",
+    "docs/DESIGN-REFERENCE.md",
+    "docs/DESIGN.md",
+    "docs/PROVENANCE.md",
+    "docs/VALIDATION.md",
+    "docs/branding/bluecloud.png",
+    "docs/design-reference-fonts.json",
+    "docs/design-reference-icons.json",
+    "docs/evidence/Coneic-MinGW-compat-audit.md",
+    "docs/evidence/Coneic-VLC-package-parity.json",
+    "docs/evidence/Coneic-VLC-package-parity.md",
+    "docs/evidence/Coneic-VLC-parity.json",
+    "docs/evidence/Coneic-VLC-parity.md",
+    "docs/evidence/Coneic-VLC-supplied-payload.json",
+    "docs/evidence/Coneic-VLC-supplied-payload.md",
+    "docs/evidence/Coneic-native-resource-evidence.json",
+    "docs/evidence/build-configuration.json",
+    "docs/evidence/redesign/Coneic-redesign-package-parity.json",
+    "docs/evidence/redesign/Coneic-redesign-package-parity.md",
+    "docs/evidence/redesign/Coneic-redesign-source-parity.json",
+    "docs/evidence/redesign/Coneic-redesign-source-parity.md",
+    "docs/evidence/redesign/mingw-runtime-results.txt",
+    "docs/evidence/redesign/native-ui-results.json",
+    "docs/evidence/redesign/settings-option-inventory.json",
+    "docs/evidence/redesign/ui-inventory.json",
+    "docs/evidence/runtime/catalogues.json",
+    "docs/evidence/runtime/known-embedding-failure.json",
+    "docs/evidence/runtime/locale-results.json",
+    "docs/evidence/runtime/mingw-runtime-results.txt",
+    "docs/evidence/runtime/native-cli-results.json",
+    "docs/evidence/runtime/native-controls-results.json",
+    "docs/evidence/runtime/native-gui-playback-results.json",
+    "docs/evidence/runtime/native-icon-results.json",
+    "docs/evidence/runtime/native-ui-results.json",
+    "docs/evidence/runtime/ui-inventory.json",
+    "docs/evidence/runtime/validation-summary.json",
+    "docs/evidence/vlc-architecture.md",
+    "docs/evidence/vlc-evidence.json",
+    "docs/evidence/vlc-findings.md",
+    "docs/evidence/vlc-reference-rea-evidence.json",
+    "docs/screenshots/capture.png",
+    "docs/screenshots/effects.png",
+    "docs/screenshots/general-settings.png",
+    "docs/screenshots/main-window.png",
+    "docs/screenshots/native-player.png",
+    "docs/screenshots/preferences.png",
+    "docs/screenshots/seek-preview.png",
+    "docs/screenshots/settings-light.png",
+    "docs/screenshots/settings-search.png",
+    "docs/screenshots/vlm.png",
+    "modules/gui/qt/coneic_design.hpp",
+    "modules/gui/qt/coneic_home.hpp",
+    "modules/gui/qt/coneic_menubar.hpp",
+    "modules/gui/qt/coneic_personal.hpp",
+    "modules/gui/qt/coneic_personal_smoke.hpp",
+    "modules/gui/qt/coneic_personal_store.hpp",
+    "modules/gui/qt/coneic_settings.hpp",
+    "modules/gui/qt/coneic_smoke.hpp",
+    "modules/gui/qt/coneic_thumbnails.hpp",
+    "modules/gui/qt/fonts/coneic/Inter-Medium.ttf",
+    "modules/gui/qt/fonts/coneic/Inter-Regular.ttf",
+    "modules/gui/qt/fonts/coneic/Inter-SemiBold.ttf",
+    "modules/gui/qt/fonts/coneic/LICENSE.txt",
+    "modules/gui/qt/fonts/coneic/README.md",
+    "modules/gui/qt/pixmaps/coneic-reference/ATTRIBUTION.md",
+    "modules/gui/qt/pixmaps/coneic-reference/README.md",
+    "modules/gui/qt/pixmaps/coneic-reference/add.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/audio.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/back.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/bookmarks.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/chapters.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/close.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/folder.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/fullscreen-exit.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/fullscreen.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/home-chevron.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/home.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/library-artist.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/library-back.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/library-expand.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/library-forward.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/library-more.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/library-search.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/library-sort.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/library-view.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/menu-about.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/menu-capture.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/menu-convert.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/menu-customize.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/menu-disc.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/menu-file.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/menu-folder.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/menu-hotkeys.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/menu-network.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/menu-profile.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/menu-recent.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/menu-settings.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/music.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/network.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/next.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/onboarding-accent-blue-active.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/onboarding-accent-blue.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/onboarding-accent-cyan-active.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/onboarding-accent-cyan.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/onboarding-accent-gray-active.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/onboarding-accent-gray.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/onboarding-accent-green-active.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/onboarding-accent-green.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/onboarding-accent-orange-active.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/onboarding-accent-orange.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/onboarding-accent-pink-active.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/onboarding-accent-pink.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/onboarding-accent-purple-active.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/onboarding-accent-purple.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/onboarding-accent-red-active.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/onboarding-accent-red.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/onboarding-accent-yellow-active.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/onboarding-accent-yellow.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/onboarding-cone.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/pause.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/play-accent.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/play.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/playback-settings.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/player-tab-audio.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/player-tab-bookmarks.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/player-tab-chapters.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/player-tab-playback.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/player-tab-queue.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/player-tab-subtitles.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/player-tab-video.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/playlists.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/previous.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/queue-drag.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/queue-remove.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/queue-repeat.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/queue-shuffle.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/queue.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/recent.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/remove.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/search.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-audio-active.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-audio.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-chevron.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-close.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-controls-active.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-controls.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-crop-link.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-extensions-active.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-extensions.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-general-active.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-general.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-info.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-interface-active.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-interface.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-keyedit.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-library-active.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-library.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-network-active.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-network.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-performance-active.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-performance.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-playback-active.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-playback.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-privacy-active.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-privacy.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-recording-active.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-recording.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-search.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-subtitles-active.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-subtitles.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-video-active.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/settings-video.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/subtitles.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/videos.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/volume-background.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/volume-fill.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/volume-high.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/volume-low.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/volume-mask.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/volume-medium.svg",
+    "modules/gui/qt/pixmaps/coneic-reference/volume-muted.svg",
+    "modules/gui/qt/pixmaps/coneic-supplement/ATTRIBUTION.md",
+    "modules/gui/qt/pixmaps/coneic-supplement/ab-complete.svg",
+    "modules/gui/qt/pixmaps/coneic-supplement/ab-idle.svg",
+    "modules/gui/qt/pixmaps/coneic-supplement/ab-start.svg",
+    "modules/gui/qt/pixmaps/coneic-supplement/ab.svg",
+    "modules/gui/qt/pixmaps/coneic-supplement/check.svg",
+    "modules/gui/qt/pixmaps/coneic-supplement/faster.svg",
+    "modules/gui/qt/pixmaps/coneic-supplement/frame.svg",
+    "modules/gui/qt/pixmaps/coneic-supplement/pause-accent.svg",
+    "modules/gui/qt/pixmaps/coneic-supplement/record.svg",
+    "modules/gui/qt/pixmaps/coneic-supplement/repeat-one.svg",
+    "modules/gui/qt/pixmaps/coneic-supplement/slower.svg",
+    "modules/gui/qt/pixmaps/coneic-supplement/snapshot.svg",
+    "modules/gui/qt/pixmaps/coneic-supplement/spinner.svg",
+    "modules/gui/qt/pixmaps/coneic-supplement/stop.svg",
+    "modules/gui/qt/pixmaps/coneic-supplement/wait1.svg",
+    "modules/gui/qt/pixmaps/coneic-supplement/wait2.svg",
+    "modules/gui/qt/pixmaps/coneic-supplement/wait3.svg",
+    "modules/gui/qt/pixmaps/coneic-supplement/wait4.svg",
+    "share/coneic/coneic-1024.png",
+    "share/coneic/coneic-128.png",
+    "share/coneic/coneic-16.png",
+    "share/coneic/coneic-20.png",
+    "share/coneic/coneic-24.png",
+    "share/coneic/coneic-256.png",
+    "share/coneic/coneic-32.png",
+    "share/coneic/coneic-40.png",
+    "share/coneic/coneic-48.png",
+    "share/coneic/coneic-512.png",
+    "share/coneic/coneic-64.png",
+    "share/coneic/coneic-winter.svg",
+    "share/coneic/coneic.svg"
+  ],
+  "protected_scope_review_flags": [],
+  "semantic_losses": [],
+  "api_losses": [],
+  "critical_files": [
+    {
+      "path": "modules/gui/qt/menus.cpp",
+      "identical": true,
+      "baseline_sha256": "570cf20fb8950e614fec8a466b7490032e7d8ed7da51c912aa28fbfd469233e0"
+    },
+    {
+      "path": "modules/gui/qt/menus.hpp",
+      "identical": true,
+      "baseline_sha256": "e8c32c2186ed04bec916089b30b51f65b3d1930aaa6387a25f452f714e93189b"
+    },
+    {
+      "path": "modules/gui/qt/dialogs_provider.cpp",
+      "identical": true,
+      "baseline_sha256": "f92f73ae294253a319667044c4e6a72800be1ac29c262ada2ffeac94781ed099"
+    },
+    {
+      "path": "modules/gui/qt/dialogs_provider.hpp",
+      "identical": true,
+      "baseline_sha256": "29e82d9a3dce28196deda1378713ecac0dbd811ddb579aa4f6bdcc78df12aef9"
+    },
+    {
+      "path": "modules/gui/qt/actions_manager.cpp",
+      "identical": true,
+      "baseline_sha256": "7e9762d87ca7e48ca7f14ac870bd4c05f089cb537fd9b9f4e9801e8328e0ec83"
+    },
+    {
+      "path": "modules/gui/qt/actions_manager.hpp",
+      "identical": true,
+      "baseline_sha256": "049235e4cef78aa0b2f405b955bae906651da405e55cf49f126b92d32a532f22"
+    },
+    {
+      "path": "lib/libvlc.sym",
+      "identical": true,
+      "baseline_sha256": "f72922ed03bc29f910b8d54cc5a88bdc1b6255e87263c1b3776b3c49ba036cf6"
+    },
+    {
+      "path": "include/vlc/libvlc.h",
+      "identical": true,
+      "baseline_sha256": "0b7c066b9ddd7bf951bd568fd5b42eedc4d2ebfd048043e56cfc14b8792e2626"
+    },
+    {
+      "path": "src/libvlc-module.c",
+      "identical": true,
+      "baseline_sha256": "8afb47f6687d817640e0bcd07bad3334a6b9ea889b23a3a6cc0595e16008efe8"
+    },
+    {
+      "path": "modules/control/hotkeys.c",
+      "identical": true,
+      "baseline_sha256": "da4f94d5002c247ef9dab9c77fbbc799cd3b55ea052a1166bb04527553453b99"
+    }
+  ],
+  "qt_workflow_sources": [
+    {
+      "path": "modules/gui/qt/components/complete_preferences.cpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/components/complete_preferences.hpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/components/controller.cpp",
+      "unchanged": false
+    },
+    {
+      "path": "modules/gui/qt/components/controller.hpp",
+      "unchanged": false
+    },
+    {
+      "path": "modules/gui/qt/components/controller_widget.cpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/components/controller_widget.hpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/components/epg/EPGChannels.cpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/components/epg/EPGChannels.hpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/components/epg/EPGItem.cpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/components/epg/EPGItem.hpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/components/epg/EPGProgram.cpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/components/epg/EPGProgram.hpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/components/epg/EPGRuler.cpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/components/epg/EPGRuler.hpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/components/epg/EPGView.cpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/components/epg/EPGView.hpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/components/epg/EPGWidget.cpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/components/epg/EPGWidget.hpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/components/extended_panels.cpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/components/extended_panels.hpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/components/info_panels.cpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/components/info_panels.hpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/components/info_widgets.cpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/components/info_widgets.hpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/components/interface_widgets.cpp",
+      "unchanged": false
+    },
+    {
+      "path": "modules/gui/qt/components/interface_widgets.hpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/components/open_panels.cpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/components/open_panels.hpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/components/playlist/playlist.cpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/components/playlist/playlist.hpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/components/playlist/playlist_item.cpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/components/playlist/playlist_item.hpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/components/playlist/playlist_model.cpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/components/playlist/playlist_model.hpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/components/playlist/selector.cpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/components/playlist/selector.hpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/components/playlist/sorting.h",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/components/playlist/standardpanel.cpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/components/playlist/standardpanel.hpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/components/playlist/views.cpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/components/playlist/views.hpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/components/playlist/vlc_model.cpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/components/playlist/vlc_model.hpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/components/preferences_widgets.cpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/components/preferences_widgets.hpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/components/simple_preferences.cpp",
+      "unchanged": false
+    },
+    {
+      "path": "modules/gui/qt/components/simple_preferences.hpp",
+      "unchanged": false
+    },
+    {
+      "path": "modules/gui/qt/components/sout/profile_selector.cpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/components/sout/profile_selector.hpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/components/sout/profiles.hpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/components/sout/sout_widgets.cpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/components/sout/sout_widgets.hpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/dialogs/bookmarks.cpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/dialogs/bookmarks.hpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/dialogs/convert.cpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/dialogs/convert.hpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/dialogs/epg.cpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/dialogs/epg.hpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/dialogs/errors.cpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/dialogs/errors.hpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/dialogs/extended.cpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/dialogs/extended.hpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/dialogs/extensions.cpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/dialogs/extensions.hpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/dialogs/external.cpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/dialogs/external.hpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/dialogs/fingerprintdialog.cpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/dialogs/fingerprintdialog.hpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/dialogs/firstrun.cpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/dialogs/firstrun.hpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/dialogs/gototime.cpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/dialogs/gototime.hpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/dialogs/help.cpp",
+      "unchanged": false
+    },
+    {
+      "path": "modules/gui/qt/dialogs/help.hpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/dialogs/mediainfo.cpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/dialogs/mediainfo.hpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/dialogs/messages.cpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/dialogs/messages.hpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/dialogs/open.cpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/dialogs/open.hpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/dialogs/openurl.cpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/dialogs/openurl.hpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/dialogs/playlist.cpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/dialogs/playlist.hpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/dialogs/plugins.cpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/dialogs/plugins.hpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/dialogs/podcast_configuration.cpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/dialogs/podcast_configuration.hpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/dialogs/preferences.cpp",
+      "unchanged": false
+    },
+    {
+      "path": "modules/gui/qt/dialogs/preferences.hpp",
+      "unchanged": false
+    },
+    {
+      "path": "modules/gui/qt/dialogs/sout.cpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/dialogs/sout.hpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/dialogs/toolbar.cpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/dialogs/toolbar.hpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/dialogs/vlm.cpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/dialogs/vlm.hpp",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/ui/about.ui",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/ui/equalizer.ui",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/ui/fingerprintdialog.ui",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/ui/messages_panel.ui",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/ui/open.ui",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/ui/open_capture.ui",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/ui/open_disk.ui",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/ui/open_file.ui",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/ui/open_net.ui",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/ui/podcast_configuration.ui",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/ui/profiles.ui",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/ui/sout.ui",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/ui/sprefs_audio.ui",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/ui/sprefs_input.ui",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/ui/sprefs_interface.ui",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/ui/sprefs_subtitles.ui",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/ui/sprefs_video.ui",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/ui/streampanel.ui",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/ui/update.ui",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/ui/video_effects.ui",
+      "unchanged": true
+    },
+    {
+      "path": "modules/gui/qt/ui/vlm.ui",
+      "unchanged": true
+    }
+  ],
+  "limits": [
+    "Static source comparison only; no build or runtime verification.",
+    "Presentation allowlist permits edits but does not prove their behavioral safety.",
+    "Token extraction is a bounded syntax heuristic, not a C/C++ parser or complete option inventory.",
+    "Source preservation does not establish configure options, linked dependencies or packaged modules.",
+    "Untracked ignored files are excluded; no unrelated filesystem locations are read."
+  ]
+}

@@ -1,0 +1,45 @@
+{
+    "checks": [
+        {
+            "name": "Moment capture binds to native input",
+            "passed": true
+        },
+        {
+            "name": "Study UI saves start and end timestamps",
+            "passed": true
+        },
+        {
+            "name": "Saved section loops through native playback",
+            "passed": true
+        },
+        {
+            "name": "Markdown contains saved study note",
+            "passed": true
+        },
+        {
+            "name": "Native metadata scan discovers duration",
+            "passed": true
+        },
+        {
+            "name": "Live library tags persist",
+            "passed": true
+        },
+        {
+            "name": "Export writes complete Markdown to disk",
+            "passed": true
+        },
+        {
+            "name": "Background parsing discovers unplayed fixture durations",
+            "passed": true
+        },
+        {
+            "name": "Custom rule editor creates a live filtered collection",
+            "passed": true
+        },
+        {
+            "name": "Workspace fits compact and large windows",
+            "passed": true
+        }
+    ],
+    "passed": true
+}

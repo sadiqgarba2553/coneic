@@ -218,7 +218,7 @@ public:
         QHBoxLayout *layout=new QHBoxLayout(this); layout->setContentsMargins(0,0,0,0);layout->setSpacing(0);
         QWidget *sidebar=new QWidget(this);sidebar->setObjectName("ConeicSettingsSidebar"); sidebar->setFixedWidth(200);
         QVBoxLayout *side=new QVBoxLayout(sidebar);side->setContentsMargins(10,10,10,10);
-        search=new QLineEdit(sidebar);search->setPlaceholderText(qtr("Search settings"));search->setAccessibleName(qtr("Search all settings"));
+        search=new QLineEdit(sidebar);search->setPlaceholderText(qtr("Search"));search->setAccessibleName(qtr("Search all settings"));
         search->setClearButtonEnabled(true);side->addWidget(search);
         navigation=new QListWidget(sidebar);navigation->setObjectName("ConeicSettingsNavigation");navigation->setFrameShape(QFrame::NoFrame);
         const QStringList icons={"general","interface","privacy","controls","playback","video","audio","subtitles","library","network","performance","recording","extensions"};

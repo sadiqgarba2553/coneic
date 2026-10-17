@@ -44,7 +44,7 @@ class ConeicThumbnails : public QObject
         current=queue.dequeue();active=true;
         QStringList args={"--ignore-config","--no-media-library","--no-one-instance","--no-metadata-network-access","-I","dummy","--play-and-exit",
             "--avcodec-hw=none","--avcodec-threads=1","--vout=dummy","--aout=dummy","--no-audio","--no-spu","--no-sub-autodetect-file",
-            "--video-filter=scene","--scene-format=png","--scene-width=320","--scene-ratio=1","--scene-replace",
+            "--video-filter=scene","--scene-format=png","--scene-width=640","--scene-ratio=1","--scene-replace",
             "--scene-prefix="+current.key,"--scene-path="+QDir::toNativeSeparators(cache+"/work"),"--start-time="+QString::number(current.seconds),
             "--stop-time="+QString::number(current.seconds+.3,'f',1),QDir::toNativeSeparators(current.path)};
 #ifdef Q_OS_WIN
@@ -101,7 +101,7 @@ public:
         QFileInfo file(path);
         if(!file.isFile()){callback(QString());return;}
         seconds=qMax(0,seconds);
-        const QByteArray identity=(file.absoluteFilePath()+"|"+QString::number(file.size())+"|"+QString::number(file.lastModified().toMSecsSinceEpoch())+"|"+QString::number(seconds)).toUtf8();
+        const QByteArray identity=(file.absoluteFilePath()+"|"+QString::number(file.size())+"|"+QString::number(file.lastModified().toMSecsSinceEpoch())+"|"+QString::number(seconds)+"|640-v2").toUtf8();
         const QString key=QString::fromLatin1(QCryptographicHash::hash(identity,QCryptographicHash::Sha256).toHex());
         const QString target=cache+"/"+key+".png";
         if(QFileInfo::exists(target)) {
