@@ -33,7 +33,7 @@ Use the original installer as a local comparison input, not as a source file to 
 ## Local checks
 
 ```sh
-git fetch --no-tags --depth=1 https://github.com/videolan/vlc.git 6de05adcbaf2e8b85fe86aad4169393098628119
+git fetch --no-tags --depth=1 https://github.com/videolan/vlc.git refs/tags/3.0.24:refs/tags/3.0.24
 python3 coneic/tests/verify_parity.py --repo . --allow modules/gui/qt/coneic_smoke.hpp --json validation/source.json --markdown validation/source.md
 ```
 
