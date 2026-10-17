@@ -1,0 +1,13 @@
+#!/bin/sh
+# SPDX-License-Identifier: GPL-2.0-or-later
+# Private libraries and an independent profile allow stock VLC to coexist.
+set -eu
+root=/opt/coneic
+config_root="${XDG_CONFIG_HOME:-$HOME/.config}/coneic"
+mkdir -p "$config_root"
+export LD_LIBRARY_PATH="$root/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+export VLC_PLUGIN_PATH="$root/lib/vlc/plugins"
+export VLC_DATA_PATH="$root/share/vlc"
+export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/coneic"
+export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}/coneic"
+exec "$root/bin/vlc" --no-one-instance --config "$config_root/vlcrc" "$@"

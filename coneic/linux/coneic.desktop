@@ -1,0 +1,15 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Coneic
+GenericName=Media player
+Comment=Play, collect and study your media — by BLUECLOUD
+Exec=coneic --started-from-file %U
+TryExec=coneic
+Icon=coneic
+Terminal=false
+Categories=AudioVideo;Player;Video;Audio;
+StartupNotify=true
+StartupWMClass=coneic
+MimeType=video/mp4;video/x-matroska;video/webm;video/x-msvideo;video/mpeg;video/quicktime;audio/mpeg;audio/mp4;audio/flac;audio/ogg;audio/x-wav;application/ogg;application/xspf+xml;audio/x-mpegurl;
+Keywords=Video;Audio;Player;Study;Moments;

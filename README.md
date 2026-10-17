@@ -4,17 +4,21 @@
 
 Coneic is a project of **[BLUECLOUD](https://bluecloudai.online)**, its parent company.
 
-Coneic is a Windows x64 media player built as a source fork of **VideoLAN VLC 3.0.24**. It retains the existing media engine and workflows, adds the supplied Coneic logo and icon, and redesigns the native Qt interface around Juxtopposed's VLC Redesign, with the signature orange accent.
+Coneic is a desktop media player for Windows x64 and Ubuntu 24.04 x64 built as a source fork of **VideoLAN VLC 3.0.24**. It retains the existing media engine and workflows, adds the supplied Coneic logo and icon, and redesigns the native Qt interface around Juxtopposed's VLC Redesign, with the signature orange accent.
 
-**Status: development preview.** Source and package preservation checks pass. Tested native workflows work, with an unresolved standalone libVLC embedding failure documented below. Complete runtime feature parity is not certified.
+**Status: development preview.** Source and package preservation checks pass. Tested native workflows work, with an unresolved Windows standalone libVLC embedding failure documented below. Complete runtime feature parity is not certified.
 
 ![Actual native Coneic interface](docs/screenshots/main-window.png)
 
 **0.2.1 Alpha:** Moment Cards, Study Mode, Smart Collections, media relinking, portable library backup, a command palette, customisable Home and refined transport controls. Download the [0.2.1 Alpha prerelease](https://github.com/sadiqgarba2553/coneic/releases/tag/v0.2.1-alpha). See [Alpha instructions](docs/ALPHA-0.2.1.md) and [refinement details](docs/ALPHA-0.2.1-REFINEMENTS.md).
 
+**Linux preview:** a native Ubuntu 24.04 x64 Debian package is available in the [Linux Alpha prerelease](https://github.com/sadiqgarba2553/coneic/releases/tag/v0.2.1-alpha-linux.1). It includes the shared Alpha interface and personal features. See [Linux installation, build and validation details](docs/LINUX.md).
+
 ## Run
 
 Download the Windows portable ZIP from [Releases](https://github.com/sadiqgarba2553/coneic/releases), extract it, and open **Coneic.exe**. Keep its DLLs, plugins, locale, Lua, skins and data folders together. `vlc.exe` is retained as a compatibility alias. Settings use `%APPDATA%\coneic`.
+
+On **Ubuntu 24.04 x64**, install the downloaded package with `sudo apt install ./coneic_0.2.1~alpha.1_amd64.deb`, then launch **Coneic** from the application menu or run `coneic`. It installs privately under `/opt/coneic` alongside system VLC.
 
 This is the native VLC/Qt source fork. The earlier WPF prototype is superseded and is not this repository's application.
 
@@ -26,13 +30,15 @@ This preview adapts the video to VLC 3 Qt. Some effects/open dialogs keep their 
 
 ## What is retained
 
-Local/network playback, playlists and media library, audio/video/subtitle controls, filters and equalizer, capture and disc workflows, conversion and streaming, renderer discovery, VLM, extensions, skins, hotkeys and advanced preferences retain their upstream implementations. The source baseline contains 479 module registrations, 405 core option declarations and 1,080 export declarations. Protected media implementations and core declarations are retained; the explicitly listed Qt presentation files are adapted. See the current source audit for per-file hashes.
+Local/network playback, playlists and media library, audio/video/subtitle controls, filters and equalizer, capture and disc workflows, conversion and streaming, renderer discovery, VLM, extensions, skins, hotkeys and advanced preferences retain their upstream implementations. The source baseline contains 479 module registrations, 405 core option declarations and 1,080 export declarations. Protected media implementations and core declarations are retained; the explicitly listed Qt presentation files are adapted. The Linux build also includes one [bounded buffer-metadata correction](docs/HXXX-METADATA-FIX.md), with exact source hashes and a baseline-versus-fixed regression probe. See the current source audit for per-file hashes.
 
-The packaged baseline comparison finds all **360 plugin DLLs**, **two Blu-ray JARs**, and **205 supporting data files**, including 104 language catalogs. No named core exports or required DLL dependencies are missing. The original supplied ActiveX binary is retained unchanged; it is not registered by the portable package.
+The Windows packaged baseline comparison finds all **360 plugin DLLs**, **two Blu-ray JARs**, and **205 supporting data files**, including 104 language catalogs. No named core exports or required DLL dependencies are missing. The original supplied ActiveX binary is retained unchanged; it is not registered by the portable package.
 
 These inventories establish preservation, not successful execution of every codec, protocol, device or API.
 
 ## Validation
+
+The entries below describe Windows baseline checks. The newer Alpha and Linux validation are documented in [Alpha refinements](docs/ALPHA-0.2.1-REFINEMENTS.md) and [Linux](docs/LINUX.md).
 
 - 21 native UI checks cover the media Home screen, all 13 settings categories, advanced search, a real configuration binding, effects tabs, playback, thumbnails and seek previews, plus retained workflow dialogs.
 - 13 MJPEG/WAV engine control checks, including pause/resume, seek, rate, subtitles, equalizer and clean shutdown.

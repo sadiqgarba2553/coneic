@@ -607,6 +607,13 @@ static void *ThreadPlatform( void *obj, char *platform_name )
 #endif
             QSettings::UserScope, "coneic", "coneic-interface" );
 
+#ifdef Q_OS_LINUX
+    // Give Linux shells a distinct desktop identity alongside stock VLC.
+    app.setApplicationName( QStringLiteral("coneic") );
+# if QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
+    app.setDesktopFileName( QStringLiteral("coneic") );
+# endif
+#endif
     app.setApplicationDisplayName( QStringLiteral("Coneic") );
     if( QDate::currentDate().dayOfYear() >= QT_XMAS_JOKE_DAY && var_InheritBool( p_intf, "qt-icon-change" ) )
         app.setWindowIcon( QIcon( ":/logo/vlc128-xmas.png" ) );

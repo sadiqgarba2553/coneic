@@ -19,6 +19,16 @@ DEFAULT_ALLOW = {
     'share/icons/vlc.ico', 'src/win32/dirs.c', 'bin/winvlc.c',
     'bin/vlc_win32_rc.rc.in', 'share/Makefile.am',
 }
+# One bounded engine correction, reviewed with a real block-buffer regression.
+# Any other change to this file still raises a protected-scope review flag.
+REVIEWED_ENGINE_FIXES = {
+    'modules/packetizer/hxxx_nal.c': {
+        'baseline_sha256': '227871d260f0bca99fcdfdf0f2e3b284dce5b621b6d0af6d0d7a3e5febee696f',
+        'fixed_sha256': '3b857fad7d8499c526d6d0bab1a4bcf5fdf9b09be6f8604793b7db1c93b471fa',
+        'reason': 'Copy block timing/flags when Annex-B conversion allocates a replacement; docs/HXXX-METADATA-FIX.md',
+    },
+}
+
 SOURCE_SUFFIXES = {'.c', '.cpp', '.h', '.hpp', '.m', '.mm', '.S', '.s', '.ui'}
 
 def git(repo, *args):
@@ -89,11 +99,14 @@ def main():
             if protected(p): violations.append({'path': p, 'reason': 'Protected upstream file removed'})
             continue
         new = target.read_bytes()
+        fix = REVIEWED_ENGINE_FIXES.get(p, {})
+        engine_fix = bool(fix and digest(old) == fix['baseline_sha256'] and digest(new) == fix['fixed_sha256'])
         if old != new:
             entry = {'path': p, 'baseline_sha256': digest(old), 'current_sha256': digest(new),
-                     'allowed_presentation_review': p in allow}
+                     'allowed_presentation_review': p in allow,
+                     'reviewed_engine_fix': fix['reason'] if engine_fix else None}
             changed.append(entry)
-            if protected(p) and p not in allow:
+            if protected(p) and p not in allow and not engine_fix:
                 violations.append({'path': p, 'reason': 'Protected upstream file changed outside explicit presentation allowlist'})
         if p == 'modules/gui/qt/Makefile.am':
             refs = lambda value: set(re.findall(rb'[A-Za-z0-9_./-]+\.(?:cpp|hpp|c|h|ui)\b', value))
@@ -157,6 +170,7 @@ def main():
     counts['current_tracked_and_unignored_files'] = len(current_paths)
     counts['qt_workflow_source_files'] = len(workflow_sources)
     counts['unchanged_qt_workflow_source_files'] = sum(x['unchanged'] for x in workflow_sources)
+    counts['reviewed_engine_fix_files'] = sum(bool(x.get('reviewed_engine_fix')) for x in changed)
     status = 'SOURCE CHECKS PASS; PRESENTATION CHANGES REQUIRE REVIEW' if not (violations or semantic_losses or api_losses or removed) else 'REVIEW REQUIRED'
     result = {'schema': 'coneic-vlc-source-parity-v1', 'created_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
               'repo': str(repo), 'baseline_commit': expected, 'baseline_tag': '3.0.24',
@@ -179,7 +193,7 @@ def main():
     lines += ['', '## Critical entry points', '', '| File | Byte-identical to upstream |', '| --- | --- |']
     lines += [f'| `{x["path"]}` | {"yes" if x["identical"] else "NO"} |' for x in critical_result]
     lines += ['', '## Changes and review flags', '', f'{len(changed)} changed baseline files; {len(added)} added files; {len(removed)} removed files.', '']
-    lines += [f'- `{x["path"]}`: {"explicit presentation allowance; review required" if x["allowed_presentation_review"] else "outside presentation allowance"}' for x in changed]
+    lines += [f'- `{x["path"]}`: {"explicit presentation allowance; review required" if x["allowed_presentation_review"] else ("bounded engine correction: " + x["reviewed_engine_fix"] if x.get("reviewed_engine_fix") else "outside presentation allowance")}' for x in changed]
     lines += [f'- Review flag: `{x["path"]}` — {x["reason"]}' for x in violations]
     if not changed and not added and not removed: lines += ['The initial checkout is byte-identical to the upstream baseline.']
     lines += ['', f'Semantic loss candidates: **{len(semantic_losses)}**. API loss candidates: **{len(api_losses)}**.', '',

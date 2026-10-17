@@ -126,6 +126,8 @@ block_t *hxxx_AnnexB_to_xVC( block_t *p_block, uint8_t i_nal_length_size )
         if( unlikely(!p_newblock) )
             goto error;
 
+        block_CopyProperties( p_newblock, p_block );
+
         p_release = p_block; /* Will be released after use */
         p_source = p_release->p_buffer;
         p_sourceend = &p_release->p_buffer[p_release->i_buffer];
