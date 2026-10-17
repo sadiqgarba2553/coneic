@@ -1,6 +1,6 @@
-# Coneic 0.2.1 Alpha — local refinements
+# Coneic 0.2.1 Alpha — refinements
 
-This is a second local build of the same Alpha version. It must not be pushed or published without the owner's explicit instruction. Existing Moment Cards, Study Mode and Smart Collections remain available.
+Revision 2 is the Windows build published in the 0.2.1 Alpha prerelease. Moment Cards, Study Mode and Smart Collections remain available. Validation reports record their original local test state; publishing does not change those historical results.
 
 ## Media relinking and library backup
 

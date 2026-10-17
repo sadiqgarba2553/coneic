@@ -1,6 +1,6 @@
 # Coneic 0.2.1 Alpha
 
-Local development build for review. **Do not push or publish this update without the owner's explicit instruction.** The published 0.2.0 preview remains unchanged.
+Published as the **0.2.1 Alpha prerelease** following the owner's explicit publishing instruction. The Windows download is the tested revision 2 build. Earlier releases remain available unchanged.
 
 Open **Your space** from the main header's bookmark icon, Home sidebar, or main menu.
 
