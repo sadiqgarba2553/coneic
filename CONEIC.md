@@ -1,14 +1,14 @@
 # Coneic â€” VLC source fork
 
-This project is a local source fork of VideoLAN VLC **3.0.24**, exact upstream commit **6de05adcbaf2e8b85fe86aad4169393098628119**. Branch: coneic. It supersedes the earlier standalone WPF prototype as the route to VLC feature parity.
+This project is a local source fork of VideoLAN VLC **3.0.24**, exact upstream commit **6de05adcbaf2e8b85fe86aad4169393098628119**. Branch: main. It supersedes the earlier standalone WPF prototype as the route to VLC feature parity.
 
 ## Scope
 
 The existing VLC media engine, plugin sources, command-line controls, menus, action handlers, capture/stream/disc dialogs, renderer discovery, extensions, preferences, filters, playlist and media-library implementations are retained. This is a source-preservation strategy, not a fresh reimplementation of each feature.
 
-Presentation changes add Coneic window/tray/executable branding, your supplied artwork, a restrained Qt widget theme, larger system typography and native focus/press states. The theme follows the requested [Apple design skill](https://github.com/emilkowalski/skills/blob/main/skills/apple-design/SKILL.md), adapted to Windows/Qt. High-contrast mode keeps native styling; reduced-motion settings disable optional Qt UI effects. Existing slider tracking and keyboard/accessibility behavior remain native Qt.
+Presentation changes add Coneic window/tray/executable branding, your supplied artwork, a reference-based Qt interface, Inter typography and native focus/press states. The theme follows the requested [Apple design skill](https://github.com/emilkowalski/skills/blob/main/skills/apple-design/SKILL.md), adapted to Windows/Qt. High-contrast mode keeps native styling; reduced-motion settings disable optional Qt UI effects. Existing slider tracking and keyboard/accessibility behavior remain native Qt.
 
-Windows settings use the separate **%APPDATA%/coneic** directory. Upstream internal module IDs and API identifiers remain unchanged for compatibility. VLC copyright, credits, licenses and upstream About information are retained.
+Windows settings use the separate **%APPDATA%/coneic** directory. Upstream internal module IDs and API identifiers remain unchanged for compatibility. VLC copyright, credits, licenses and upstream About information are retained alongside Coneic/BLUECLOUD and design attribution. See docs/DESIGN-REFERENCE.md for current adaptation scope.
 
 ## Your logo
 
@@ -29,7 +29,7 @@ CONEIC_ENABLE_MINGW_COMPAT=1 bash coneic/build-win64.sh
 
 The driver retains upstream release, GUI, skins, translations and media feature defaults. It pins the matching VideoLAN contrib archive URL. A supplied cache path can be set via CONEIC_CONTRIB_ARCHIVE. The recorded cache SHA-256 is 49f7690b3d09760f842f9f8e9612c28de8cbb1d027bcb3f6aaa25767611eea8c; this is a locally observed digest, not an upstream-signed checksum.
 
-The build used Ubuntu MinGW headers/runtime 11.0.1 and GCC 13.2. The matching contrib archive was compiled with a newer runtime. The driver probes fourteen exact missing CRT symbol spellings independently and enables only the needed adapters when CONEIC_ENABLE_MINGW_COMPAT=1 is set. The adapters use the existing CRT implementations, assert the x64 structure layouts, and passed 36 Windows runtime checks. Source: coneic/mingw_compat.c. They do not disable VLC modules. Use a matching upstream toolchain when available.
+The build used Ubuntu MinGW headers/runtime 11.0.1 and GCC 13.2. The matching contrib archive was compiled with a newer runtime. The driver probes fifteen exact missing CRT symbol spellings independently and enables only the needed adapters when CONEIC_ENABLE_MINGW_COMPAT=1 is set. The adapters use the existing CRT implementations, assert the x64 structure layouts, and passed 40 Windows runtime checks. Source: coneic/mingw_compat.c. They do not disable VLC modules. Use a matching upstream toolchain when available.
 
 The prebuilt EBML library also used a different C++ conversion-operator symbol spelling. The wrapper detects this specific link failure and invokes coneic/rebuild-matroska.sh to rebuild libebml 1.4.6 and libmatroska 1.7.2 with the active compiler. Downloads are verified against the original VLC contrib SHA-512 manifests. Other build failures remain failures.
 

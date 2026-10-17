@@ -18,7 +18,7 @@ The observed archive SHA-256 is `49f7690b3d09760f842f9f8e9612c28de8cbb1d027bcb3f
 
 ## Compiler compatibility
 
-The contrib archive and Ubuntu toolchain differ. Fourteen exact CRT symbol spellings are probed separately. With the explicit compatibility switch, only missing symbols receive adapters to the existing CRT implementations. Static assertions guard x64 time/stat layouts. The Windows probe passed 36 checks, including metadata buffers, time, multibyte state, errno, 64-bit seek and timezone/argument-storage identity.
+The contrib archive and Ubuntu toolchain differ. Fifteen exact CRT symbol spellings are probed separately. With the explicit compatibility switch, only missing symbols receive adapters to the existing CRT implementations. Static assertions guard x64 time/stat layouts. The Windows probe passed 40 checks, including metadata buffers, time, multibyte state, errno, 64-bit seek and timezone/argument/environment-storage identity.
 
 `coneic/rebuild-matroska.sh` rebuilds pinned libebml 1.4.6 and libmatroska 1.7.2 when the observed conversion-operator ABI mismatch occurs. `coneic/rebuild-vpx.sh` rebuilds pinned libvpx 1.16.0 when the prebuilt archive's AVX512 symbol prevents codec detection. Upstream contrib SHA-512 manifests verify those downloads. AVX512 dispatch and VP9 high bit depth remain enabled.
 
@@ -28,7 +28,7 @@ The wrapper requires `ENABLE_NLS` and all four VP8/VP9 encode/decode flags. Afte
 
 The upstream portable package is staged under `win64/vlc-3.0.24`. Debug ZIP generation is provided by the wrapper. For the delivered preview, debug data was stripped from copied player binaries, `vlc.exe` was copied to `Coneic.exe`, and the supplied installer baseline's `axvlc.dll` was retained byte-for-byte. The ActiveX component was not rebuilt or registered.
 
-Use the original installer as a local comparison input, not as a source file to commit. The portable package does not install shell extensions or file associations. Generate the final Windows plugin cache with `vlc-cache-gen.exe plugins` after staging DLLs.
+Use the original installer as a local comparison input, not as a source file to commit. The portable package does not install shell extensions or file associations. Run `python coneic/stage-notices.py --app App` after staging to include font/design license notices. Generate the final Windows plugin cache with `vlc-cache-gen.exe plugins` after staging DLLs.
 
 ## Local checks
 

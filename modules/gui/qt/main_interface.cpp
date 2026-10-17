@@ -45,6 +45,8 @@
 
 #include "menus.hpp"                            // Menu creation
 #include "recents.hpp"                          // RecentItems when DnD
+#include "coneic_home.hpp"
+#include "coneic_menubar.hpp"
 
 #include <QCloseEvent>
 #include <QKeyEvent>
@@ -160,6 +162,14 @@ MainInterface::MainInterface( intf_thread_t *_p_intf ) : QVLCMW( _p_intf )
     /************
      * Menu Bar *
      ************/
+    setMenuBar(new ConeicMenuBar(p_intf,this,[this](){
+        if(bgWidget) {
+            QWidget *home=bgWidget->findChild<QWidget*>(QStringLiteral("ConeicHome"));
+            if(home && home->isVisible() && stackCentralW->currentWidget()==bgWidget && THEMIM->getIM()->hasInput()) {
+                home->hide();if(THEMIM->getIM()->hasVideo())showVideo();else showTab(bgWidget);
+            } else {if(home)home->show();showTab(bgWidget);}
+        }
+    }));
     VLCMenuBar::createMenuBar( this, p_intf );
     connect( THEMIM->getIM(), &InputManager::voutListChanged,
              THEDP, &DialogsProvider::destroyPopupMenu );
@@ -333,8 +343,8 @@ void MainInterface::recreateToolbars()
 
     controls = new ControlsWidget( p_intf, b_adv, this );
     inputC = new InputControlsWidget( p_intf, this );
-    mainLayout->insertWidget( 2, inputC );
-    mainLayout->insertWidget( settings->value( "MainWindow/ToolbarPos", false ).toBool() ? 0: 3,
+    mainLayout->insertWidget( 3, inputC );
+    mainLayout->insertWidget( settings->value( "MainWindow/ToolbarPos", false ).toBool() ? 0: 2,
                               controls );
 
     if( fullscreenControls )
@@ -371,19 +381,24 @@ void MainInterface::createResumePanel( QWidget *w )
     continuePixmapLabel->setPixmap( ImageHelper::loadSvgToPixmap( ":/menu/help.svg" , fontMetrics().height(), fontMetrics().height()) );
     continuePixmapLabel->setContentsMargins( 5, 0, 5, 0 );
 
-    QLabel *continueLabel = new QLabel( qtr( "Do you want to restart the playback where left off?") );
+    QLabel *continueLabel = new QLabel( qtr( "Continue from where you left off?") );
+    continueLabel->setObjectName("ConeicResumeLabel");
 
     QToolButton *cancel = new QToolButton( resumePanel );
     cancel->setAutoRaise( true );
-    cancel->setText( "X" );
+    cancel->setIcon(QIcon(":/coneic/close.svg"));
+    cancel->setAccessibleName(qtr("Dismiss resume prompt"));
 
     QPushButton *ok = new QPushButton( qtr( "&Continue" )  );
+    ok->setObjectName("ConeicResumeContinue");
 
+    resumePanelLayout->addStretch( 1 );
     resumePanelLayout->addWidget( continuePixmapLabel );
     resumePanelLayout->addWidget( continueLabel );
-    resumePanelLayout->addStretch( 1 );
+    resumePanelLayout->addSpacing( 12 );
     resumePanelLayout->addWidget( ok );
     resumePanelLayout->addWidget( cancel );
+    resumePanelLayout->addStretch( 1 );
 
     resumeTimer = new QTimer( resumePanel );
     resumeTimer->setSingleShot( true );
@@ -404,6 +419,10 @@ void MainInterface::showResumePanel( int64_t _time ) {
         return;
 
     i_resumeTime = _time;
+    if(QLabel *label=resumePanel->findChild<QLabel*>(QStringLiteral("ConeicResumeLabel"))) {
+        const int seconds=int(_time/CLOCK_FREQ);
+        label->setText(qtr("Continue from %1?").arg(QString("%1:%2").arg(seconds/60).arg(seconds%60,2,10,QChar('0'))));
+    }
 
     if( setting == 2)
         resumePlayback();
@@ -483,6 +502,12 @@ void MainInterface::createMainWidget( QSettings *creationSettings )
         bgWidget = new BackgroundWidget( p_intf );
 
     stackCentralW->addWidget( bgWidget );
+    auto home = new ConeicHome(p_intf,[this](){togglePlaylist();},bgWidget);
+    auto homeLayout = new QVBoxLayout(bgWidget);
+    homeLayout->setContentsMargins(0,0,0,0);
+    homeLayout->addWidget(home);
+    home->setVisible(!THEMIM->getIM()->hasInput());
+    connect(THEMIM,&MainInputManager::inputChanged,home,[home](bool hasInput){home->setVisible(!hasInput);});
     if ( !var_InheritBool( p_intf, "qt-bgcone" ) )
         bgWidget->setWithArt( false );
     else
@@ -507,10 +532,12 @@ void MainInterface::createMainWidget( QSettings *creationSettings )
         creationSettings->value( "MainWindow/adv-controls", false ).toBool(), this );
     inputC = new InputControlsWidget( p_intf, this );
 
-    mainLayout->insertWidget( 2, inputC );
+    mainLayout->insertWidget( 3, inputC );
     mainLayout->insertWidget(
-        creationSettings->value( "MainWindow/ToolbarPos", false ).toBool() ? 0: 3,
+        creationSettings->value( "MainWindow/ToolbarPos", false ).toBool() ? 0: 2,
         controls );
+    mainLayout->removeWidget(resumePanel);
+    mainLayout->insertWidget(mainLayout->indexOf(stackCentralW)+1,resumePanel);
 
     /* Visualisation, disabled for now, they SUCK */
     #if 0

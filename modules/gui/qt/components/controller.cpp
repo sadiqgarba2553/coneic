@@ -107,9 +107,10 @@ void AbstractController::setupButton( QAbstractButton *aButton )
     sizePolicy.setVerticalStretch( 0 );
 
     aButton->setSizePolicy( sizePolicy );
-    aButton->setFixedSize( QSize( 26, 26 ) );
+    aButton->setFixedSize( QSize( 34, 32 ) );
+    aButton->setAccessibleName(aButton->toolTip());
     aButton->setIconSize( QSize( 20, 20 ) );
-    aButton->setFocusPolicy( Qt::NoFocus );
+    aButton->setFocusPolicy( Qt::StrongFocus );
 }
 
 /* Open the generic config line for the toolbar, parse it
@@ -243,6 +244,7 @@ QWidget *AbstractController::createWidget( buttonType_e button, int options )
     {
     case PLAY_BUTTON: {
         PlayButton *playButton = new PlayButton;
+        playButton->setObjectName("ConeicPlayButton");
         setupButton( playButton );
         BUTTON_SET_BAR(  playButton );
         connect( playButton, &PlayButton::clicked, toolbarActionsMapper, QOverload<>::of(&QSignalMapper::map) );
@@ -707,7 +709,8 @@ ControlsWidget::ControlsWidget( intf_thread_t *_p_i,
     setStyleSheet( "background: red ");
 #endif
     controlLayout = new QVBoxLayout( this );
-    controlLayout->setContentsMargins( 3, 1, 0, 1 );
+    setObjectName("ConeicTransport");
+    controlLayout->setContentsMargins( 12, 5, 12, 5 );
     controlLayout->setSpacing( 0 );
     QHBoxLayout *controlLayout1 = new QHBoxLayout;
     controlLayout1->setSpacing( 0 ); controlLayout1->setContentsMargins( 0, 0, 0, 0 );
@@ -767,8 +770,9 @@ InputControlsWidget::InputControlsWidget( intf_thread_t *_p_i, QWidget *_parent 
 {
     RTL_UNAFFECTED_WIDGET
     controlLayout = new QHBoxLayout( this );
-    controlLayout->setContentsMargins( 0, 0, 0, 0 );
-    controlLayout->setSpacing( 0 );
+    setObjectName("ConeicSeekRow");
+    controlLayout->setContentsMargins( 12, 2, 12, 8 );
+    controlLayout->setSpacing( 8 );
 #ifdef DEBUG_LAYOUT
     setStyleSheet( "background: green ");
 #endif

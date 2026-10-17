@@ -393,7 +393,8 @@ static bool HasX11( vlc_object_t *obj )
 
 bool isDarkPaletteEnabled(intf_thread_t *p_intf) {
     static const bool darkPalette = var_InheritBool( p_intf, "qt-dark-palette" );
-    return darkPalette && !ConeicDesign::highContrast();
+    const QVariant current=qApp?qApp->property("coneicDark"):QVariant();
+    return (current.isValid()?current.toBool():darkPalette) && !ConeicDesign::highContrast();
 }
 
 void applyDarkPalette() {
@@ -591,6 +592,13 @@ static void *ThreadPlatform( void *obj, char *platform_name )
     QSettings::setPath( QSettings::IniFormat, QSettings::UserScope, configDir );
 #endif
 
+    const QString testOutput=QString::fromLocal8Bit(qgetenv("CONEIC_TEST_OUTPUT"));
+    if(!testOutput.isEmpty()) {
+        QDir().mkpath(testOutput+QStringLiteral("/profile"));
+        p_sys->mainSettings=new QSettings(testOutput+QStringLiteral("/profile/interface.ini"),QSettings::IniFormat);
+        const QString mediaFolder=QString::fromLocal8Bit(qgetenv("CONEIC_TEST_MEDIA"));
+        if(!mediaFolder.isEmpty())p_sys->mainSettings->setValue(QStringLiteral("Coneic/library-folders"),QStringList(mediaFolder));
+    } else
     p_sys->mainSettings = new QSettings(
 #ifdef _WIN32
             QSettings::IniFormat,
@@ -687,7 +695,17 @@ static void *ThreadPlatform( void *obj, char *platform_name )
     // Apply dark palette only if dark palette is enabled
     if (isDarkPaletteEnabled(p_intf))
         applyDarkPalette();
-    ConeicDesign::apply(app, isDarkPaletteEnabled(p_intf), s_style.isEmpty());
+    const bool followSystem=getSettings()->value("Coneic/theme-mode",-1).toInt()==2;
+    ConeicDesign::apply(app,followSystem?ConeicDesign::systemDark():isDarkPaletteEnabled(p_intf),s_style.isEmpty());
+    auto themeTimer=new QTimer(&app);
+    themeTimer->setInterval(1000);
+    QObject::connect(themeTimer,&QTimer::timeout,&app,[&app,p_intf](){
+        if(!app.property("coneicThemePreview").toBool() && getSettings()->value("Coneic/theme-mode",-1).toInt()==2) {
+            const bool dark=ConeicDesign::systemDark();
+            if(dark!=isDarkPaletteEnabled(p_intf))ConeicDesign::apply(app,dark,false);
+        }
+    });
+    themeTimer->start();
 
     /* Launch */
     ConeicSmoke::schedule(app, p_intf);

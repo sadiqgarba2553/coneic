@@ -81,7 +81,7 @@ AboutDialog::AboutDialog( intf_thread_t *_p_intf)
 {
     /* Build UI */
     ui.setupUi( this );
-    setWindowTitle( qtr( "About" ) );
+    setWindowTitle( qtr( "About Coneic" ) );
     setWindowRole( "vlc-about" );
     setWindowModality( Qt::WindowModal );
 
@@ -97,11 +97,12 @@ AboutDialog::AboutDialog( intf_thread_t *_p_intf)
     }
 
     ui.version->setText(qfu( " " VERSION_MESSAGE ) );
-    ui.title->setText("<html><head/><body><p><span style=\" font-size:26pt;\"> " + qtr( "VLC media player" ) + " </span></p></body></html>");
+    ui.title->setText(QStringLiteral("<html><body><p style=\"font-size:26pt\">Coneic</p></body></html>"));
     QString translatedString = qtr( "<p>VLC media player is a free and open source media player, encoder, and streamer made by the volunteers of the <a href=\"http://www.videolan.org/\"><span style=\" text-decoration: underline; color:#0057ae;\">VideoLAN</span></a> community.</p><p>VLC uses its internal codecs, works on essentially every popular platform, and can read almost all files, CDs, DVDs, network streams, capture cards and other media formats!</p><p><a href=\"http://www.videolan.org/contribute/\"><span style=\" text-decoration: underline; color:#0057ae;\">Help and join us!</span></a>" );
     if ( var_InheritBool( p_intf, "qt-dark-palette" ) )
         translatedString.remove(QLatin1String("#0057ae"));
-    ui.MainBlabla->setText("<html><head/><body>" + translatedString + "</p></body> </html>");
+    ui.MainBlabla->setText(QStringLiteral("<html><body><p>A media player by <a href=\"https://bluecloudai.online\">BLUECLOUD</a>. Development preview based on VLC 3.0.24.</p>")
+        + translatedString + QStringLiteral("</p><p>Interface adapted from Juxtopposed's <a href=\"https://www.figma.com/community/file/1691465999134370980/vlc-redesign\">VLC Redesign</a> (CC BY 4.0). Inter font by the Inter Project Authors (SIL OFL 1.1). Coneic artwork supplied by the project owner.</p></body></html>"));
 
 #if 0
     if( QDate::currentDate().dayOfYear() >= QT_XMAS_JOKE_DAY && var_InheritBool( p_intf, "qt-icon-change" ) )

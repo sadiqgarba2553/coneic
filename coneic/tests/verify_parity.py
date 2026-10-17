@@ -58,6 +58,13 @@ def main():
     if expected != BASELINE or tag_commit != BASELINE:
         raise SystemExit('Refusing unrecognized baseline; exact upstream 3.0.24 commit required')
     allow = DEFAULT_ALLOW | set(args.allow)
+    reviewed_manifest = repo / 'coneic/presentation-paths.json'
+    if reviewed_manifest.is_file():
+        reviewed = json.loads(reviewed_manifest.read_text(encoding='utf-8'))['paths']
+        for path in reviewed:
+            if not isinstance(path, str) or not path.startswith('modules/gui/qt/') or '..' in pathlib.PurePosixPath(path).parts or '\\' in path:
+                raise SystemExit('Invalid presentation allowance: exact Qt-relative paths only')
+        allow |= set(reviewed)
     # A streamed git archive reads the exact baseline blobs in one process.
     proc = subprocess.Popen(['git', '-C', str(repo), 'archive', '--format=tar', expected], stdout=subprocess.PIPE)
     baseline = {}

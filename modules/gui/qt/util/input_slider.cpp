@@ -28,6 +28,10 @@
 #endif
 
 #include "qt.hpp"
+#include "coneic_design.hpp"
+#include "coneic_thumbnails.hpp"
+#include <QPointer>
+#include <QUrl>
 
 #include "util/input_slider.hpp"
 #include "util/timetooltip.hpp"
@@ -423,6 +427,26 @@ void SeekSlider::mouseMoveEvent( QMouseEvent *event )
         if( likely( size().width() > handleLength() ) ) {
             secstotimestr( psz_length, getValuePercentageFromXPos( event->x() ) * inputLength );
             mTimeTooltip->setTip( target, psz_length, chapterLabel );
+            input_thread_t *input=THEMIM->getInput();
+            bool previewEligible=false;
+            if(input && THEMIM->getIM()->hasVideo()) {
+                char *uri=input_item_GetURI(input_GetItem(input));
+                const QUrl url=uri?QUrl::fromEncoded(QByteArray(uri)):QUrl();free(uri);
+                if(url.isLocalFile()) {
+                    previewEligible=true;
+                    const int seconds=qBound(0,int(getValuePercentageFromXPos(event->x())*inputLength)/5*5,qMax(0,inputLength-1));
+                    const QString key=url.toString()+"|"+QString::number(seconds);
+                    if(mTimeTooltip->property("coneicPreviewKey").toString()!=key) {
+                        mTimeTooltip->setProperty("coneicPreviewKey",key);mTimeTooltip->setPreview(QString(),true);
+                        QPointer<TimeTooltip> tooltip(mTimeTooltip);
+                        const QString cache=QFileInfo(getSettings()->fileName()).absolutePath()+"/thumbnails";
+                        ConeicThumbnails::instance(cache)->request(url.toLocalFile(),seconds,[tooltip,key](const QString &image){
+                            if(tooltip && tooltip->property("coneicPreviewKey").toString()==key)tooltip->setPreview(image);
+                        },true);
+                    }
+                }
+            }
+            if(!previewEligible) {mTimeTooltip->setProperty("coneicPreviewKey",QString());mTimeTooltip->setPreview(QString());}
         }
     }
     event->accept();
@@ -474,6 +498,31 @@ void SeekSlider::leaveEvent( QEvent * )
 
 void SeekSlider::paintEvent( QPaintEvent *ev )
 {
+    if(!b_classic && orientation()==Qt::Horizontal && !ConeicDesign::highContrast())
+    {
+        QPainter p(this);p.setRenderHint(QPainter::Antialiasing);
+        const int inset=handleLength()/2;
+        QRectF track(inset,(height()-12)/2.0,qMax(1,width()-2*inset),12);
+        const bool dark=palette().color(QPalette::Window).lightness()<128;
+        p.setPen(Qt::NoPen);p.setBrush(dark?QColor("#090909"):QColor("#dddddd"));p.drawRoundedRect(track,3,3);
+        if(f_buffering>0 && f_buffering<1) {
+            p.setBrush(dark?QColor("#3c3c3c"):QColor("#c5c5c5"));
+            p.drawRoundedRect(QRectF(track.left(),track.top(),track.width()*f_buffering,track.height()),3,3);
+        }
+        const qreal progress=qBound(0.0,(value()-minimum())/qreal(qMax(1,maximum()-minimum())),1.0);
+        QColor accent=palette().color(QPalette::Highlight);if(!isEnabled())accent.setAlpha(90);
+        p.setBrush(accent);p.drawRoundedRect(QRectF(track.left(),track.top(),track.width()*progress,track.height()),3,3);
+        if(chapters && inputLength>0)for(const SeekPoint &point:chapters->getPoints()) {
+            const qreal x=track.left()+point.time/1000000.0/inputLength*track.width();
+            p.setPen(QPen(dark?QColor("#202020"):QColor("#ffffff"),2));p.drawLine(QPointF(x,track.top()+2),QPointF(x,track.bottom()-2));
+        }
+        if(underMouse()||isSliderDown()||hasFocus()) {
+            p.setPen(Qt::NoPen);p.setBrush(palette().color(QPalette::WindowText));
+            p.drawRoundedRect(QRectF(track.left()+track.width()*progress-2,track.top()-2,4,16),2,2);
+        }
+        return;
+    }
+
     if ( alternativeStyle )
     {
         SeekStyle::SeekStyleOption option;
@@ -804,6 +853,19 @@ void SoundSlider::setMuted( bool m )
 
 void SoundSlider::paintEvent( QPaintEvent *e )
 {
+    if(!ConeicDesign::highContrast())
+    {
+        QPainter p(this);p.setRenderHint(QPainter::Antialiasing);
+        p.drawPixmap(rect(),ImageHelper::loadSvgToPixmap(":/coneic/volume-background.svg",width(),height()));
+        p.save();p.setClipRect(QRectF(0,0,width()*qBound(0.0,value()/qreal(qMax(1,maximum())),1.0),height()));
+        if(b_isMuted)p.setOpacity(.35);
+        p.drawPixmap(rect().adjusted(1,1,-1,-1),ImageHelper::loadSvgToPixmap(":/coneic/volume-fill.svg",width(),height()));p.restore();
+        QFont f=font();f.setPixelSize(10);p.setFont(f);p.setPen(palette().color(QPalette::WindowText));
+        p.drawText(rect().adjusted(0,0,-4,0),Qt::AlignCenter,QString::number(value())+"%");
+        if(hasFocus()){p.setPen(QPen(palette().color(QPalette::Highlight),1));p.setBrush(Qt::NoBrush);p.drawRoundedRect(rect().adjusted(0,0,-1,-1),3,3);}
+        e->accept();return;
+    }
+
     QPixmap *paintGradient;
     if (b_isMuted)
         paintGradient = &this->pixGradient2;

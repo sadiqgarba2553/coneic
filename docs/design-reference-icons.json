@@ -1,0 +1,698 @@
+[
+  {
+    "file": "README.md",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/README.md",
+    "sha256": "25a57c9a29edec64a0e825dc6fe519e501fdc8ddd44e145ce23659dfedfcefca"
+  },
+  {
+    "file": "add.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/add.svg",
+    "sha256": "153af0590671ec1412b7046ae2c460836a9b8647d9db887b302b74f5fc6cb4d0"
+  },
+  {
+    "file": "audio.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/audio.svg",
+    "sha256": "2529f9f3677d28344629769650c36a445b0eae6f63a1ea6f3228a291a33de297"
+  },
+  {
+    "file": "back.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/back.svg",
+    "sha256": "ca0b31d936b91ceb05fad47e6edf5ce2538ca965b0d73e4f7f3a5071a7d02183"
+  },
+  {
+    "file": "bookmarks.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/bookmarks.svg",
+    "sha256": "438cd0d87e14b05c0415cb8751221e27bb251aa8488cb1a41665b94dc1bdfd3f"
+  },
+  {
+    "file": "chapters.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/chapters.svg",
+    "sha256": "80501c06f439ad1f8d35346f43d2da3c21b06b0f7904309bd2172f5cb42073ea"
+  },
+  {
+    "file": "close.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/close.svg",
+    "sha256": "c9b833efe92ee91a4c5b58132adebd5588649ad55bbc1fe15c37394a7b95fba7"
+  },
+  {
+    "file": "folder.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/folder.svg",
+    "sha256": "fd2eb46f1e1081b85b92db3398d24b67027ca0cf75fbfb037efac72733fd4438"
+  },
+  {
+    "file": "fullscreen-exit.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/fullscreen-exit.svg",
+    "sha256": "65d5f19c6a75fc6b802d11ebfe858a8aee98864ce58c6b2518287b426c60672b"
+  },
+  {
+    "file": "fullscreen.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/fullscreen.svg",
+    "sha256": "89438e334ab0eea50ee88c00e0c0e911d666968cd1a205ce64c1f01d4770df32"
+  },
+  {
+    "file": "home-chevron.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/home-chevron.svg",
+    "sha256": "23fce6287122829f6006d1102145a49bc8bd7098e15a9b7defb68193002e4bca"
+  },
+  {
+    "file": "home.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/home.svg",
+    "sha256": "ffaafbacfe785b0c9337f52ae4aded6cbc4d4c1bdf9ad9a601847be70875394e"
+  },
+  {
+    "file": "library-artist.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/library-artist.svg",
+    "sha256": "c2a5dca8b580970a3d315fc075b0e2c69a588f91edab3a1eeb0cb5f7b4526168"
+  },
+  {
+    "file": "library-back.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/library-back.svg",
+    "sha256": "ca0b31d936b91ceb05fad47e6edf5ce2538ca965b0d73e4f7f3a5071a7d02183"
+  },
+  {
+    "file": "library-expand.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/library-expand.svg",
+    "sha256": "4f055e9be235d18bd1470a202d1c78d36409c71620338025ad7447a972cebccf"
+  },
+  {
+    "file": "library-forward.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/library-forward.svg",
+    "sha256": "1fbc77e07ddecd03e1b6d62d75b0d48e0000dfd08c155693d4c8a064361acb54"
+  },
+  {
+    "file": "library-more.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/library-more.svg",
+    "sha256": "c5713ee955f5fb3a7f8980a41d6bd056158df6072c5885c94d4b2aa61d00971b"
+  },
+  {
+    "file": "library-search.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/library-search.svg",
+    "sha256": "0bb8c4d213d9a873b932594fbe0dfe63b0103fa0ec15463496156deab8266e15"
+  },
+  {
+    "file": "library-sort.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/library-sort.svg",
+    "sha256": "a1cd89f7069e82b127da78555b5e6af0d27744dd96d308eb7df1ff319d2f71b1"
+  },
+  {
+    "file": "library-view.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/library-view.svg",
+    "sha256": "c7775a73034be9d03706399ee890179ab0fb5bcf31aa9d0135a39f11203f04c2"
+  },
+  {
+    "file": "menu-about.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/menu-about.svg",
+    "sha256": "df27e8efb14570eea049046601b892cc39c4ae480bd1f6d01d61aaa43a44c800"
+  },
+  {
+    "file": "menu-capture.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/menu-capture.svg",
+    "sha256": "26d60b12fa4d141de6cc853dfd2212fee81cd79669bd97689f3949bbc4f5db5b"
+  },
+  {
+    "file": "menu-convert.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/menu-convert.svg",
+    "sha256": "daf413abfe9f7cfc600b25af09d629255c5ebe49c60377de930b7627a23b43b2"
+  },
+  {
+    "file": "menu-customize.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/menu-customize.svg",
+    "sha256": "77e8679371a34b2cb87c05802de1062225b5993181ed4ba8761a80b73ca88dd8"
+  },
+  {
+    "file": "menu-disc.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/menu-disc.svg",
+    "sha256": "0cb902a2d340a62c5fc6fe2d1aedb0b59a3a18091e56e88e8e617ad071d2e690"
+  },
+  {
+    "file": "menu-file.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/menu-file.svg",
+    "sha256": "8bc1fba690b6e91c50100fc8b7cd8576e828453945037c2b2e5b009947f6eab2"
+  },
+  {
+    "file": "menu-folder.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/menu-folder.svg",
+    "sha256": "c3b137a74540db2f745014fef04217ac689d80d5466c34de26f206bc8085b76f"
+  },
+  {
+    "file": "menu-hotkeys.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/menu-hotkeys.svg",
+    "sha256": "125b3e6ed9714f5e97fdf6910280a8e054a7eb54f4da1cba98bbb0098138d925"
+  },
+  {
+    "file": "menu-network.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/menu-network.svg",
+    "sha256": "ec0b5d6ae49319a636c571fcac255c91dd83d68294c7cbff6169e58d82e2b42b"
+  },
+  {
+    "file": "menu-profile.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/menu-profile.svg",
+    "sha256": "0b8737f98f2c1a10b398c0b3d5bdf44a5f860fe1c32eeee21f9d010d2f6303a3"
+  },
+  {
+    "file": "menu-recent.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/menu-recent.svg",
+    "sha256": "219c16cd27dbbf0e643bfc3c4f7dd4de0c88700f51b1a93f7d412201d70dbcc9"
+  },
+  {
+    "file": "menu-settings.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/menu-settings.svg",
+    "sha256": "0f62fca1c0dbdd0b8ade96ff5568e0e3eb763bebbd6ba22966db2b380651e1bf"
+  },
+  {
+    "file": "music.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/music.svg",
+    "sha256": "b7e178a99f8427b290fd823183ccd296c3d1af29268788f38216328b7e1e4efb"
+  },
+  {
+    "file": "network.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/network.svg",
+    "sha256": "a698452dbfbdf4c977f84a2d67acacea3a16c81f0887e450331cb298bc47c764"
+  },
+  {
+    "file": "next.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/next.svg",
+    "sha256": "a4c9fc6995c57b2bd58ec7742231f76cac51bc0224a0141d97b095122719789a"
+  },
+  {
+    "file": "onboarding-accent-blue-active.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/onboarding-accent-blue-active.svg",
+    "sha256": "15def39ed58c0e32f4972fdae7a18d79183a858a7d033016595fe8c86551a150"
+  },
+  {
+    "file": "onboarding-accent-blue.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/onboarding-accent-blue.svg",
+    "sha256": "72137fde1b81236d56eec45fbeea26c0abbcccd617e91c5ca9619a97be3fd6d8"
+  },
+  {
+    "file": "onboarding-accent-cyan-active.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/onboarding-accent-cyan-active.svg",
+    "sha256": "4aeae8072be7f76323fb7ea8e15a5403ca51df6b08b4546a326190683faa861d"
+  },
+  {
+    "file": "onboarding-accent-cyan.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/onboarding-accent-cyan.svg",
+    "sha256": "ab82ed42c91553dc742e7b04b5002f59e10db907865c85d9a6ead102a8510e37"
+  },
+  {
+    "file": "onboarding-accent-gray-active.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/onboarding-accent-gray-active.svg",
+    "sha256": "685df2663efa3370ac88581c722749f3ac10b17b1d0f2755c6da741327ae3be2"
+  },
+  {
+    "file": "onboarding-accent-gray.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/onboarding-accent-gray.svg",
+    "sha256": "78cc2424fb5f6f65ebbdf3c75e7140e0056d2f427419b7aad102e8b139c58dbf"
+  },
+  {
+    "file": "onboarding-accent-green-active.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/onboarding-accent-green-active.svg",
+    "sha256": "a1a4693e3c5c51e0cbeb226b4b2a1327c481ae174b5b86c983e9f763dd00307f"
+  },
+  {
+    "file": "onboarding-accent-green.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/onboarding-accent-green.svg",
+    "sha256": "e4a416f98ab6205e7856600c22e087fad4d005d95b82030380cf92d679c783c1"
+  },
+  {
+    "file": "onboarding-accent-orange-active.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/onboarding-accent-orange-active.svg",
+    "sha256": "e08ebc4f4572cda88c2616ba07abc2b8b31d9b0ce51c607eaaf2096a244ea104"
+  },
+  {
+    "file": "onboarding-accent-orange.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/onboarding-accent-orange.svg",
+    "sha256": "e3072afd001a92fecbe48ed23f8a431a1e8f2cb4f57b799ed6ba544d15ab7bcf"
+  },
+  {
+    "file": "onboarding-accent-pink-active.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/onboarding-accent-pink-active.svg",
+    "sha256": "8fc5f775605ff63af08aae727372f96cfa990e88e1e07c99971b91b2a9f8bd6c"
+  },
+  {
+    "file": "onboarding-accent-pink.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/onboarding-accent-pink.svg",
+    "sha256": "479781f76843c786a2af163f038524a84a5e5c2c5eb653c9d0a3df7af040f3ca"
+  },
+  {
+    "file": "onboarding-accent-purple-active.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/onboarding-accent-purple-active.svg",
+    "sha256": "60ae01aa80fb4521e35b344b5c50d7fada74ac304cbabdcf7d3f7ea7da0b1176"
+  },
+  {
+    "file": "onboarding-accent-purple.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/onboarding-accent-purple.svg",
+    "sha256": "3ce8b8fafc2976dee4f8741174c6ae19072d68fc942bac49700dd0c25d44eae8"
+  },
+  {
+    "file": "onboarding-accent-red-active.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/onboarding-accent-red-active.svg",
+    "sha256": "5f7a52ec6b97e35cb710430b2dbccf78b7b9887cd588c3cb308b7811f8fa4e15"
+  },
+  {
+    "file": "onboarding-accent-red.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/onboarding-accent-red.svg",
+    "sha256": "692fadb92b41ee86745632fa53432376006e9f0fba51aabc4d63c789db9cb4ba"
+  },
+  {
+    "file": "onboarding-accent-yellow-active.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/onboarding-accent-yellow-active.svg",
+    "sha256": "49ac242b93929be9c3d4f1b2921a4552fdfefcf7ded81acd7f2bbfaf8f3f3f38"
+  },
+  {
+    "file": "onboarding-accent-yellow.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/onboarding-accent-yellow.svg",
+    "sha256": "f75bc06a572b8cbf061dd1b95849e315fefe059cec76f2d32da691786b55c801"
+  },
+  {
+    "file": "onboarding-cone.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/onboarding-cone.svg",
+    "sha256": "52ec7e7b36ddb69a3962faa08437f54df9018381e8f5b3b11eb2637cbc592317"
+  },
+  {
+    "file": "pause.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/pause.svg",
+    "sha256": "37851fdc7239fe3775a39a83e061572012e68d6110df1ffbd6f830a6b93e2b1c"
+  },
+  {
+    "file": "play-accent.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/play-accent.svg",
+    "sha256": "8dea52e8a5e430639e30580dc7c5073f9ad8c435e7dbab3f5d0129d763553d1e"
+  },
+  {
+    "file": "play.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/play.svg",
+    "sha256": "109d46204bfb93e276b2fa3c956169f6418473c6eb73aa4de574a6f4344438b6"
+  },
+  {
+    "file": "playback-settings.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/playback-settings.svg",
+    "sha256": "247aa8b8faa8475fa70cd4be01fc5584113cb02270d0ad20472fc867cff29af8"
+  },
+  {
+    "file": "player-tab-audio.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/player-tab-audio.svg",
+    "sha256": "2931d207792ec9add82177f226722850297a53d2a40500f74546178390df6b40"
+  },
+  {
+    "file": "player-tab-bookmarks.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/player-tab-bookmarks.svg",
+    "sha256": "0f54252f87600e9277a24a03b34659918725126120fcf22b5414a52bcbd52d74"
+  },
+  {
+    "file": "player-tab-chapters.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/player-tab-chapters.svg",
+    "sha256": "80501c06f439ad1f8d35346f43d2da3c21b06b0f7904309bd2172f5cb42073ea"
+  },
+  {
+    "file": "player-tab-playback.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/player-tab-playback.svg",
+    "sha256": "d0469ce93542a1c678159d99f40daa90ecbf7abd88b07a55d020af56184f8a7b"
+  },
+  {
+    "file": "player-tab-queue.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/player-tab-queue.svg",
+    "sha256": "2ac7001fc46a5b8a1c8375023b1f43136146690b191d82b7cfdd7cbd7d329bc9"
+  },
+  {
+    "file": "player-tab-subtitles.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/player-tab-subtitles.svg",
+    "sha256": "9d12a4666618ba2cfda331778e3f9876f6f6b2548eb15a07df27342139f0b84e"
+  },
+  {
+    "file": "player-tab-video.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/player-tab-video.svg",
+    "sha256": "91f3db5e9ddceb061923257cd17a8d75c5d78d9aeffdd8c00953c5f0e0b796dc"
+  },
+  {
+    "file": "playlists.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/playlists.svg",
+    "sha256": "486900819c6fd18670e4898215acce32e990887ecf8ddf01f192ceb0c8225c8d"
+  },
+  {
+    "file": "previous.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/previous.svg",
+    "sha256": "85c1e56019dd75147fa0eacc59671c9e1ec78f45d35cd3b406d6fa16d1d11119"
+  },
+  {
+    "file": "queue-drag.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/queue-drag.svg",
+    "sha256": "24800ce1492f0fd26a3d095b16372c7468a919a04b1fb917e0c6db479b0e1004"
+  },
+  {
+    "file": "queue-remove.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/queue-remove.svg",
+    "sha256": "b5e875c15e9eca03efb77a2d1e008fba01acc3fb6f7486f79fef57c0ed12d930"
+  },
+  {
+    "file": "queue-repeat.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/queue-repeat.svg",
+    "sha256": "1ee88f9993511de127793a53a93ccfa60828e376cb07c445d20c0b599230b972"
+  },
+  {
+    "file": "queue-shuffle.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/queue-shuffle.svg",
+    "sha256": "22f0510af2b0c37da2de6625cbcf0c13bb4d748476486a069165e5a334b7e31a"
+  },
+  {
+    "file": "queue.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/queue.svg",
+    "sha256": "456d37af09e1d6b968e87f7e9cd53ff45bf1a8de6765e9eccfc0a7c3aee20e20"
+  },
+  {
+    "file": "recent.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/recent.svg",
+    "sha256": "e2d44d2f0fe7dad2a23cb0226ac748c20d6dc8e82ed835051a3e1f26f8e363fc"
+  },
+  {
+    "file": "remove.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/remove.svg",
+    "sha256": "3dd2276463d97f15eef96c74e8b0339793f7f6de44f94b6e213038479a108909"
+  },
+  {
+    "file": "search.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/search.svg",
+    "sha256": "81fe70788291583b3a662228f03420f4808d46dca9cf2776f2ccd47c6edafcb7"
+  },
+  {
+    "file": "settings-audio-active.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/settings-audio-active.svg",
+    "sha256": "9544b8e5defcce1731975b9e7724700dbfbb4a54d933841ff0b1e56c0ac42b68"
+  },
+  {
+    "file": "settings-audio.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/settings-audio.svg",
+    "sha256": "2529f9f3677d28344629769650c36a445b0eae6f63a1ea6f3228a291a33de297"
+  },
+  {
+    "file": "settings-chevron.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/settings-chevron.svg",
+    "sha256": "9c359ee2167b4a9d5af1149e5665a6f1bff3c14c797b2ff2d0a204109a8385c8"
+  },
+  {
+    "file": "settings-close.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/settings-close.svg",
+    "sha256": "c9b833efe92ee91a4c5b58132adebd5588649ad55bbc1fe15c37394a7b95fba7"
+  },
+  {
+    "file": "settings-controls-active.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/settings-controls-active.svg",
+    "sha256": "0158c9ebc33807c18269d37e5451249cc009fc03ebe280794a3042c800518160"
+  },
+  {
+    "file": "settings-controls.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/settings-controls.svg",
+    "sha256": "a4a1a92e42de32ede08b21ace6cf3214a6edafd8bbcca28b03da34330761772b"
+  },
+  {
+    "file": "settings-crop-link.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/settings-crop-link.svg",
+    "sha256": "894532c1d6b9658bb8401f450722114a5eefcf514ff21e3303b2f9faf69c0dd4"
+  },
+  {
+    "file": "settings-extensions-active.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/settings-extensions-active.svg",
+    "sha256": "db24f2459fb78ee84a5743a9bd914add75b4b7fdbd1238cc3a77fd983ce38495"
+  },
+  {
+    "file": "settings-extensions.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/settings-extensions.svg",
+    "sha256": "79acbcb563c53a3c244d434a11821a085dbad6eb3b34af7d64441c67070816df"
+  },
+  {
+    "file": "settings-general-active.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/settings-general-active.svg",
+    "sha256": "07911a2eb7daf400ddeeb9b4257ce26b3632587f147350db8f9e029981239e23"
+  },
+  {
+    "file": "settings-general.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/settings-general.svg",
+    "sha256": "54b34685ae5e3660176bf9ddf67f11679c41461176d6cd96d9c4bb37ea514c03"
+  },
+  {
+    "file": "settings-info.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/settings-info.svg",
+    "sha256": "978e7e98abf6b913e86d4dc87465fa98df80e540fa5fc4d9687cedaaf40884d5"
+  },
+  {
+    "file": "settings-interface-active.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/settings-interface-active.svg",
+    "sha256": "8585e8b1a30dba9c441797e255d15f696f971aa63094f228840cc31e11d7a466"
+  },
+  {
+    "file": "settings-interface.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/settings-interface.svg",
+    "sha256": "5b16aa1711848d7218181cb22ff12695be6592d85d7609b34b54fc8225cf6d15"
+  },
+  {
+    "file": "settings-keyedit.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/settings-keyedit.svg",
+    "sha256": "c3ba9194e6e804074563e2cd10109c28a28c8389a66f80fd58dc943ecbce74d9"
+  },
+  {
+    "file": "settings-library-active.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/settings-library-active.svg",
+    "sha256": "cc890e227ffe16e3d45842ff842ddb8c4e44f6f483721c1cf2a9e0216c810b61"
+  },
+  {
+    "file": "settings-library.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/settings-library.svg",
+    "sha256": "fd2eb46f1e1081b85b92db3398d24b67027ca0cf75fbfb037efac72733fd4438"
+  },
+  {
+    "file": "settings-network-active.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/settings-network-active.svg",
+    "sha256": "800a997342d96ac71b5f5f714b3570cf41f3bd721e43dd0ff8a68ac7b5ad1d72"
+  },
+  {
+    "file": "settings-network.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/settings-network.svg",
+    "sha256": "a698452dbfbdf4c977f84a2d67acacea3a16c81f0887e450331cb298bc47c764"
+  },
+  {
+    "file": "settings-performance-active.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/settings-performance-active.svg",
+    "sha256": "07911a2eb7daf400ddeeb9b4257ce26b3632587f147350db8f9e029981239e23"
+  },
+  {
+    "file": "settings-performance.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/settings-performance.svg",
+    "sha256": "54b34685ae5e3660176bf9ddf67f11679c41461176d6cd96d9c4bb37ea514c03"
+  },
+  {
+    "file": "settings-playback-active.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/settings-playback-active.svg",
+    "sha256": "cebeb2ed96e4b48a50e126199e1170d5ce49d8736e2fbf7f7de85d9150a84cd9"
+  },
+  {
+    "file": "settings-playback.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/settings-playback.svg",
+    "sha256": "4eff18732e54bb2588b3013efa30380c475bcde7b6c41139b58a6130371989e4"
+  },
+  {
+    "file": "settings-privacy-active.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/settings-privacy-active.svg",
+    "sha256": "9181d4d3fc6a1686d5c55413bac434a7a555c7f814e6ac7a26012a48149b4469"
+  },
+  {
+    "file": "settings-privacy.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/settings-privacy.svg",
+    "sha256": "0117b4bab22256a5310ecda170274f5cf13ef1c022c7c607208d6a03ea04f7ea"
+  },
+  {
+    "file": "settings-recording-active.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/settings-recording-active.svg",
+    "sha256": "034746680343c2d509d631643e4e12c79355ea71823522fe4dec8bc219c03792"
+  },
+  {
+    "file": "settings-recording.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/settings-recording.svg",
+    "sha256": "ba043f8ad4123869b1c88862657d338fd85d169c928ee14e878ac2539a384392"
+  },
+  {
+    "file": "settings-search.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/settings-search.svg",
+    "sha256": "0bb8c4d213d9a873b932594fbe0dfe63b0103fa0ec15463496156deab8266e15"
+  },
+  {
+    "file": "settings-subtitles-active.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/settings-subtitles-active.svg",
+    "sha256": "caa494c879a5e57eca133860239ddf64e2154746a69f804052dc69d6b567ae42"
+  },
+  {
+    "file": "settings-subtitles.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/settings-subtitles.svg",
+    "sha256": "7848b8707c85be33afdd8a9eb4ca40bf734b4a145fd9c7488e2639a545870f7f"
+  },
+  {
+    "file": "settings-video-active.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/settings-video-active.svg",
+    "sha256": "a720897603a6578c609c72886b78f899fa548421ce6baccf05c9ebd4aec87342"
+  },
+  {
+    "file": "settings-video.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/settings-video.svg",
+    "sha256": "09242e48dd7601fd0054e32a190d4ef0bf171a988d9e72f5d072893d3c72001e"
+  },
+  {
+    "file": "subtitles.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/subtitles.svg",
+    "sha256": "7848b8707c85be33afdd8a9eb4ca40bf734b4a145fd9c7488e2639a545870f7f"
+  },
+  {
+    "file": "videos.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/videos.svg",
+    "sha256": "d2af4043d3bfa7d1ea8701b198f3bd1776fcda178a03db89ffcc91b048a0e1cf"
+  },
+  {
+    "file": "volume-background.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/volume-background.svg",
+    "sha256": "66ddd1f28b5719d24eb727be8e4374bd4df01bc55c5147b4418d50c2a7555cf8"
+  },
+  {
+    "file": "volume-fill.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/volume-fill.svg",
+    "sha256": "c10db43b935701e6b37762a4af99367703e137cb5e92d90b9301298f4b8c756e"
+  },
+  {
+    "file": "volume-high.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/volume-high.svg",
+    "sha256": "372ae6acc727cc5a75c8d7705f604afe3fce45a2359051181003dcbd603433b8"
+  },
+  {
+    "file": "volume-low.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/volume-low.svg",
+    "sha256": "324dbc1a20d08c6427ffb4aa582b87381f41c2cd8fee297102ce71ffc86b8960"
+  },
+  {
+    "file": "volume-mask.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/volume-mask.svg",
+    "sha256": "fd5d59a978656dbe48261e830eff0a33d32d87306174d70414fb9ab300300eaa"
+  },
+  {
+    "file": "volume-medium.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/volume-medium.svg",
+    "sha256": "1604c7b66d576abfe57560ab7df0a0836400616191655b25be40e8c036fa8066"
+  },
+  {
+    "file": "volume-muted.svg",
+    "source_commit": "6be11c400f9abe4d126b8b7bbb13fe7b8b2bc331",
+    "source_path": "modules/gui/redesign/icons/volume-muted.svg",
+    "sha256": "ad8141525944a0573efff86cd314e2d8f41d7807dd2fa3565177532bfba52428"
+  }
+]

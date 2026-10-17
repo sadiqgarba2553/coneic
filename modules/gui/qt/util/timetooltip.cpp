@@ -47,7 +47,7 @@ TimeTooltip::TimeTooltip( QWidget *parent ) :
     setAttribute( Qt::WA_TransparentForMouseEvents );
 
     // Inherit from the system default font size -5
-    mFont = QFont( "Verdana", qMax( qApp->font().pointSize() - 5, 7 ) );
+    mFont = qApp->font();
     mTipX = -1;
 
     // By default the widget is unintialized and should not be displayed
@@ -67,17 +67,14 @@ void TimeTooltip::adjustPosition()
     QRect textbox = metrics.boundingRect( mDisplayedText );
     textbox.adjust( -2, -2, 2, 2 );
     textbox.moveTo( 0, 0 );
+    if(!mPreview.isNull() || mPreviewPending)textbox=QRect(0,0,qMax(240,textbox.width()+16),144+metrics.height()+12);
 
     // Resize the widget to fit our needs
     QSize size( textbox.width() + 1, textbox.height() + TIP_HEIGHT + 1 );
 
     // The desired label position is just above the target
     QPoint position( mTarget.x() - size.width() / 2,
-#if defined( Q_OS_WIN )
-        mTarget.y() - 2 * size.height() - TIP_HEIGHT / 2 );
-#else
         mTarget.y() - size.height() - TIP_HEIGHT / 2 );
-#endif
 
     // Keep the tooltip on the same screen if possible
 #if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
@@ -113,7 +110,7 @@ void TimeTooltip::buildPath()
 
     // Draw the text box
     mPainterPath = QPainterPath();
-    mPainterPath.addRect( mBox );
+    mPainterPath.addRoundedRect( mBox,3,3 );
 
     // Draw the tip
     QPolygonF polygon;
@@ -128,11 +125,13 @@ void TimeTooltip::buildPath()
 
 void TimeTooltip::setTip( const QPoint& target, const QString& time, const QString& text )
 {
+    const bool fontChanged=mFont!=qApp->font();
+    mFont=qApp->font();
     mDisplayedText = time;
     if ( !text.isEmpty() )
         mDisplayedText.append( " - " ).append( text );
 
-    if( mTarget != target || time.length() != mTime.length() || mText != text )
+    if( mTarget != target || time.length() != mTime.length() || mText != text || fontChanged )
     {
         mTarget = target;
         mTime = time;
@@ -150,16 +149,34 @@ void TimeTooltip::show()
     raise();
 }
 
+void TimeTooltip::setPreview(const QString &image,bool pending)
+{
+    mPreview=image.isEmpty()?QPixmap():QPixmap(image);
+    setProperty("coneicHasPreview",!mPreview.isNull());
+    mPreviewPending=pending;
+    adjustPosition();update();
+}
+
 void TimeTooltip::paintEvent( QPaintEvent * )
 {
     QPainter p( this );
     p.setRenderHints( QPainter::TextAntialiasing );
 
-    p.setPen( Qt::black );
+    p.setPen( qApp->palette().color(QPalette::Mid) );
     p.setBrush( qApp->palette().base() );
     p.drawPath( mPainterPath );
 
     p.setFont( mFont );
     p.setPen( QPen( qApp->palette().text(), 1 ) );
-    p.drawText( mBox, Qt::AlignCenter, mDisplayedText );
+    QRect textBox=mBox;
+    if(!mPreview.isNull() || mPreviewPending) {
+        QRect preview(6,6,mBox.width()-12,132);
+        p.fillRect(preview,Qt::black);
+        if(!mPreview.isNull()) {
+            const QPixmap scaled=mPreview.scaled(preview.size(),Qt::KeepAspectRatio,Qt::SmoothTransformation);
+            p.drawPixmap(preview.center()-QPoint(scaled.width()/2,scaled.height()/2),scaled);
+        } else p.drawText(preview,Qt::AlignCenter,qtr("Loading preview"));
+        textBox.setTop(preview.bottom()+6);
+    }
+    p.drawText( textBox, Qt::AlignCenter, mDisplayedText );
 }

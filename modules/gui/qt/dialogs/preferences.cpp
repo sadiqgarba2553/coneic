@@ -27,6 +27,7 @@
 #endif
 
 #include "dialogs/preferences.hpp"
+#include "coneic_settings.hpp"
 #include "util/qvlcframe.hpp"
 #include "dialogs/errors.hpp"
 
@@ -69,14 +70,15 @@ PrefsDialog::PrefsDialog( QWidget *parent, intf_thread_t *_p_intf )
     advanced_tree_panel->setLayout( new QVBoxLayout );
 
     /* Choice for types */
-    types = new QGroupBox( qtr("Show settings") );
+    types = new QGroupBox;
+    types->setObjectName("ConeicSettingsMode");
     types->setAlignment( Qt::AlignHCenter );
     QHBoxLayout *types_l = new QHBoxLayout;
     types_l->setSpacing( 3 ); types_l->setContentsMargins(3, 3, 3, 3);
-    simple = new QRadioButton( qtr( "Simple" ), types );
+    simple = new QRadioButton( qtr( "Global" ), types );
     simple->setToolTip( qtr( "Switch to simple preferences view" ) );
     types_l->addWidget( simple );
-    all = new QRadioButton( qtr("All"), types ); types_l->addWidget( all );
+    all = new QRadioButton( qtr("Full preferences"), types ); types_l->addWidget( all );
     all->setToolTip( qtr( "Switch to full preferences view" ) );
     types->setLayout( types_l );
     simple->setChecked( true );
@@ -87,6 +89,7 @@ PrefsDialog::PrefsDialog( QWidget *parent, intf_thread_t *_p_intf )
     tree_filter = NULL;
     current_filter = NULL;
     simple_tree = NULL;
+    coneicSettings = NULL;
     simple_panels_stack = new QStackedWidget;
     advanced_panels_stack = new QStackedWidget;
 
@@ -144,7 +147,7 @@ PrefsDialog::PrefsDialog( QWidget *parent, intf_thread_t *_p_intf )
     BUTTONACT( simple, setSimple );
     BUTTONACT( all, setAdvanced );
 
-    QVLCTools::restoreWidgetPosition( p_intf, "Preferences", this, QSize( 800 , 700 ) );
+    QVLCTools::restoreWidgetPosition( p_intf, "Preferences", this, QSize( 1040, 740 ) );
 }
 
 PrefsDialog::~PrefsDialog()
@@ -208,23 +211,17 @@ void PrefsDialog::setAdvanced()
 
 void PrefsDialog::setSimple()
 {
-    /* If no simple_tree, create one, connect it */
-    if( !simple_tree )
+    if( !coneicSettings )
     {
-         simple_tree = new SPrefsCatList( p_intf, simple_tree_panel );
-         connect( simple_tree,
-                  &SPrefsCatList::currentItemChanged,
-                  this,  &PrefsDialog::changeSimplePanel );
-        simple_tree_panel->layout()->addWidget( simple_tree );
-        simple_tree_panel->setSizePolicy( QSizePolicy::Fixed, QSizePolicy::Preferred );
+        coneicSettings = new ConeicGlobalSettings(p_intf,simple_split_widget);
+        simple_tree_panel->hide();
+        simple_panels_stack->hide();
+        simple_split_widget->layout()->setContentsMargins(0,0,0,0);
+        simple_split_widget->layout()->addWidget(coneicSettings);
     }
-
-    if( ! simple_panels[SPrefsDefaultCat] )
-        changeSimplePanel( SPrefsDefaultCat );
-
-    simple->setChecked( true );
-    stack->setCurrentIndex( SIMPLE );
-    setWindowTitle( qtr( "Simple Preferences" ) );
+    simple->setChecked(true);
+    stack->setCurrentIndex(SIMPLE);
+    setWindowTitle(qtr("Coneic Settings"));
 }
 
 /* Switching from on simple panel to another */
@@ -291,13 +288,9 @@ void PrefsDialog::showModulePrefs( char *psz_module )
 /* Actual apply and save for the preferences */
 void PrefsDialog::save()
 {
-    if( simple->isChecked() && simple_tree->isVisible() )
+    if( simple->isChecked() && coneicSettings )
     {
-        msg_Dbg( p_intf, "Saving the simple preferences" );
-        for( int i = 0 ; i< SPrefsMax; i++ ){
-            if( simple_panels_stack->widget(i) )
-                qobject_cast<SPrefsPanel *>(simple_panels_stack->widget(i))->apply();
-        }
+        coneicSettings->apply();
     }
     else if( all->isChecked() && advanced_tree->isVisible() )
     {
@@ -345,7 +338,7 @@ void PrefsDialog::reset()
         getSettings()->clear();
 
 #ifdef _WIN32
-        simple_panels[0]->cleanLang();
+        if(simple_panels[0]) simple_panels[0]->cleanLang();
 #endif
 
         accept();

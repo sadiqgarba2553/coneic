@@ -31,6 +31,7 @@ extern errno_t (__cdecl *__imp__set_errno)(int);
 extern long *(__cdecl *__imp___timezone)(void);
 extern int *(__cdecl *__imp___daylight)(void);
 extern int *(__cdecl *__imp___p___argc)(void);
+extern char ***(__cdecl *__imp___p__environ)(void);
 
 static int failures;
 #define CHECK(test, label) do { int ok = !!(test); printf("%s %s\n", ok ? "PASS" : "FAIL", label); if (!ok) failures++; } while (0)
@@ -93,6 +94,16 @@ int main(int argc, char **argv)
     _tzset();
     CHECK(__imp___p___argc() == &__argc, "argc adapter returns actual CRT storage");
     CHECK(*__imp___p___argc() == argc, "argc adapter value matches process arguments");
+    CHECK(__imp___p__environ() == &_environ, "environment adapter returns actual CRT storage");
+    char *old_probe = getenv("CONEIC_CRT_ENV_PROBE");
+    char *saved_probe = old_probe ? _strdup(old_probe) : NULL;
+    CHECK(_putenv_s("CONEIC_CRT_ENV_PROBE", "active") == 0, "set process-only environment probe");
+    int found_probe = 0;
+    for (char **entry = *__imp___p__environ(); entry && *entry; ++entry)
+        if (!strcmp(*entry, "CONEIC_CRT_ENV_PROBE=active")) found_probe = 1;
+    CHECK(found_probe && *__imp___p__environ() == _environ, "environment adapter observes CRT updates");
+    CHECK(_putenv_s("CONEIC_CRT_ENV_PROBE", saved_probe ? saved_probe : "") == 0, "restore process environment probe");
+    free(saved_probe);
     FILE *stream = fd >= 0 ? _fdopen(fd, "r+b") : NULL;
     CHECK(stream != NULL, "fdopen");
     if (stream) {

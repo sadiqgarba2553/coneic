@@ -52,6 +52,7 @@ __imp__set_errno IMP_SET_ERRNO
 __imp___timezone IMP_TIMEZONE
 __imp___daylight IMP_DAYLIGHT
 __imp___p___argc IMP_ARGC
+__imp___p__environ IMP_ENVIRON
 SYMBOLS
 printf '%s\n' "${definitions[@]}" > .coneic-tools/compat/definitions.txt
 if ((${#missing[@]})); then

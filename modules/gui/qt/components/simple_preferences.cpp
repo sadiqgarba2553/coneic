@@ -228,7 +228,7 @@ SPrefsCatList::SPrefsCatList( intf_thread_t *_p_intf, QWidget *_parent ) :
     QToolButton * button = new QToolButton( this );                         \
     /* Scale icon to non native size outside of toolbutton to avoid widget size */\
     /* computation using native size */\
-    scaled = QPixmap( ":/prefsmenu/" #icon ".png" )\
+    scaled = QPixmap( ":/prefsmenu/" #icon ".svg" )\
              .scaledToHeight( ICON_HEIGHT * dpr, Qt::SmoothTransformation );\
     scaled.setDevicePixelRatio( dpr ); \
     button->setIcon( scaled );                \

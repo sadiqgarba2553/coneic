@@ -28,6 +28,7 @@
 #include "components/simple_preferences.hpp"
 
 class PrefsTree;
+class ConeicGlobalSettings;
 class SPrefsCatList;
 class SPrefsPanel;
 class QTreeWidgetItem;
@@ -54,6 +55,7 @@ private:
     enum { SIMPLE, ADVANCED };
     QStackedWidget *stack;
 
+    ConeicGlobalSettings *coneicSettings;
     QWidget *simple_split_widget;
     QSplitter *advanced_split_widget;
 

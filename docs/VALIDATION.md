@@ -7,14 +7,14 @@ This is a development preview. There are three separate kinds of evidence: sourc
 | Upstream module registrations | 479 retained |
 | Core option declarations | 405 retained |
 | Export declarations | 1,080 retained |
-| Audited Qt workflow files | 117 byte-identical |
+| Audited Qt workflow files | 117 audited; exact presentation edits listed in current source report |
 | Plugin DLLs / JARs | 360 / 2; none missing |
 | Baseline support files | 205; none missing |
 | Core named exports | 316 libVLC + 764 core retained |
 | Required DLL imports | No unresolved dependencies in static check |
-| CRT adapter probe | 36 pass, zero failures |
+| CRT adapter probe | 40 pass, zero failures |
 | Native executable icons | Nine exact PNG payload matches |
-| Native UI | 10 pass; clean exit |
+| Native UI | 21 pass; clean exit; includes real playback and thumbnail frames |
 | MJPEG/WAV controls | 13 pass; clean engine shutdown |
 | Native executable media checks | 8 pass: MJPEG/WAV and H.264/VP8/VP9 |
 | Native Qt H.264 playback | Exit 0 |
@@ -49,3 +49,7 @@ Physical cameras/tuners/audio devices, optical media/protected discs, external n
 - `screenshots/`: actual native widget captures, not design mockups.
 
 Published copies redact local host paths for portability. Artifact digests and original Evidence IDs remain recorded. These path-redacted copies are derivative reports, not byte-identical original REA envelopes; original local results remain in the delivery outputs.
+
+## Redesign preview evidence
+
+`evidence/redesign/` contains the current 21-check native UI report, 40-check CRT report, Inter font/menu inventory, 1,346 native settings entries, and fresh source/package reports. The source audit retains all declarations and finds no protected-scope flags; 109 of 117 audited Qt workflow files remain byte-identical. The other eight have explicit presentation review allowances. Current screenshots show synthetic test media, not a mockup. Local thumbnails and seek previews were generated successfully using isolated native workers.

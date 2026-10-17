@@ -47,6 +47,10 @@ endif
 
 libqt_plugin_la_SOURCES = \
 	gui/qt/coneic_design.hpp \
+	gui/qt/coneic_settings.hpp \
+	gui/qt/coneic_home.hpp \
+	gui/qt/coneic_menubar.hpp \
+	gui/qt/coneic_thumbnails.hpp \
 	gui/qt/coneic_smoke.hpp \
 	gui/qt/qt.cpp gui/qt/qt.hpp gui/qt/qt_x11.hpp \
 	gui/qt/menus.cpp gui/qt/menus.hpp \
@@ -448,7 +452,123 @@ libqt_plugin_la_RES = \
 	gui/qt/pixmaps/valid.svg \
 	gui/qt/pixmaps/search_clear.svg \
 	gui/qt/pixmaps/lock.svg
-EXTRA_DIST += gui/qt/vlc.qrc $(libqt_plugin_la_RES)
+libqt_plugin_la_RES += \
+	gui/qt/pixmaps/coneic-reference/add.svg \
+	gui/qt/pixmaps/coneic-reference/audio.svg \
+	gui/qt/pixmaps/coneic-reference/back.svg \
+	gui/qt/pixmaps/coneic-reference/bookmarks.svg \
+	gui/qt/pixmaps/coneic-reference/chapters.svg \
+	gui/qt/pixmaps/coneic-reference/close.svg \
+	gui/qt/pixmaps/coneic-reference/folder.svg \
+	gui/qt/pixmaps/coneic-reference/fullscreen-exit.svg \
+	gui/qt/pixmaps/coneic-reference/fullscreen.svg \
+	gui/qt/pixmaps/coneic-reference/home-chevron.svg \
+	gui/qt/pixmaps/coneic-reference/home.svg \
+	gui/qt/pixmaps/coneic-reference/library-artist.svg \
+	gui/qt/pixmaps/coneic-reference/library-back.svg \
+	gui/qt/pixmaps/coneic-reference/library-expand.svg \
+	gui/qt/pixmaps/coneic-reference/library-forward.svg \
+	gui/qt/pixmaps/coneic-reference/library-more.svg \
+	gui/qt/pixmaps/coneic-reference/library-search.svg \
+	gui/qt/pixmaps/coneic-reference/library-sort.svg \
+	gui/qt/pixmaps/coneic-reference/library-view.svg \
+	gui/qt/pixmaps/coneic-reference/menu-about.svg \
+	gui/qt/pixmaps/coneic-reference/menu-capture.svg \
+	gui/qt/pixmaps/coneic-reference/menu-convert.svg \
+	gui/qt/pixmaps/coneic-reference/menu-customize.svg \
+	gui/qt/pixmaps/coneic-reference/menu-disc.svg \
+	gui/qt/pixmaps/coneic-reference/menu-file.svg \
+	gui/qt/pixmaps/coneic-reference/menu-folder.svg \
+	gui/qt/pixmaps/coneic-reference/menu-hotkeys.svg \
+	gui/qt/pixmaps/coneic-reference/menu-network.svg \
+	gui/qt/pixmaps/coneic-reference/menu-profile.svg \
+	gui/qt/pixmaps/coneic-reference/menu-recent.svg \
+	gui/qt/pixmaps/coneic-reference/menu-settings.svg \
+	gui/qt/pixmaps/coneic-reference/music.svg \
+	gui/qt/pixmaps/coneic-reference/network.svg \
+	gui/qt/pixmaps/coneic-reference/next.svg \
+	gui/qt/pixmaps/coneic-reference/onboarding-accent-blue-active.svg \
+	gui/qt/pixmaps/coneic-reference/onboarding-accent-blue.svg \
+	gui/qt/pixmaps/coneic-reference/onboarding-accent-cyan-active.svg \
+	gui/qt/pixmaps/coneic-reference/onboarding-accent-cyan.svg \
+	gui/qt/pixmaps/coneic-reference/onboarding-accent-gray-active.svg \
+	gui/qt/pixmaps/coneic-reference/onboarding-accent-gray.svg \
+	gui/qt/pixmaps/coneic-reference/onboarding-accent-green-active.svg \
+	gui/qt/pixmaps/coneic-reference/onboarding-accent-green.svg \
+	gui/qt/pixmaps/coneic-reference/onboarding-accent-orange-active.svg \
+	gui/qt/pixmaps/coneic-reference/onboarding-accent-orange.svg \
+	gui/qt/pixmaps/coneic-reference/onboarding-accent-pink-active.svg \
+	gui/qt/pixmaps/coneic-reference/onboarding-accent-pink.svg \
+	gui/qt/pixmaps/coneic-reference/onboarding-accent-purple-active.svg \
+	gui/qt/pixmaps/coneic-reference/onboarding-accent-purple.svg \
+	gui/qt/pixmaps/coneic-reference/onboarding-accent-red-active.svg \
+	gui/qt/pixmaps/coneic-reference/onboarding-accent-red.svg \
+	gui/qt/pixmaps/coneic-reference/onboarding-accent-yellow-active.svg \
+	gui/qt/pixmaps/coneic-reference/onboarding-accent-yellow.svg \
+	gui/qt/pixmaps/coneic-reference/onboarding-cone.svg \
+	gui/qt/pixmaps/coneic-reference/pause.svg \
+	gui/qt/pixmaps/coneic-reference/play-accent.svg \
+	gui/qt/pixmaps/coneic-reference/play.svg \
+	gui/qt/pixmaps/coneic-reference/playback-settings.svg \
+	gui/qt/pixmaps/coneic-reference/player-tab-audio.svg \
+	gui/qt/pixmaps/coneic-reference/player-tab-bookmarks.svg \
+	gui/qt/pixmaps/coneic-reference/player-tab-chapters.svg \
+	gui/qt/pixmaps/coneic-reference/player-tab-playback.svg \
+	gui/qt/pixmaps/coneic-reference/player-tab-queue.svg \
+	gui/qt/pixmaps/coneic-reference/player-tab-subtitles.svg \
+	gui/qt/pixmaps/coneic-reference/player-tab-video.svg \
+	gui/qt/pixmaps/coneic-reference/playlists.svg \
+	gui/qt/pixmaps/coneic-reference/previous.svg \
+	gui/qt/pixmaps/coneic-reference/queue-drag.svg \
+	gui/qt/pixmaps/coneic-reference/queue-remove.svg \
+	gui/qt/pixmaps/coneic-reference/queue-repeat.svg \
+	gui/qt/pixmaps/coneic-reference/queue-shuffle.svg \
+	gui/qt/pixmaps/coneic-reference/queue.svg \
+	gui/qt/pixmaps/coneic-reference/recent.svg \
+	gui/qt/pixmaps/coneic-reference/remove.svg \
+	gui/qt/pixmaps/coneic-reference/search.svg \
+	gui/qt/pixmaps/coneic-reference/settings-audio-active.svg \
+	gui/qt/pixmaps/coneic-reference/settings-audio.svg \
+	gui/qt/pixmaps/coneic-reference/settings-chevron.svg \
+	gui/qt/pixmaps/coneic-reference/settings-close.svg \
+	gui/qt/pixmaps/coneic-reference/settings-controls-active.svg \
+	gui/qt/pixmaps/coneic-reference/settings-controls.svg \
+	gui/qt/pixmaps/coneic-reference/settings-crop-link.svg \
+	gui/qt/pixmaps/coneic-reference/settings-extensions-active.svg \
+	gui/qt/pixmaps/coneic-reference/settings-extensions.svg \
+	gui/qt/pixmaps/coneic-reference/settings-general-active.svg \
+	gui/qt/pixmaps/coneic-reference/settings-general.svg \
+	gui/qt/pixmaps/coneic-reference/settings-info.svg \
+	gui/qt/pixmaps/coneic-reference/settings-interface-active.svg \
+	gui/qt/pixmaps/coneic-reference/settings-interface.svg \
+	gui/qt/pixmaps/coneic-reference/settings-keyedit.svg \
+	gui/qt/pixmaps/coneic-reference/settings-library-active.svg \
+	gui/qt/pixmaps/coneic-reference/settings-library.svg \
+	gui/qt/pixmaps/coneic-reference/settings-network-active.svg \
+	gui/qt/pixmaps/coneic-reference/settings-network.svg \
+	gui/qt/pixmaps/coneic-reference/settings-performance-active.svg \
+	gui/qt/pixmaps/coneic-reference/settings-performance.svg \
+	gui/qt/pixmaps/coneic-reference/settings-playback-active.svg \
+	gui/qt/pixmaps/coneic-reference/settings-playback.svg \
+	gui/qt/pixmaps/coneic-reference/settings-privacy-active.svg \
+	gui/qt/pixmaps/coneic-reference/settings-privacy.svg \
+	gui/qt/pixmaps/coneic-reference/settings-recording-active.svg \
+	gui/qt/pixmaps/coneic-reference/settings-recording.svg \
+	gui/qt/pixmaps/coneic-reference/settings-search.svg \
+	gui/qt/pixmaps/coneic-reference/settings-subtitles-active.svg \
+	gui/qt/pixmaps/coneic-reference/settings-subtitles.svg \
+	gui/qt/pixmaps/coneic-reference/settings-video-active.svg \
+	gui/qt/pixmaps/coneic-reference/settings-video.svg \
+	gui/qt/pixmaps/coneic-reference/subtitles.svg \
+	gui/qt/pixmaps/coneic-reference/videos.svg \
+	gui/qt/pixmaps/coneic-reference/volume-background.svg \
+	gui/qt/pixmaps/coneic-reference/volume-fill.svg \
+	gui/qt/pixmaps/coneic-reference/volume-high.svg \
+	gui/qt/pixmaps/coneic-reference/volume-low.svg \
+	gui/qt/pixmaps/coneic-reference/volume-mask.svg \
+	gui/qt/pixmaps/coneic-reference/volume-medium.svg \
+	gui/qt/pixmaps/coneic-reference/volume-muted.svg
+EXTRA_DIST += gui/qt/vlc.qrc $(libqt_plugin_la_RES) gui/qt/pixmaps/coneic-reference/README.md gui/qt/pixmaps/coneic-reference/ATTRIBUTION.md
 
 nodist_libqt_plugin_la_SOURCES += gui/qt/resources.cpp
 
@@ -456,10 +576,41 @@ if ENABLE_VLM
 nodist_libqt_plugin_la_SOURCES += gui/qt/dialogs/vlm.moc.cpp
 endif
 
-gui/qt/resources.cpp: gui/qt/vlc.qrc $(libqt_plugin_la_RES) $(top_srcdir)/share/coneic/coneic.svg $(top_srcdir)/share/coneic/coneic-winter.svg $(top_srcdir)/share/coneic/coneic-16.png $(top_srcdir)/share/coneic/coneic-48.png $(top_srcdir)/share/coneic/coneic-128.png $(top_srcdir)/share/coneic/coneic-256.png
+gui/qt/resources.cpp: gui/qt/vlc.qrc $(libqt_plugin_la_RES) $(top_srcdir)/share/coneic/coneic.svg $(top_srcdir)/share/coneic/coneic-winter.svg $(top_srcdir)/share/coneic/coneic-16.png $(top_srcdir)/share/coneic/coneic-48.png $(top_srcdir)/share/coneic/coneic-64.png $(top_srcdir)/share/coneic/coneic-128.png $(top_srcdir)/share/coneic/coneic-256.png
 	$(AM_V_GEN)$(RCC) -name vlc -o $@ $<
 
 if ENABLE_QT
 gui_LTLIBRARIES += libqt_plugin.la
 BUILT_SOURCES += $(nodist_libqt_plugin_la_SOURCES)
 endif
+
+libqt_plugin_la_RES += \
+	gui/qt/pixmaps/coneic-supplement/stop.svg \
+	gui/qt/pixmaps/coneic-supplement/record.svg \
+	gui/qt/pixmaps/coneic-supplement/frame.svg \
+	gui/qt/pixmaps/coneic-supplement/faster.svg \
+	gui/qt/pixmaps/coneic-supplement/slower.svg \
+	gui/qt/pixmaps/coneic-supplement/snapshot.svg \
+	gui/qt/pixmaps/coneic-supplement/ab.svg \
+	gui/qt/pixmaps/coneic-supplement/repeat-one.svg \
+	gui/qt/pixmaps/coneic-supplement/check.svg \
+	gui/qt/pixmaps/coneic-supplement/spinner.svg
+
+libqt_plugin_la_RES += \
+	gui/qt/pixmaps/coneic-supplement/pause-accent.svg \
+	gui/qt/pixmaps/coneic-supplement/ab-idle.svg \
+	gui/qt/pixmaps/coneic-supplement/ab-start.svg \
+	gui/qt/pixmaps/coneic-supplement/ab-complete.svg
+
+libqt_plugin_la_RES += \
+	gui/qt/pixmaps/coneic-supplement/wait1.svg \
+	gui/qt/pixmaps/coneic-supplement/wait2.svg \
+	gui/qt/pixmaps/coneic-supplement/wait3.svg \
+	gui/qt/pixmaps/coneic-supplement/wait4.svg
+EXTRA_DIST += gui/qt/pixmaps/coneic-supplement/ATTRIBUTION.md
+
+libqt_plugin_la_RES += \
+	gui/qt/fonts/coneic/Inter-Regular.ttf \
+	gui/qt/fonts/coneic/Inter-Medium.ttf \
+	gui/qt/fonts/coneic/Inter-SemiBold.ttf
+EXTRA_DIST += gui/qt/fonts/coneic/LICENSE.txt gui/qt/fonts/coneic/README.md

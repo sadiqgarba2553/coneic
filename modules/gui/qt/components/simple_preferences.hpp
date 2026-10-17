@@ -94,6 +94,7 @@ public:
     void clean();
 #ifdef _WIN32
     void cleanLang();
+    void applyLanguageOnly() { saveLang(); }
 #endif
 
 private:

@@ -75,3 +75,10 @@ extern int *__imp___argc;
 static int *__cdecl coneic_argc_address(void) { return __imp___argc; }
 int *(__cdecl *__imp___p___argc)(void) = coneic_argc_address;
 #endif
+#ifdef CONEIC_NEED_IMP_ENVIRON
+/* Qt's prebuilt QProcess expects the x86/UCRT accessor import. The x64
+ * MSVCRT toolchain exposes the same live storage through imported data. */
+extern char ***__imp__environ;
+static char ***__cdecl coneic_environ_address(void) { return __imp__environ; }
+char ***(__cdecl *__imp___p__environ)(void) = coneic_environ_address;
+#endif

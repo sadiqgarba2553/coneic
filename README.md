@@ -4,7 +4,7 @@
 
 Coneic is a project of **[BLUECLOUD](https://bluecloudai.online)**, its parent company.
 
-Coneic is a Windows x64 media player built as a source fork of **VideoLAN VLC 3.0.24**. It retains the existing media engine and workflows, adds the supplied Coneic logo and icon, and gives the native Qt interface a restrained dark theme with orange accents.
+Coneic is a Windows x64 media player built as a source fork of **VideoLAN VLC 3.0.24**. It retains the existing media engine and workflows, adds the supplied Coneic logo and icon, and redesigns the native Qt interface around Juxtopposed's VLC Redesign, with the signature orange accent.
 
 **Status: development preview.** Source and package preservation checks pass. Tested native workflows work, with an unresolved standalone libVLC embedding failure documented below. Complete runtime feature parity is not certified.
 
@@ -16,9 +16,15 @@ Download the Windows portable ZIP from [Releases](https://github.com/sadiqgarba2
 
 This is the native VLC/Qt source fork. The earlier WPF prototype is superseded and is not this repository's application.
 
+## Redesigned interface
+
+Compact menu and transport, Inter typography, reference SVG icons, an orange seek bar below playback controls, dark/light/system appearance, a folder-backed media Home screen, local video thumbnails, and seek preview frames. Global settings use 13 categories, searchable native VLC options and expandable advanced controls. Original full preferences remain available.
+
+This preview adapts the video to VLC 3 Qt. Some effects/open dialogs keep their original layout with the new theme and icons. The video's subtitle timeline, folder presets, music artist/album views and every conceptual panel are not implemented. It is not pixel-for-pixel complete.
+
 ## What is retained
 
-Local/network playback, playlists and media library, audio/video/subtitle controls, filters and equalizer, capture and disc workflows, conversion and streaming, renderer discovery, VLM, extensions, skins, hotkeys and advanced preferences retain their upstream implementations. The source baseline contains 479 module registrations, 405 core option declarations and 1,080 export declarations. All 117 audited Qt workflow files remain byte-identical.
+Local/network playback, playlists and media library, audio/video/subtitle controls, filters and equalizer, capture and disc workflows, conversion and streaming, renderer discovery, VLM, extensions, skins, hotkeys and advanced preferences retain their upstream implementations. The source baseline contains 479 module registrations, 405 core option declarations and 1,080 export declarations. Protected media implementations and core declarations are retained; the explicitly listed Qt presentation files are adapted. See the current source audit for per-file hashes.
 
 The packaged baseline comparison finds all **360 plugin DLLs**, **two Blu-ray JARs**, and **205 supporting data files**, including 104 language catalogs. No named core exports or required DLL dependencies are missing. The original supplied ActiveX binary is retained unchanged; it is not registered by the portable package.
 
@@ -26,11 +32,11 @@ These inventories establish preservation, not successful execution of every code
 
 ## Validation
 
-- 10 native UI checks, including preferences, effects, discs, network, capture, bookmarks, VLM, streaming and conversion entry dialogs.
+- 21 native UI checks cover the media Home screen, all 13 settings categories, advanced search, a real configuration binding, effects tabs, playback, thumbnails and seek previews, plus retained workflow dialogs.
 - 13 MJPEG/WAV engine control checks, including pause/resume, seek, rate, subtitles, equalizer and clean shutdown.
 - 8 native executable checks for MJPEG/WAV decode and H.264, VP8 and VP9 encode/decode, with clean process exits.
 - Native Qt H.264 playback exits cleanly; German menus render correctly.
-- 36 Windows CRT adapter checks and nine exact executable icon-payload comparisons pass.
+- 40 Windows CRT adapter checks and nine exact executable icon-payload comparisons pass.
 
 **Open limitation:** a standalone libVLC H.264 stop/release scenario produces an access violation in both this fork and the supplied VLC 3.0.24 in this environment. The root cause remains unresolved. The native GUI and CLI checks pass. Physical devices, protected discs, external streaming/casting, general GPU behavior, COM registration and installer integration have not been certified.
 
@@ -41,6 +47,7 @@ These inventories establish preservation, not successful execution of every code
 - [Validation, evidence and limits](docs/VALIDATION.md)
 - [Upstream and artifact provenance](docs/PROVENANCE.md)
 - [Design and supplied artwork](docs/DESIGN.md)
+- [Video reference, adaptation and attribution](docs/DESIGN-REFERENCE.md)
 - [Contribution guide](CONTRIBUTING.md)
 - [Detailed fork notes](CONEIC.md)
 
@@ -54,4 +61,4 @@ These inventories establish preservation, not successful execution of every code
 
 Baseline: [VLC 3.0.24](https://github.com/videolan/vlc/tree/3.0.24), commit `6de05adcbaf2e8b85fe86aad4169393098628119`. This independent repository imports that release's source; it does not claim to contain VLC's complete historical Git graph.
 
-Original copyright, credits, [COPYING](COPYING), [COPYING.LIB](COPYING.LIB) and component notices are retained. Coneic code follows the applicable upstream GPL/LGPL terms. The branding artwork was supplied by the project owner. This project is not an official VideoLAN release.
+Original copyright, credits, [COPYING](COPYING), [COPYING.LIB](COPYING.LIB) and component notices are retained. Coneic code follows the applicable upstream GPL/LGPL terms. The branding artwork was supplied by the project owner. The reference design/icons are credited to Juxtopposed under CC BY 4.0; Inter is distributed under SIL OFL 1.1. Bundled attribution and font notices accompany the portable app. This project is not an official VideoLAN release.

@@ -29,6 +29,7 @@
 #endif
 
 #include "qt.hpp"
+#include "coneic_design.hpp"
 #include "components/interface_widgets.hpp"
 #include "dialogs_provider.hpp"
 #include "util/customwidgets.hpp"               // qtEventToVLCKey, QVLCStackedWidget
@@ -471,11 +472,14 @@ void BackgroundWidget::titleUpdated( const QString& title )
 void BackgroundWidget::showEvent( QShowEvent * e )
 {
     Q_UNUSED( e );
-    if ( b_withart ) fadeAnimation->start();
+    if ( b_withart && ConeicDesign::motionEnabled() ) fadeAnimation->start();
+    else setProperty("opacity",1.0);
 }
 
 void BackgroundWidget::paintEvent( QPaintEvent *e )
 {
+    QWidget *home=findChild<QWidget*>(QStringLiteral("ConeicHome"));
+    if(home && home->isVisible()) {QWidget::paintEvent(e);return;}
     if ( !b_withart )
     {
         /* we just want background autofill */
