@@ -1,0 +1,61 @@
+{
+  "passed": true,
+  "evidence_id": "ev_34aa8c6d10d1ae48c764710e096daa8cb5af3e6916e4e96e0598dede8e8c1f40",
+  "scope": "Exact PNG payload hashes in executable icon resources versus logo exports. Shell icon-cache behavior is not asserted.",
+  "checks": [
+    {
+      "size": 16,
+      "passed": true,
+      "source_png_sha256": "1d4d72d468aeecd88715e1180d8765a81223332817a0a8de85f8536ad648dfb4",
+      "pe_resource_sha256": "1d4d72d468aeecd88715e1180d8765a81223332817a0a8de85f8536ad648dfb4"
+    },
+    {
+      "size": 20,
+      "passed": true,
+      "source_png_sha256": "3f3569b9f1804828382e00b51bbcfd4c9184dca68abad15e1f6c6fc0263194dd",
+      "pe_resource_sha256": "3f3569b9f1804828382e00b51bbcfd4c9184dca68abad15e1f6c6fc0263194dd"
+    },
+    {
+      "size": 24,
+      "passed": true,
+      "source_png_sha256": "4f223b33d6076ed1df42c965f1a3b2e58687c5d10d130d8b3f5ff1dc54ed85dc",
+      "pe_resource_sha256": "4f223b33d6076ed1df42c965f1a3b2e58687c5d10d130d8b3f5ff1dc54ed85dc"
+    },
+    {
+      "size": 32,
+      "passed": true,
+      "source_png_sha256": "2a7d6d894d82cfabb806d4c284e551bc7bcc427e4385ccc1f3cf6ec9cd5ce725",
+      "pe_resource_sha256": "2a7d6d894d82cfabb806d4c284e551bc7bcc427e4385ccc1f3cf6ec9cd5ce725"
+    },
+    {
+      "size": 40,
+      "passed": true,
+      "source_png_sha256": "3d3fe7be44e037565e730eca972c1a3180662f511684ece2ca9dc37bd8e216f9",
+      "pe_resource_sha256": "3d3fe7be44e037565e730eca972c1a3180662f511684ece2ca9dc37bd8e216f9"
+    },
+    {
+      "size": 48,
+      "passed": true,
+      "source_png_sha256": "0111593dd8dbd89859e10a18fd85c3fcf689108dcb689557d6b748b6b8c6b5d9",
+      "pe_resource_sha256": "0111593dd8dbd89859e10a18fd85c3fcf689108dcb689557d6b748b6b8c6b5d9"
+    },
+    {
+      "size": 64,
+      "passed": true,
+      "source_png_sha256": "64bf47ae6284131734fbfcda86fcc21b82c57511b3adfdec5f39085a17840661",
+      "pe_resource_sha256": "64bf47ae6284131734fbfcda86fcc21b82c57511b3adfdec5f39085a17840661"
+    },
+    {
+      "size": 128,
+      "passed": true,
+      "source_png_sha256": "335144872dac312f3762dd79a339a353c2bc85991188debc0085f91b22161e94",
+      "pe_resource_sha256": "335144872dac312f3762dd79a339a353c2bc85991188debc0085f91b22161e94"
+    },
+    {
+      "size": 256,
+      "passed": true,
+      "source_png_sha256": "ff6f7702b34c8ddf327444aa66764d14da66ba70f25570bac2a1ebdaeaa1dbc9",
+      "pe_resource_sha256": "ff6f7702b34c8ddf327444aa66764d14da66ba70f25570bac2a1ebdaeaa1dbc9"
+    }
+  ]
+}

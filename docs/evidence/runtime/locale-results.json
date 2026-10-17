@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "language": "de",
+  "native_process_exit": 0,
+  "observed_menus": [
+    "&Medien",
+    "&Wiedergabe",
+    "&Audio",
+    "&Video",
+    "&Untertitel",
+    "W&erkzeuge",
+    "&Ansicht",
+    "&Hilfe"
+  ],
+  "environment_note": "LC_ALL and LC_CTYPE were unset for this child; the host C.UTF-8 locale otherwise overrides LANG."
+}

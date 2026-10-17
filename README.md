@@ -1,0 +1,49 @@
+<img src="share/coneic/coneic-256.png" width="96" alt="Coneic logo">
+
+# Coneic
+
+Coneic is a Windows x64 media player built as a source fork of **VideoLAN VLC 3.0.24**. It retains the existing media engine and workflows, adds the supplied Coneic logo and icon, and gives the native Qt interface a restrained dark theme with orange accents.
+
+**Status: development preview.** Source and package preservation checks pass. Tested native workflows work, with an unresolved standalone libVLC embedding failure documented below. Complete runtime feature parity is not certified.
+
+![Actual native Coneic interface](docs/screenshots/main-window.png)
+
+## Run
+
+Download the Windows portable ZIP from [Releases](https://github.com/sadiqgarba2553/coneic/releases), extract it, and open **Coneic.exe**. Keep its DLLs, plugins, locale, Lua, skins and data folders together. `vlc.exe` is retained as a compatibility alias. Settings use `%APPDATA%\coneic`.
+
+This is the native VLC/Qt source fork. The earlier WPF prototype is superseded and is not this repository's application.
+
+## What is retained
+
+Local/network playback, playlists and media library, audio/video/subtitle controls, filters and equalizer, capture and disc workflows, conversion and streaming, renderer discovery, VLM, extensions, skins, hotkeys and advanced preferences retain their upstream implementations. The source baseline contains 479 module registrations, 405 core option declarations and 1,080 export declarations. All 117 audited Qt workflow files remain byte-identical.
+
+The packaged baseline comparison finds all **360 plugin DLLs**, **two Blu-ray JARs**, and **205 supporting data files**, including 104 language catalogs. No named core exports or required DLL dependencies are missing. The original supplied ActiveX binary is retained unchanged; it is not registered by the portable package.
+
+These inventories establish preservation, not successful execution of every codec, protocol, device or API.
+
+## Validation
+
+- 10 native UI checks, including preferences, effects, discs, network, capture, bookmarks, VLM, streaming and conversion entry dialogs.
+- 13 MJPEG/WAV engine control checks, including pause/resume, seek, rate, subtitles, equalizer and clean shutdown.
+- 8 native executable checks for MJPEG/WAV decode and H.264, VP8 and VP9 encode/decode, with clean process exits.
+- Native Qt H.264 playback exits cleanly; German menus render correctly.
+- 36 Windows CRT adapter checks and nine exact executable icon-payload comparisons pass.
+
+**Open limitation:** a standalone libVLC H.264 stop/release scenario produces an access violation in both this fork and the supplied VLC 3.0.24 in this environment. The root cause remains unresolved. The native GUI and CLI checks pass. Physical devices, protected discs, external streaming/casting, general GPU behavior, COM registration and installer integration have not been certified.
+
+## Project details
+
+- [Build instructions](docs/BUILD.md)
+- [Architecture and retained features](docs/ARCHITECTURE.md)
+- [Validation, evidence and limits](docs/VALIDATION.md)
+- [Upstream and artifact provenance](docs/PROVENANCE.md)
+- [Design and supplied artwork](docs/DESIGN.md)
+- [Contribution guide](CONTRIBUTING.md)
+- [Detailed fork notes](CONEIC.md)
+
+## Upstream and licensing
+
+Baseline: [VLC 3.0.24](https://github.com/videolan/vlc/tree/3.0.24), commit `6de05adcbaf2e8b85fe86aad4169393098628119`. This independent repository imports that release's source; it does not claim to contain VLC's complete historical Git graph.
+
+Original copyright, credits, [COPYING](COPYING), [COPYING.LIB](COPYING.LIB) and component notices are retained. Coneic code follows the applicable upstream GPL/LGPL terms. The branding artwork was supplied by the project owner. This project is not an official VideoLAN release.

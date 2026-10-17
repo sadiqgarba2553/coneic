@@ -1,0 +1,14 @@
+{
+  "status": "OPEN: comparison failure, not a passing test",
+  "scenario": "Standalone libVLC embedding of the generated H264 MP4, followed by stop/release after end of playback.",
+  "coneic_process_exit": -1073741819,
+  "supplied_vlc_3_0_24_process_exit": -1073741819,
+  "windows_exception": "0xC0000005 (access violation)",
+  "fixture_sha256": "e3ae07bd6b41ded148d1fa529c666587afccc6b939439d9f7ee5dafcc9fbe8ba",
+  "observations": [
+    "MJPEG/WAV control and lifetime tests pass.",
+    "Both native C and Python embedding probes exposed an access violation in this environment.",
+    "The native Coneic GUI H264 playback and CLI H264 encode/decode processes exit with code 0."
+  ],
+  "limits": "This comparison does not establish a root cause or prove that all embeddings fail. The issue remains unresolved; no complete runtime or public C API certification is claimed."
+}

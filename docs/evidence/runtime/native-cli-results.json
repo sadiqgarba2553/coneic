@@ -1,0 +1,62 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "native-mjpeg-decode",
+      "passed": true,
+      "exit_code": 0,
+      "expected_log": "EOF reached",
+      "artifact_bytes": null
+    },
+    {
+      "name": "native-wav-decode",
+      "passed": true,
+      "exit_code": 0,
+      "expected_log": "EOF reached",
+      "artifact_bytes": null
+    },
+    {
+      "name": "native-h264-encode",
+      "passed": true,
+      "exit_code": 0,
+      "expected_log": "using encoder module \"x264\"",
+      "artifact_bytes": 23065
+    },
+    {
+      "name": "native-h264-decode",
+      "passed": true,
+      "exit_code": 0,
+      "expected_log": "using video decoder module \"avcodec\"",
+      "artifact_bytes": null
+    },
+    {
+      "name": "native-vp8-encode",
+      "passed": true,
+      "exit_code": 0,
+      "expected_log": "using encoder module \"vpx\"",
+      "artifact_bytes": 14730
+    },
+    {
+      "name": "native-vp8-decode",
+      "passed": true,
+      "exit_code": 0,
+      "expected_log": "using video decoder module \"vpx\"",
+      "artifact_bytes": null
+    },
+    {
+      "name": "native-vp9-encode",
+      "passed": true,
+      "exit_code": 0,
+      "expected_log": "using encoder module \"vpx\"",
+      "artifact_bytes": 36880
+    },
+    {
+      "name": "native-vp9-decode",
+      "passed": true,
+      "exit_code": 0,
+      "expected_log": "using video decoder module \"vpx\"",
+      "artifact_bytes": null
+    }
+  ],
+  "scope": "Actual native Coneic executable: CPU decode and H264/VP8/VP9 encode/decode, clean process exit. Dummy output; devices, DRM, GPU and external network behavior not certified."
+}

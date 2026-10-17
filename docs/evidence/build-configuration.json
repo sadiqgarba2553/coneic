@@ -1,0 +1,15 @@
+{
+  "source_commit": "6de05adcbaf2e8b85fe86aad4169393098628119",
+  "nls_enabled": true,
+  "gettext_enabled": true,
+  "vpx_cppflags": "CPPFLAGS_vpx =  -I<BUILD_SOURCE>/contrib/x86_64-w64-mingw32/include  -DENABLE_VP8_DECODER -DENABLE_VP9_DECODER -DENABLE_VP8_ENCODER -DENABLE_VP9_ENCODER",
+  "libvpx_defines": [
+    "#define HAVE_AVX512 1",
+    "#define CONFIG_VP8_ENCODER 1",
+    "#define CONFIG_VP8_DECODER 1",
+    "#define CONFIG_VP9_ENCODER 1",
+    "#define CONFIG_VP9_DECODER 1",
+    "#define CONFIG_VP9_HIGHBITDEPTH 1"
+  ],
+  "limits": "Configuration plus native runtime logs, not certification of all CPU paths."
+}

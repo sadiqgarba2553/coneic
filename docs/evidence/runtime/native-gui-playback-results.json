@@ -1,0 +1,5 @@
+{
+  "scope": "Native Qt H264 playback to end and clean exit; dummy audio, software decode, default Windows video output",
+  "passed": true,
+  "exit_code": 0
+}

@@ -1,0 +1,950 @@
+{
+  "created_utc": "2026-10-16T23:13:06.451097+00:00",
+  "tool": "msgfmt (GNU gettext-tools) 0.21",
+  "baseline_installer_sha256": "d711e1e1fe52052748c39080c7dce63f6b7e4c315efedf1774a3f1957b782ff3",
+  "catalogue_count": 104,
+  "source": "<BUILD_SOURCE>",
+  "app": "/root/coneic/release/Coneic",
+  "catalogues": [
+    {
+      "language": "ach",
+      "source": "<BUILD_SOURCE>/po/ach.po",
+      "source_sha256": "fb7a00da59de6e3cbe43839de19dbaf44c10a6d3dfac50efb23cb0fe62e4a065",
+      "package_path": "locale/ach/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "1d4154b04bdb98ef376e1bcbbfadf705d333d5f3d701ff457e9630e77f810e6a",
+      "bytes": 47996,
+      "warnings": ""
+    },
+    {
+      "language": "af",
+      "source": "<BUILD_SOURCE>/po/af.po",
+      "source_sha256": "0b95aa20540c8468ab0be0b1967485f43e59643328e6c5ee7f196686fc632d99",
+      "package_path": "locale/af/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "f351eee4349ff659b57f7665217d90cfd87b069dec5bc773ed09ee34cca19bb8",
+      "bytes": 105034,
+      "warnings": ""
+    },
+    {
+      "language": "am",
+      "source": "<BUILD_SOURCE>/po/am.po",
+      "source_sha256": "dca683840bdc887616598eb449278aacab9b9ce38535ce7e5acbeeafd97f7f5d",
+      "package_path": "locale/am/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "6fe6ec6971019e6e588dd857c7a3c42cac97660bce5e0fe154285ce0ec40155f",
+      "bytes": 63505,
+      "warnings": ""
+    },
+    {
+      "language": "am_ET",
+      "source": "<BUILD_SOURCE>/po/am_ET.po",
+      "source_sha256": "f302026fabf611902caa947f28bc10c747eac2da16b960619d4ad74c30f84ef2",
+      "package_path": "locale/am_ET/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "023524888cd20cc69ada7940d55a3ede53931a8fc3e8a17ffd1fd799a1a00191",
+      "bytes": 80356,
+      "warnings": ""
+    },
+    {
+      "language": "an",
+      "source": "<BUILD_SOURCE>/po/an.po",
+      "source_sha256": "6216db6565750b3cd700b53feaabe6f4000d381b3aaa8805530e3b8864d7d642",
+      "package_path": "locale/an/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "bd6a51cfe25fe0beae0f5bfe0beb76e3a1eb20024f5adf0938770116fbad6b55",
+      "bytes": 402043,
+      "warnings": ""
+    },
+    {
+      "language": "ar",
+      "source": "<BUILD_SOURCE>/po/ar.po",
+      "source_sha256": "28fe29bc0efdca3ec6542318c42d80e9eab1515591b23f98895a31b1246d87d0",
+      "package_path": "locale/ar/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "6ee31044de95d5d6cc3c3e3b45782243e58be5accbd81d41cd7bda3b1b5b11b0",
+      "bytes": 416116,
+      "warnings": ""
+    },
+    {
+      "language": "as",
+      "source": "<BUILD_SOURCE>/po/as.po",
+      "source_sha256": "fa1af56238b63a1fd59350bea88392dbc8002a490efcc90a37b6a9cca6965f8f",
+      "package_path": "locale/as/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "54907fd5b3049a50a19ad8b0df9059450572fe43df129fa10855446c1f20914c",
+      "bytes": 798322,
+      "warnings": ""
+    },
+    {
+      "language": "ast",
+      "source": "<BUILD_SOURCE>/po/ast.po",
+      "source_sha256": "81761c67d95b74df97d1d9a528ac549c7a48135ca40f142a65e181fa2bc4a980",
+      "package_path": "locale/ast/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "034fe69e884b891b4a5e9531b9e42f1f30106f817c90724362a18c344d489143",
+      "bytes": 404219,
+      "warnings": ""
+    },
+    {
+      "language": "be",
+      "source": "<BUILD_SOURCE>/po/be.po",
+      "source_sha256": "cfcc70683199b18c88ddfa5dbddf2485c0baa54a0f0f8a7820d2a72cacfd24b1",
+      "package_path": "locale/be/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "e6286c45c4047058162d4c06c745a36c247ceea12a6c0475305644eac7b9300d",
+      "bytes": 643867,
+      "warnings": ""
+    },
+    {
+      "language": "bg",
+      "source": "<BUILD_SOURCE>/po/bg.po",
+      "source_sha256": "71c7d808ec5b443547617b8e01421ce9a89e0c9537178c399be3b074b824eef0",
+      "package_path": "locale/bg/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "5b232045d90d63c54aea32d9e62478deb5aede9e8b55ebd8ca51f495a5c2ef0a",
+      "bytes": 537782,
+      "warnings": ""
+    },
+    {
+      "language": "bn",
+      "source": "<BUILD_SOURCE>/po/bn.po",
+      "source_sha256": "536be505f630c62f50c05c7c2121235bfc8ab25b320c26d48d2328f5cf668cad",
+      "package_path": "locale/bn/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "40e8fa699603e7e069ca74fde4e84454b03b1cf8c011b37b89e249d81facc5b9",
+      "bytes": 685776,
+      "warnings": ""
+    },
+    {
+      "language": "bn_IN",
+      "source": "<BUILD_SOURCE>/po/bn_IN.po",
+      "source_sha256": "833fed00a38759ced9001bac2af11607b17fee499dcaf598d15b3c5ffb6df0f4",
+      "package_path": "locale/bn_IN/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "ab202eeab8534a4285440c30bd31a804e3e3b996f81eebc8651945d4bfa1d4f4",
+      "bytes": 674728,
+      "warnings": ""
+    },
+    {
+      "language": "br",
+      "source": "<BUILD_SOURCE>/po/br.po",
+      "source_sha256": "3cf57d773dda9a24c2d0a31fd02793684e41df1487f3c32dc5317e0526a680df",
+      "package_path": "locale/br/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "4ac94175a219bedb2f6fed366258dbc00d371d1e7de0977f967a2e1161557525",
+      "bytes": 146321,
+      "warnings": ""
+    },
+    {
+      "language": "brx",
+      "source": "<BUILD_SOURCE>/po/brx.po",
+      "source_sha256": "f3931537ab46eccd14cbc75cd64a578666aab49550f7433760fd651138bb80ff",
+      "package_path": "locale/brx/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "942ae3ff4cdc520c86816c814020381d2b7614e50b019787e0eda779d78fdbf8",
+      "bytes": 795257,
+      "warnings": ""
+    },
+    {
+      "language": "bs",
+      "source": "<BUILD_SOURCE>/po/bs.po",
+      "source_sha256": "b592eac429ca01dce8b047b840d5536cdf126df83b14a800950734b7bf70b3bf",
+      "package_path": "locale/bs/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "90208651f2bd4ee2b2b16336b71ae4509e986822a23a6095ac97d9c1e8c7113f",
+      "bytes": 579568,
+      "warnings": ""
+    },
+    {
+      "language": "ca",
+      "source": "<BUILD_SOURCE>/po/ca.po",
+      "source_sha256": "df3124ab590bfe37376a7e5b35ff44f5f6b180c0413624702915fe1a73688629",
+      "package_path": "locale/ca/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "5be4412f5a882664b3510734070dc05de5fc6b9c8273c5df57a044fe0e16fdde",
+      "bytes": 634694,
+      "warnings": ""
+    },
+    {
+      "language": "ca@valencia",
+      "source": "<BUILD_SOURCE>/po/ca@valencia.po",
+      "source_sha256": "cd9de63be7495ac89cc54d6197fc641496518d63c75f2049baf99f430f5277ee",
+      "package_path": "locale/ca@valencia/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "d8d13f74b23d61f733ca7cddbf3f570b3ed5b89968168f298d9486ee36428a4c",
+      "bytes": 524801,
+      "warnings": ""
+    },
+    {
+      "language": "cgg",
+      "source": "<BUILD_SOURCE>/po/cgg.po",
+      "source_sha256": "e5116e1806f85247c0cd16ae3517abd5e5fd4b8b80781e9a852d88d6fccaa6af",
+      "package_path": "locale/cgg/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "da6fa85affbbd347d832baf9074aa2565ca0fd93ac90e89b7c18a3e492296eb6",
+      "bytes": 34599,
+      "warnings": ""
+    },
+    {
+      "language": "co",
+      "source": "<BUILD_SOURCE>/po/co.po",
+      "source_sha256": "40a245053d37537dcc377b69c50ca9d5da46e6f6d20eadcd57a169d95c17cddd",
+      "package_path": "locale/co/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "35e427423110645ced6a6f8dd36d66ef24ff02e5fd52318457cba6020062144e",
+      "bytes": 441947,
+      "warnings": ""
+    },
+    {
+      "language": "cs",
+      "source": "<BUILD_SOURCE>/po/cs.po",
+      "source_sha256": "3e9282cb0ee621a87c93e47181d754f475912bcebf73791aed952ef99770c509",
+      "package_path": "locale/cs/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "41bf8114fec79c584571a5c40ed384842d5826e93d71d1b95ceb28c4f9c6855f",
+      "bytes": 612275,
+      "warnings": ""
+    },
+    {
+      "language": "cy",
+      "source": "<BUILD_SOURCE>/po/cy.po",
+      "source_sha256": "826f76a7e6ad087bac07a87d5e7e133384d44d98de3dc4fdcbe423e70c046bdd",
+      "package_path": "locale/cy/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "7034b38f61d096b7560a8cd23b415be1c083a96b11315673379400536ad1f2f8",
+      "bytes": 275666,
+      "warnings": ""
+    },
+    {
+      "language": "da",
+      "source": "<BUILD_SOURCE>/po/da.po",
+      "source_sha256": "7c04b976c7a9303c83a2864e6e6a6d1284e773361f14bed030bda5c8d3d43b5f",
+      "package_path": "locale/da/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "17290b4df7178f5854494a0fc772fcac9008e44053bd50ce356dcf49ec333159",
+      "bytes": 590490,
+      "warnings": ""
+    },
+    {
+      "language": "de",
+      "source": "<BUILD_SOURCE>/po/de.po",
+      "source_sha256": "3f9a7cf30a49c2bb39cf3a465931694972f3eb430d9639d289fff290c87e0e3b",
+      "package_path": "locale/de/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "a03cffae71a4c394881d983190066b22682bfb2486658f1b555d9ce9a5a12c33",
+      "bytes": 614758,
+      "warnings": ""
+    },
+    {
+      "language": "el",
+      "source": "<BUILD_SOURCE>/po/el.po",
+      "source_sha256": "2b7e897a880e532094f3b18bf76683511ba2e8ae84257a534423d8ca2675feb8",
+      "package_path": "locale/el/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "879158bd3821285de6c5c18392920e576d0b5d2411a039cf902d5bcb3f73c712",
+      "bytes": 836341,
+      "warnings": ""
+    },
+    {
+      "language": "en_GB",
+      "source": "<BUILD_SOURCE>/po/en_GB.po",
+      "source_sha256": "50403b2c6b37c65dd90fb3282b488e809df9276297b1096a38d163b1087371c9",
+      "package_path": "locale/en_GB/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "73ae90b2d153aa0cd2019b4e9578fcfd4067276300ad39788b3712f8bb8bbc9f",
+      "bytes": 227193,
+      "warnings": ""
+    },
+    {
+      "language": "eo",
+      "source": "<BUILD_SOURCE>/po/eo.po",
+      "source_sha256": "38b3b2606f3b4f7b078a85fc44e34325e1ce03572ce72c159694dde959e9d9ac",
+      "package_path": "locale/eo/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "07d04a45e78b7c9671d99c69d9a761d053c3df9fec57a7dd8772191e58e3ff39",
+      "bytes": 91364,
+      "warnings": ""
+    },
+    {
+      "language": "es",
+      "source": "<BUILD_SOURCE>/po/es.po",
+      "source_sha256": "9832a1006657c2162a7b628a872b0f22c93024f9f1b63efa7fb7e98d810b02cd",
+      "package_path": "locale/es/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "c9e1367fe37655387ca48af88b24d505e6482f44597ab594d3aaf13088396a3e",
+      "bytes": 611271,
+      "warnings": ""
+    },
+    {
+      "language": "es_MX",
+      "source": "<BUILD_SOURCE>/po/es_MX.po",
+      "source_sha256": "7737235841124d8a1112f8c7fe0932fce8d9add4d44ad1e58e0970c9864a67c1",
+      "package_path": "locale/es_MX/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "23a19cea6bd77a3f28d8174974306c29608c7d19f2e2d4efd08055cd9667a95c",
+      "bytes": 610345,
+      "warnings": ""
+    },
+    {
+      "language": "et",
+      "source": "<BUILD_SOURCE>/po/et.po",
+      "source_sha256": "7729ec8beb61636f87cd1586f26e2d68baff4f9f719af84f253dfc676a524e64",
+      "package_path": "locale/et/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "2d7f49487e45ac4eb28183f8dd7acc3b621ec5be7928fb3be6bde64d9ba74631",
+      "bytes": 410387,
+      "warnings": ""
+    },
+    {
+      "language": "eu",
+      "source": "<BUILD_SOURCE>/po/eu.po",
+      "source_sha256": "82bfbcf8a72b8feee6ebc60edbfb48608ceffcccf9b2c14c30fc0f632acc2848",
+      "package_path": "locale/eu/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "182c646fb10287ca1b3cda01944feb66a15660193916986d868c14e4468243c8",
+      "bytes": 622274,
+      "warnings": ""
+    },
+    {
+      "language": "fa",
+      "source": "<BUILD_SOURCE>/po/fa.po",
+      "source_sha256": "75077fa324ab08c66951b443257db4cdb0e3f8f4081f144315b072c1f92a2275",
+      "package_path": "locale/fa/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "5f140fda63c31a22ccfaf00f429323819f0b3c593d088c37f0a01cda824ab03b",
+      "bytes": 183045,
+      "warnings": ""
+    },
+    {
+      "language": "ff",
+      "source": "<BUILD_SOURCE>/po/ff.po",
+      "source_sha256": "81447b2fff16f55d46ae73933996984a122515e19488966ee2cc1ea13f16d8ec",
+      "package_path": "locale/ff/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "ea0f423012a554165d550c6e83b61421e073c27e7254a5a5d9c23c806bc10d18",
+      "bytes": 73928,
+      "warnings": ""
+    },
+    {
+      "language": "fi",
+      "source": "<BUILD_SOURCE>/po/fi.po",
+      "source_sha256": "027d67eeec51b326fbb497c8fb29526773da5bdcfc009ffaf4e2ebdf72435fa1",
+      "package_path": "locale/fi/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "e613e4a3df608a994f0d3aee7019bbfa2914926bf05d47aacfd54e4475d3c901",
+      "bytes": 607072,
+      "warnings": ""
+    },
+    {
+      "language": "fr",
+      "source": "<BUILD_SOURCE>/po/fr.po",
+      "source_sha256": "884bda6baab4a89fb492b8d14266cc67b5157da4f241530fe43706287d1cb309",
+      "package_path": "locale/fr/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "46618d16d614b655893d977744b6bc56cfd64a047a0ffcd66a91b0a317855322",
+      "bytes": 621717,
+      "warnings": ""
+    },
+    {
+      "language": "fur",
+      "source": "<BUILD_SOURCE>/po/fur.po",
+      "source_sha256": "bf28011449d171b3dc839b19f10254e2e460dd570ad49fa1e6801339bad67ce2",
+      "package_path": "locale/fur/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "d70031dfe5c2df0c0601bfe84373cfe847a5f24d1efe219be9cdd2fbc9bd12ab",
+      "bytes": 379987,
+      "warnings": ""
+    },
+    {
+      "language": "fy",
+      "source": "<BUILD_SOURCE>/po/fy.po",
+      "source_sha256": "c3049a7814743302b1fe3a2aecb154723a239969b7617f49c8ac3a14a203079f",
+      "package_path": "locale/fy/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "69840af0e48f70c001ceeee1cb876b2f7ef6cdb8ef917848600e6f572822a33f",
+      "bytes": 527719,
+      "warnings": ""
+    },
+    {
+      "language": "ga",
+      "source": "<BUILD_SOURCE>/po/ga.po",
+      "source_sha256": "646b49129100cef778a89ed178cfcbb5519230c92469d359e4a63e9b2b0fe6e6",
+      "package_path": "locale/ga/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "cf85d7c602f00f4a5cae7a445462f9baadedfab4b004669e73cd9e784cba1cfb",
+      "bytes": 162168,
+      "warnings": ""
+    },
+    {
+      "language": "gd",
+      "source": "<BUILD_SOURCE>/po/gd.po",
+      "source_sha256": "061fe1a57c536e51f584314406d4e92043465a2281faea008d76356465868655",
+      "package_path": "locale/gd/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "fa4910ff4faa226a4bb76c473227962e3f5c501ee7e39fd641e0d6573b11006b",
+      "bytes": 179552,
+      "warnings": ""
+    },
+    {
+      "language": "gl",
+      "source": "<BUILD_SOURCE>/po/gl.po",
+      "source_sha256": "a78a69f8112e6e74aba6aa6613d8881e8a191df60bc14766e9354afa78390ed1",
+      "package_path": "locale/gl/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "e81f06293f1d94ba3c3a1639201d39738466f2a53c0f141ef970ed523bc6d0ac",
+      "bytes": 608953,
+      "warnings": ""
+    },
+    {
+      "language": "gu",
+      "source": "<BUILD_SOURCE>/po/gu.po",
+      "source_sha256": "89870ea8400dfd60e2b9255378e301b9b7c7129e24fda2226b6a132cb2b5f534",
+      "package_path": "locale/gu/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "6cd1beceb474568356e0059c71e67a349784a224785090bf1521f0939a162548",
+      "bytes": 774715,
+      "warnings": ""
+    },
+    {
+      "language": "he",
+      "source": "<BUILD_SOURCE>/po/he.po",
+      "source_sha256": "6a676d0b587d263256d898c2d4566a933677a72ec2f2dc8719548230c52bb2e1",
+      "package_path": "locale/he/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "42f8e09739d30ce25aa4573f17ab79f13ca6b0b44e0acb91731ef8bb87a77459",
+      "bytes": 534298,
+      "warnings": ""
+    },
+    {
+      "language": "hi",
+      "source": "<BUILD_SOURCE>/po/hi.po",
+      "source_sha256": "91cc8050565025252f9d890aa8a5ea247137ecb12f0c9a0ed9a407a156a3e85b",
+      "package_path": "locale/hi/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "fdab4a32a1d18044675ba718bfc268d9fcad7b0d8d88b8a094de6769999ae7dc",
+      "bytes": 212992,
+      "warnings": ""
+    },
+    {
+      "language": "hr",
+      "source": "<BUILD_SOURCE>/po/hr.po",
+      "source_sha256": "2b71cfd2c7fb24e52161c6edb0daa6d7b3b29fe64568e9ef82f4722f38dc47d7",
+      "package_path": "locale/hr/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "841b773b68cb043914ecc0cb28494f933b1a52b6d8954595f09d1e411846709c",
+      "bytes": 608852,
+      "warnings": ""
+    },
+    {
+      "language": "hu",
+      "source": "<BUILD_SOURCE>/po/hu.po",
+      "source_sha256": "5485d210af1c90baf29cd747d4ec41e80ed00941723ca99a4be1b265055a84ad",
+      "package_path": "locale/hu/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "8f2c3bc036f61f9d7a841840728f72b1d52056832ce6d8947efe7db847825be8",
+      "bytes": 626832,
+      "warnings": ""
+    },
+    {
+      "language": "hy",
+      "source": "<BUILD_SOURCE>/po/hy.po",
+      "source_sha256": "bc35289983f5abf52b8584ad0000e2cf1cf080843f8339c898bcc6318ff91b7b",
+      "package_path": "locale/hy/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "dffc3ad4982f7dad544165a4523105b4bffab615338e79724f50c43659ec6700",
+      "bytes": 125072,
+      "warnings": ""
+    },
+    {
+      "language": "id",
+      "source": "<BUILD_SOURCE>/po/id.po",
+      "source_sha256": "160675b9e15692dbe2d441f332ebab12986f90ecd243600112a5639f3bb6c3b4",
+      "package_path": "locale/id/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "b5c2c13ff9a4fbb1b93aca0250033ca7a0e4c33c1fe52f0bf5ca295a9b284a7f",
+      "bytes": 430387,
+      "warnings": ""
+    },
+    {
+      "language": "ie",
+      "source": "<BUILD_SOURCE>/po/ie.po",
+      "source_sha256": "20c6770f5fca4d488b5096b54b0c74036eec7378792450ca2732e4d03c35ebc4",
+      "package_path": "locale/ie/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "2d0039218f5b3e7bc6750c8bcd195bb5db7fd75a1430f1ac3d568298501c2a8e",
+      "bytes": 96604,
+      "warnings": ""
+    },
+    {
+      "language": "is",
+      "source": "<BUILD_SOURCE>/po/is.po",
+      "source_sha256": "f79ee1870023f0bdd344cef57d40e41c3d77f9316f0394f2f1b64c5a9a9ded16",
+      "package_path": "locale/is/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "9b07b1a0342f305af1492314c80d2bc84133c2ba721c48584aecd58be7f56fec",
+      "bytes": 313824,
+      "warnings": ""
+    },
+    {
+      "language": "it",
+      "source": "<BUILD_SOURCE>/po/it.po",
+      "source_sha256": "c08c82a6a4e16e505a54557ea2d1300f17b9aa266816c0ca1e2ec17c52c3bfce",
+      "package_path": "locale/it/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "259e5009c9abd180ec759d64cfb4ad79a032ebff25d7630e6d099c1be5be0309",
+      "bytes": 617822,
+      "warnings": ""
+    },
+    {
+      "language": "ja",
+      "source": "<BUILD_SOURCE>/po/ja.po",
+      "source_sha256": "0e95c90332a0d697b990409ad2dde3531eb7c53d118d9b5081f4c9680ed97a98",
+      "package_path": "locale/ja/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "88b0b30d3eee5e70e23ea3d3b4a2f19cbbfbf993cfb97c7fefa311224d8316e8",
+      "bytes": 681605,
+      "warnings": ""
+    },
+    {
+      "language": "ka",
+      "source": "<BUILD_SOURCE>/po/ka.po",
+      "source_sha256": "179db3e7ce440cdae16bddbee3c8307a0f3723018b778ec5be0cf78f27ffadfb",
+      "package_path": "locale/ka/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "bbb3909c55cd4803de42cd9c18e4f3d86949a24da37e4f7b0c7aec3171579536",
+      "bytes": 364892,
+      "warnings": ""
+    },
+    {
+      "language": "kab",
+      "source": "<BUILD_SOURCE>/po/kab.po",
+      "source_sha256": "316762279bf1d26359926d5084d58b8920afa5c0ea8f76b7e9358f9582e1b62f",
+      "package_path": "locale/kab/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "9db8a5c7d517797cd8fc8f9c7fe711c93e36a2f70656aa89c6a7e1634e1d33b9",
+      "bytes": 63065,
+      "warnings": ""
+    },
+    {
+      "language": "kk",
+      "source": "<BUILD_SOURCE>/po/kk.po",
+      "source_sha256": "6a3ea6a19fd9a05f0a36ad238277546a0c433e6e8c75ae367aa5282f5f647199",
+      "package_path": "locale/kk/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "1976b5352be8307d92f288834fab3e479f666c95fd7142e15e68dd6df7308103",
+      "bytes": 785511,
+      "warnings": ""
+    },
+    {
+      "language": "km",
+      "source": "<BUILD_SOURCE>/po/km.po",
+      "source_sha256": "4d1482fb86b3c1e0ff0d766abcea5290bb36434aeebad3c5ba6d02309cc4c325",
+      "package_path": "locale/km/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "43013d63100ec28084609e6c52167520477591d20add649f8fa858d1f9b8ba2b",
+      "bytes": 848729,
+      "warnings": ""
+    },
+    {
+      "language": "kn",
+      "source": "<BUILD_SOURCE>/po/kn.po",
+      "source_sha256": "ef240c65ab7295055bc6d8c528e05dde6167affd8fbd6bea00f11f117866a205",
+      "package_path": "locale/kn/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "128edac1887be6979ad9103b63c138b687a3a324baf34f90cc43dd2bdf267a8c",
+      "bytes": 704006,
+      "warnings": ""
+    },
+    {
+      "language": "ko",
+      "source": "<BUILD_SOURCE>/po/ko.po",
+      "source_sha256": "8757bd415b5b3ce96275366be73d53ba5da400c7650b1f623687c748702ca495",
+      "package_path": "locale/ko/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "8a76a0be650b7771decc257a9c4b44bd41c947d7c02e26b44ca0c0fbfa2b30fe",
+      "bytes": 621120,
+      "warnings": ""
+    },
+    {
+      "language": "ks_IN",
+      "source": "<BUILD_SOURCE>/po/ks_IN.po",
+      "source_sha256": "084e300b21d73970b72986921fdcf2f878c8b713d325dfe575bd46e1533d55bb",
+      "package_path": "locale/ks_IN/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "5bec5105cc90cdbffb9df9e2f0309e95ef5161338960dabf3b2e4bf0ed8d9b6e",
+      "bytes": 666814,
+      "warnings": ""
+    },
+    {
+      "language": "ku_IQ",
+      "source": "<BUILD_SOURCE>/po/ku_IQ.po",
+      "source_sha256": "e09c122eb085ec9aa0242f78276edf4872fa4bbd2f1cfe349468de20c5af9979",
+      "package_path": "locale/ku_IQ/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "eeb2fa77e825fb722bcdc8a8bf0e158fb91a5a6ada7bbcaf7ae82f8ae89d5d73",
+      "bytes": 87330,
+      "warnings": ""
+    },
+    {
+      "language": "ky",
+      "source": "<BUILD_SOURCE>/po/ky.po",
+      "source_sha256": "b2872462b9bdf8f170f76ff4748afd82b3848a6b2f4b16971b522ebeca6dd388",
+      "package_path": "locale/ky/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "8cc9ad064b2a12213f9965b271d0d5aec1c7d31e3074c7ce92cc8454eb2ae1df",
+      "bytes": 36869,
+      "warnings": ""
+    },
+    {
+      "language": "lg",
+      "source": "<BUILD_SOURCE>/po/lg.po",
+      "source_sha256": "23e5abb8a14b7716595bb096a7e74b0f948695534b50cc270a533f1560bfef72",
+      "package_path": "locale/lg/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "39f9f3de1cee2dcd376931baa2c84ea0c19953013f469bdebaa67f0c94c4ca8e",
+      "bytes": 47105,
+      "warnings": ""
+    },
+    {
+      "language": "lo",
+      "source": "<BUILD_SOURCE>/po/lo.po",
+      "source_sha256": "f3c5efea7748653126498209251cafa492aff0bd8d7dccdf12e6879fb9d93627",
+      "package_path": "locale/lo/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "9893f8e22fdea6d240d77fd317fe0c561c48828d4f8459bb5fee95fbcdfadd3f",
+      "bytes": 26313,
+      "warnings": ""
+    },
+    {
+      "language": "lt",
+      "source": "<BUILD_SOURCE>/po/lt.po",
+      "source_sha256": "d193fdcfb49fee251183db8af106963972295d369fefb9502867554accf824b4",
+      "package_path": "locale/lt/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "6390a603577d5a5178ad2542525a0e923a42dcea060ef25cead1147b016906ca",
+      "bytes": 315130,
+      "warnings": ""
+    },
+    {
+      "language": "lv",
+      "source": "<BUILD_SOURCE>/po/lv.po",
+      "source_sha256": "522d248faa14fd75fdcb3165117be842920ba94ac11c804a669d790c6389ca8e",
+      "package_path": "locale/lv/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "531dfbffebd70d241174c6e3bb1f3d0b829d0d7210b163850937c03c4a04fa5b",
+      "bytes": 613228,
+      "warnings": ""
+    },
+    {
+      "language": "mai",
+      "source": "<BUILD_SOURCE>/po/mai.po",
+      "source_sha256": "3acc26fa39a972fa4c9685b101c3cea2d84076e6dfc8b27ed26ce57754f7f5dd",
+      "package_path": "locale/mai/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "884a16511463283bffd2b9be87f4171928516ae06efea7ee5d342480b639312e",
+      "bytes": 787722,
+      "warnings": ""
+    },
+    {
+      "language": "mk",
+      "source": "<BUILD_SOURCE>/po/mk.po",
+      "source_sha256": "2e64a37b7d932c4c8a692af026ade03222f329dc60e80d14d9f0148d14368407",
+      "package_path": "locale/mk/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "438eb802e8202e7df1a35c093ca64a57a17925160344627b933040fd2b90873f",
+      "bytes": 10255,
+      "warnings": ""
+    },
+    {
+      "language": "ml",
+      "source": "<BUILD_SOURCE>/po/ml.po",
+      "source_sha256": "0c23ce5899533ed6f0e4cda0eab21f1a1fe61b1a6e34e495171e239d09a46127",
+      "package_path": "locale/ml/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "c9727ed5dbd23ad15f204b522d643a930c1ba666ce823b0b0853a5b64b3a3bbe",
+      "bytes": 1106732,
+      "warnings": ""
+    },
+    {
+      "language": "mn",
+      "source": "<BUILD_SOURCE>/po/mn.po",
+      "source_sha256": "7d3779905e4fb07aae0479987405b78d876ff2d2050019901380fff10e13cb06",
+      "package_path": "locale/mn/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "58fd20f367eb8e9b99de5eb6f9f558ecd9387c192c6d1ffc1368d653f02fbe0b",
+      "bytes": 107682,
+      "warnings": ""
+    },
+    {
+      "language": "mr",
+      "source": "<BUILD_SOURCE>/po/mr.po",
+      "source_sha256": "bab06c7cd0eeba9d0c4e4b4858db57f6a9f620048e928d43a42141c6d017a575",
+      "package_path": "locale/mr/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "b97a9092c94994ec365b7b017e1d2bfbbd0e283bbd2422ce04872c2c081e9d70",
+      "bytes": 863042,
+      "warnings": ""
+    },
+    {
+      "language": "ms",
+      "source": "<BUILD_SOURCE>/po/ms.po",
+      "source_sha256": "1f36f8bfdc8d193889a54d11ccf2007bec055ecae00c2d8ef00bd8b569303051",
+      "package_path": "locale/ms/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "4ca752def33dc75ad0b2eee47b870ba51d76e8cd0cb1cf98d989fe2cf7e62c3f",
+      "bytes": 579072,
+      "warnings": ""
+    },
+    {
+      "language": "my",
+      "source": "<BUILD_SOURCE>/po/my.po",
+      "source_sha256": "01d022bfac5fd33d52b068ba0aab92ada39d5e72bdecab7f8fbcb151c39da2db",
+      "package_path": "locale/my/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "ce9c8578cf1febec3f6646758847f73e59d6e3827d644f809d45362325ded1d4",
+      "bytes": 46679,
+      "warnings": ""
+    },
+    {
+      "language": "nb",
+      "source": "<BUILD_SOURCE>/po/nb.po",
+      "source_sha256": "f1cec3fd9c061d350592280f4efb75bdf9b38a57564829d23985593a366db84d",
+      "package_path": "locale/nb/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "69aedeed254fee0f98469ff51adcf8e6dc20d5fe6252826bafdf55f9c3b2a6cb",
+      "bytes": 538353,
+      "warnings": ""
+    },
+    {
+      "language": "ne",
+      "source": "<BUILD_SOURCE>/po/ne.po",
+      "source_sha256": "df65eb4e01bdc5a258d70cc48befd48e631a1cfc410259dfc7d30b4e8e1d56f3",
+      "package_path": "locale/ne/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "10df233ccf49c47aa47729e18493e315ccd42ecbeb072808e198fbfa530111a2",
+      "bytes": 399113,
+      "warnings": ""
+    },
+    {
+      "language": "nl",
+      "source": "<BUILD_SOURCE>/po/nl.po",
+      "source_sha256": "265563a6f7bdfee32d83965d069eb78ba6209ea7d658f9fe22e9e08351bf9863",
+      "package_path": "locale/nl/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "e893294575aa86bc994d4a79a5b34be9d3fdab85d6edd91d664ba4e2d5ac905a",
+      "bytes": 598409,
+      "warnings": ""
+    },
+    {
+      "language": "nn",
+      "source": "<BUILD_SOURCE>/po/nn.po",
+      "source_sha256": "7c03f197a29d82255d33afbac420b69694ccb2fe8ed1209e9788a84f3cc839ea",
+      "package_path": "locale/nn/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "c12f3a47a84a1378ad2d8789a9c054ac033832ceed2f140200d6101e2405574b",
+      "bytes": 252836,
+      "warnings": ""
+    },
+    {
+      "language": "oc",
+      "source": "<BUILD_SOURCE>/po/oc.po",
+      "source_sha256": "cb65455e22d4fb33e262edb83d580287c810ae5c00e0889d4a69d02858085632",
+      "package_path": "locale/oc/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "77f301f009b81357b507bb351911dabbbba71825d2dc9bbbbb77d0da1e240cd1",
+      "bytes": 529325,
+      "warnings": ""
+    },
+    {
+      "language": "or_IN",
+      "source": "<BUILD_SOURCE>/po/or_IN.po",
+      "source_sha256": "e7f77b269f3f56c03e9ad6901068a2e732d654fdd92d7457f5a00a38e6dc8c63",
+      "package_path": "locale/or_IN/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "4151a3312de616a5fd39dc654a1c0eed84f4fc7ff2fbbb7449ee427df07ec82c",
+      "bytes": 24797,
+      "warnings": ""
+    },
+    {
+      "language": "pa",
+      "source": "<BUILD_SOURCE>/po/pa.po",
+      "source_sha256": "713d5d977d3e25b1f46aa16e3b0a4565f687edc3b197895eb352bb552fc9aec8",
+      "package_path": "locale/pa/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "01c1b04d73f9fbcdc94bc4efae8aa5c240ea406e9c13b8c353977e70e69f4118",
+      "bytes": 273046,
+      "warnings": ""
+    },
+    {
+      "language": "pl",
+      "source": "<BUILD_SOURCE>/po/pl.po",
+      "source_sha256": "00fb430796dfcde1a840077e15efd1b7bf77546ce2c13291c09540d400cc656f",
+      "package_path": "locale/pl/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "3072c643bc7a2d1f81beab6526f36230cfb5c21b8fd7f76865056c5c65b821cc",
+      "bytes": 606707,
+      "warnings": ""
+    },
+    {
+      "language": "ps",
+      "source": "<BUILD_SOURCE>/po/ps.po",
+      "source_sha256": "46ffa2e37731c8a11825f0eb52d54a933f15006587a95e0496a357a38168fb1b",
+      "package_path": "locale/ps/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "05c16effb7c9695283b6ddd048ea6305d6786884d58a280236f5c9f80a14cbc6",
+      "bytes": 38790,
+      "warnings": ""
+    },
+    {
+      "language": "pt_BR",
+      "source": "<BUILD_SOURCE>/po/pt_BR.po",
+      "source_sha256": "edc5bbc66543e19e1dcb7266b4a2fae63af98fa5ff0d7ca9266bf2cc4128a5b8",
+      "package_path": "locale/pt_BR/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "77609885e6af38ee9dda82c7de3a52620a471cc1bbcc21d3a3452213befc3e38",
+      "bytes": 617703,
+      "warnings": ""
+    },
+    {
+      "language": "pt_PT",
+      "source": "<BUILD_SOURCE>/po/pt_PT.po",
+      "source_sha256": "d159e2f66fca6e435c900046fc6b53ae96fcf619f627e5713f827ab0dfde8d9b",
+      "package_path": "locale/pt_PT/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "ca66ef26f8b45a7cc15414ac99f73fd38516645d7597cbc533fd64617cd31a01",
+      "bytes": 621583,
+      "warnings": ""
+    },
+    {
+      "language": "ro",
+      "source": "<BUILD_SOURCE>/po/ro.po",
+      "source_sha256": "82be28141054df1a0da2dec7db9aa19a001e4688d8d432f12f22306c8896ad26",
+      "package_path": "locale/ro/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "4520a58fd05ca668724ffd32be3b52d5938cbd12305cf96dd6f27c5bbe26c267",
+      "bytes": 622982,
+      "warnings": ""
+    },
+    {
+      "language": "ru",
+      "source": "<BUILD_SOURCE>/po/ru.po",
+      "source_sha256": "f49229e2ac2ab85c20fa155e7e0a990ce243142a64810014fe53990f795b68fb",
+      "package_path": "locale/ru/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "0dddc5e970989753929e1df6ca8da5de4c05ee92d1ca1a81fa66ff4087ff4376",
+      "bytes": 772990,
+      "warnings": ""
+    },
+    {
+      "language": "si",
+      "source": "<BUILD_SOURCE>/po/si.po",
+      "source_sha256": "a82f976d68f8810b5470b8087849de10b0f3dff3031c7f78fe41b20fc1ac3e64",
+      "package_path": "locale/si/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "e5e7838f28c580196dd85afcd82c8091e1ba110a1d517e79284f67517ac7b814",
+      "bytes": 267482,
+      "warnings": ""
+    },
+    {
+      "language": "sk",
+      "source": "<BUILD_SOURCE>/po/sk.po",
+      "source_sha256": "ff3167c78d28712c440af378951b2d6ef3df643495e3901a00407468e863f251",
+      "package_path": "locale/sk/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "8ae39207954da6cef4e561eadf79a71a0fd78d10f502232cf608abe5e5924976",
+      "bytes": 633100,
+      "warnings": ""
+    },
+    {
+      "language": "sl",
+      "source": "<BUILD_SOURCE>/po/sl.po",
+      "source_sha256": "7f0ae9178a184e523133916fc046b5b8105e39b81b26396956678b6d1ca3568a",
+      "package_path": "locale/sl/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "21a4f38f89a97973df61ff9981156cd0fc9bd6f2c258321b845626e33fb07fc8",
+      "bytes": 596556,
+      "warnings": ""
+    },
+    {
+      "language": "sm",
+      "source": "<BUILD_SOURCE>/po/sm.po",
+      "source_sha256": "405e583eb057652d17383a99cb2d6b3d100f57c4a73550ffc13fb9e876728f5f",
+      "package_path": "locale/sm/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "167e1fd3a9bc2e12afe8a99ca9071f53f9f03acb931217d69b70b49b611a881a",
+      "bytes": 15218,
+      "warnings": ""
+    },
+    {
+      "language": "sq",
+      "source": "<BUILD_SOURCE>/po/sq.po",
+      "source_sha256": "465271bd6fbe79ad5a47c8d19c23a83d6f2ca101dba6058f34fbc99833243475",
+      "package_path": "locale/sq/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "f9103fd0d043d13f233a788557883a6e9cebf69b0ad5fdd2b5228e67bd7ea5ec",
+      "bytes": 63721,
+      "warnings": ""
+    },
+    {
+      "language": "sr",
+      "source": "<BUILD_SOURCE>/po/sr.po",
+      "source_sha256": "e820a9745fdbc603d86573af5511544c935955f90458714033e675d670d44b73",
+      "package_path": "locale/sr/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "3efd2f957660a38ec005f8b0351cfde1d9eb86aed2782704920c4cd438050f37",
+      "bytes": 332130,
+      "warnings": ""
+    },
+    {
+      "language": "sv",
+      "source": "<BUILD_SOURCE>/po/sv.po",
+      "source_sha256": "d83a711e59f2e15e45e96e28819129c04cd8711ba8d3372fa3ce322e99f0c8fa",
+      "package_path": "locale/sv/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "619ac875b385c4b409cfe5a94be2d4b3e7635d3c8ed4519fe13da2687bd74f6b",
+      "bytes": 599199,
+      "warnings": ""
+    },
+    {
+      "language": "sw",
+      "source": "<BUILD_SOURCE>/po/sw.po",
+      "source_sha256": "2833ec66d18dfaf1232fbd5853786276291fea67250126e5504ebbb10490b07d",
+      "package_path": "locale/sw/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "0f688be4493897d7c04b80190601d3ff93adee85314cd9e1527d72effca24195",
+      "bytes": 61061,
+      "warnings": ""
+    },
+    {
+      "language": "ta",
+      "source": "<BUILD_SOURCE>/po/ta.po",
+      "source_sha256": "033f7a81ac619ff78fbe403f2e88944332d5111fd3424884f19fe7c90b6839fd",
+      "package_path": "locale/ta/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "798efbff00d60830329a2b04f35113c9904b878b892169cde744a5f1721c22e2",
+      "bytes": 145785,
+      "warnings": ""
+    },
+    {
+      "language": "te",
+      "source": "<BUILD_SOURCE>/po/te.po",
+      "source_sha256": "e5695cd40f2d8a1ba655741cdbd452208c8698e2559780618f2d130d024a04e6",
+      "package_path": "locale/te/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "4680f1233f26649450d4439026a4e7feec320f6a25e7fefd3e307740838265b2",
+      "bytes": 138965,
+      "warnings": ""
+    },
+    {
+      "language": "th",
+      "source": "<BUILD_SOURCE>/po/th.po",
+      "source_sha256": "9a10dbe9236465c9d99badb820f4e05db89bbabd08415b4365dfc0daa5870149",
+      "package_path": "locale/th/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "1933cc4f1de21a9044b84ce9dbd8b221ffae5c1d7e7d71821b18aa6deb514328",
+      "bytes": 440472,
+      "warnings": ""
+    },
+    {
+      "language": "tr",
+      "source": "<BUILD_SOURCE>/po/tr.po",
+      "source_sha256": "61caedf5cb23633f776b1a4b67aab2601fba2d49be1d94a2a3fad2123f03bb75",
+      "package_path": "locale/tr/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "d8050226c3c0ebd0ece7e58eaf56b10d6f19fbe6adb1f2899f1a85c72d7f803d",
+      "bytes": 620549,
+      "warnings": ""
+    },
+    {
+      "language": "tt",
+      "source": "<BUILD_SOURCE>/po/tt.po",
+      "source_sha256": "5bd61df92e80819b12e771b89cda424ac6b2416b7cd37acde77fe048d584fbca",
+      "package_path": "locale/tt/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "fb69f337a3e36e9bc84c3a43451d15cc436a9e50cdef169b96b66c815d98166a",
+      "bytes": 103104,
+      "warnings": ""
+    },
+    {
+      "language": "ug",
+      "source": "<BUILD_SOURCE>/po/ug.po",
+      "source_sha256": "fc9fe7bb4ffba674f348a6c2eda17b97bb4dd001956e83e0c1f3737089d75c77",
+      "package_path": "locale/ug/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "c8f0c16be439c77dbb9055ef6d58d98287ed85c4b23c8ca63c995238c2c06592",
+      "bytes": 747537,
+      "warnings": ""
+    },
+    {
+      "language": "uk",
+      "source": "<BUILD_SOURCE>/po/uk.po",
+      "source_sha256": "4aa25f7e2d75f15d98c4411a0460ddb119b4c8ea67f33044b5bf00d3a56a99bb",
+      "package_path": "locale/uk/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "3823322844c83d8bf51bc1415dcecff0424c29256c90bcfa692564e9e28d7ab8",
+      "bytes": 780246,
+      "warnings": ""
+    },
+    {
+      "language": "uz",
+      "source": "<BUILD_SOURCE>/po/uz.po",
+      "source_sha256": "c9db449abcb17e315f910a4009019a425d8aa79a50850cdf4f1aa0fdd5318c21",
+      "package_path": "locale/uz/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "d1486de55d0dd31d9b246c329616561a0385e273fcb36f15cef51a3f06f0d491",
+      "bytes": 57400,
+      "warnings": ""
+    },
+    {
+      "language": "vi",
+      "source": "<BUILD_SOURCE>/po/vi.po",
+      "source_sha256": "2d0bff0cddc05058b23c5775e0218d512d334f06130509a31cc4b13de26f1ffc",
+      "package_path": "locale/vi/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "fb4a1389aa6b0d3f71ce13d516b862b2e6f4f0177c7082fca126e876bebe4b7e",
+      "bytes": 684645,
+      "warnings": ""
+    },
+    {
+      "language": "wa",
+      "source": "<BUILD_SOURCE>/po/wa.po",
+      "source_sha256": "7d4561d729ac643d684a2051e3e2917830a5a49777e7d1f42985c4a90f26b5f3",
+      "package_path": "locale/wa/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "b0381137f494c8afae9bc8d7cf67fe14c1f0f867054ac8e379be6b59a4c43c5a",
+      "bytes": 254799,
+      "warnings": ""
+    },
+    {
+      "language": "zh_CN",
+      "source": "<BUILD_SOURCE>/po/zh_CN.po",
+      "source_sha256": "31a6c188e9c49805f2732a07a4b7fdbf8f7598ee8d28600046cd90f955545dde",
+      "package_path": "locale/zh_CN/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "0abdebbb558b08370fd811d919873f95280485255a2feb23403dd7f05738e712",
+      "bytes": 554545,
+      "warnings": ""
+    },
+    {
+      "language": "zh_TW",
+      "source": "<BUILD_SOURCE>/po/zh_TW.po",
+      "source_sha256": "8905bbfba0f789de421bd140557b822dd78e7d28a2f637aa98e16d9fdaf64522",
+      "package_path": "locale/zh_TW/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "c98b2b43835d81859563eb36dc2348337e6ce3fa173d1044e563dc8674c39649",
+      "bytes": 324977,
+      "warnings": ""
+    },
+    {
+      "language": "zu",
+      "source": "<BUILD_SOURCE>/po/zu.po",
+      "source_sha256": "c5ecf78a0f0ab5c06c9eec5fd7114dddb9db47a52792984e7e0e6c89fce58c73",
+      "package_path": "locale/zu/LC_MESSAGES/vlc.mo",
+      "catalogue_sha256": "5379726620f2166e63d76ad0d861ae9cb6e74b7b1746bd9b922197373af2c5a6",
+      "bytes": 52362,
+      "warnings": ""
+    }
+  ],
+  "limits": [
+    "Compilation and file presence only; ENABLE_NLS configuration and runtime lookup must be verified independently.",
+    "Catalogues are compiled from existing upstream .po sources; no translation strings were rewritten."
+  ]
+}

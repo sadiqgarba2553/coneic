@@ -1,0 +1,100 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "Native engine initializes",
+      "passed": true,
+      "version": "3.0.24 Vetinari"
+    },
+    {
+      "name": "MJPEG video starts",
+      "passed": true,
+      "state": 3
+    },
+    {
+      "name": "Pause",
+      "passed": true
+    },
+    {
+      "name": "Resume",
+      "passed": true
+    },
+    {
+      "name": "Seek",
+      "passed": true,
+      "observed_ms": 3000
+    },
+    {
+      "name": "Playback rate",
+      "passed": true
+    },
+    {
+      "name": "Equalizer applies",
+      "passed": true
+    },
+    {
+      "name": "External subtitles loaded",
+      "passed": true,
+      "track_count": 2
+    },
+    {
+      "name": "MJPEG video decodes to end",
+      "passed": true,
+      "state": 6,
+      "stats": {
+        "read_bytes": 564171,
+        "input_bitrate": 0.04407887160778046,
+        "demux_read_bytes": 551781,
+        "demux_bitrate": 0.04372018948197365,
+        "corrupted": 0,
+        "discontinuity": 1,
+        "decoded_video": 375,
+        "decoded_audio": 0,
+        "displayed_pictures": 173,
+        "lost_pictures": 0,
+        "played_abuffers": 0,
+        "lost_abuffers": 0,
+        "sent_packets": 0,
+        "sent_bytes": 0,
+        "send_bitrate": 0.0
+      }
+    },
+    {
+      "name": "WAV audio starts",
+      "passed": true,
+      "state": 3
+    },
+    {
+      "name": "Audio track detected",
+      "passed": true,
+      "track_count": 2
+    },
+    {
+      "name": "WAV audio decodes to end",
+      "passed": true,
+      "state": 6,
+      "stats": {
+        "read_bytes": 1764044,
+        "input_bitrate": 0.08760455995798111,
+        "demux_read_bytes": 1764000,
+        "demux_bitrate": 0.08811188489198685,
+        "corrupted": 0,
+        "discontinuity": 0,
+        "decoded_video": 0,
+        "decoded_audio": 801,
+        "displayed_pictures": 0,
+        "lost_pictures": 0,
+        "played_abuffers": 400,
+        "lost_abuffers": 0,
+        "sent_packets": 0,
+        "sent_bytes": 0,
+        "send_bitrate": 0.0
+      }
+    },
+    {
+      "name": "Native engine releases cleanly",
+      "passed": true
+    }
+  ],
+  "scope": "libVLC controls with MJPEG video and WAV audio only. H264 embedding scenario is covered by a separate known-failure comparison."
+}

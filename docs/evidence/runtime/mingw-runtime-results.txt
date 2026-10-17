@@ -1,0 +1,44 @@
+Coneic MinGW compatibility runtime probe
+UTC: 2026-10-16T23:13:31.0124876Z
+Executable: <WORKSPACE>\work\vlc-fork\mingw_runtime_probe.exe
+SHA256: EFFB60348A65A6523CB792F2F16D0B7F75DEF5156915E8CE4D4FB4F08D781CB4
+Exit code: 0
+PASS scratch write
+PASS close fixture before path metadata queries
+PASS underlying CRT stat64 fixture size
+PASS stat64 size
+PASS stat64 buffer guards
+PASS stat64i32 size
+PASS stat64i32 buffer guards
+PASS reopen fixture for descriptor queries
+PASS fstat64i32 size
+PASS fstat64i32 buffer guards
+PASS fstat64 size
+PASS fstat64 buffer guards
+PASS stat64 missing path
+PASS ftime64 int success return
+PASS ftime64 plausible time
+PASS ftime64 buffer guards
+PASS import errno adapter
+PASS wcrtomb ASCII
+PASS mbrtowc ASCII
+PASS mbrlen ASCII
+PASS mbrlen null character
+PASS multibyte state guards
+PASS timezone adapter returns actual CRT storage
+PASS daylight adapter returns actual CRT storage
+PASS set process-only UTC timezone
+PASS timezone/daylight UTC values
+PASS set process-only daylight timezone
+PASS timezone/daylight reflect CRT updates
+PASS restore process timezone environment
+PASS argc adapter returns actual CRT storage
+PASS argc adapter value matches process arguments
+PASS fdopen
+PASS fseeko64 beyond 4 GiB without writing
+PASS ftello64 preserves 64-bit position
+PASS seek back and read
+PASS scratch cleanup
+ABI sizes: stat64i32=48 stat64=56 timeb64=16 mbstate=4
+RESULT failures=0
+Scope: adapter behavior only; not full VLC or plugin runtime parity.

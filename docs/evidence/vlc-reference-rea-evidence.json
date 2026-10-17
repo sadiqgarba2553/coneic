@@ -1,0 +1,230 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"evidence_id\":\"ev_9625a00b7ec135db069881983ec28ca9b2322cd7acc8bed1130aa32e95fd0b68\",\"subject\":{\"name\":\"C:\\\\Program Files\\\\VideoLAN\\\\VLC\\\\libvlc.dll\",\"digest\":{\"sha256\":\"8ae9f16a72441f43fb4ae8f72c843736726e067ea4a8def2646748631cc4e872\"},\"format\":\"pe\",\"architecture\":null,\"local_path\":\"C:\\\\Program Files\\\\VideoLAN\\\\VLC\\\\libvlc.dll\"},\"provider\":{\"id\":\"rea-pe-resources\",\"name\":\"REA PE resource parser\",\"version\":\"1\"},\"analysis_profile\":null,\"predicate_type\":\"rea.analysis\",\"operation\":\"inspect_pe_resources\",\"parameters\":{\"path\":\"C:\\\\Program Files\\\\VideoLAN\\\\VLC\\\\libvlc.dll\",\"max_file_bytes\":67108864,\"max_entries\":4096},\"raw_result\":null,\"normalized_result\":{\"artifact\":{\"path\":\"C:\\\\Program Files\\\\VideoLAN\\\\VLC\\\\libvlc.dll\",\"sha256\":\"8ae9f16a72441f43fb4ae8f72c843736726e067ea4a8def2646748631cc4e872\",\"bytes\":192408},\"format\":\"pe32-plus\",\"machine\":34404,\"directory\":{\"rva\":196608,\"location\":{\"offset\":165888,\"bytes\":1608},\"data_directory_location\":{\"offset\":280,\"bytes\":8}},\"directories\":[{\"location\":{\"offset\":165888,\"bytes\":32},\"characteristics\":0,\"timestamp\":0,\"major_version\":0,\"minor_version\":0,\"named_entries\":0,\"id_entries\":2},{\"location\":{\"offset\":165920,\"bytes\":24},\"characteristics\":0,\"timestamp\":0,\"major_version\":0,\"minor_version\":0,\"named_entries\":0,\"id_entries\":1},{\"location\":{\"offset\":165944,\"bytes\":24},\"characteristics\":0,\"timestamp\":0,\"major_version\":0,\"minor_version\":0,\"named_entries\":0,\"id_entries\":1},{\"location\":{\"offset\":165968,\"bytes\":24},\"characteristics\":0,\"timestamp\":0,\"major_version\":0,\"minor_version\":0,\"named_entries\":0,\"id_entries\":1},{\"location\":{\"offset\":165992,\"bytes\":24},\"characteristics\":0,\"timestamp\":0,\"major_version\":0,\"minor_version\":0,\"named_entries\":0,\"id_entries\":1}],\"resources\":[{\"index\":0,\"type\":{\"kind\":\"id\",\"id\":16},\"name\":{\"kind\":\"id\",\"id\":1},\"language\":{\"kind\":\"id\",\"id\":1033},\"entry_locations\":[{\"offset\":165904,\"bytes\":8},{\"offset\":165936,\"bytes\":8},{\"offset\":165960,\"bytes\":8}],\"data_entry_location\":{\"offset\":166016,\"bytes\":16},\"code_page\":0,\"reserved\":0,\"payload\":{\"rva\":196768,\"location\":{\"offset\":166048,\"bytes\":844},\"sha256\":\"66775f2c001e2a00e256b1cd7893e7b4bc79c0e175fabc9be17da47c637e3988\"}},{\"index\":1,\"type\":{\"kind\":\"id\",\"id\":24},\"name\":{\"kind\":\"id\",\"id\":2},\"language\":{\"kind\":\"id\",\"id\":1033},\"entry_locations\":[{\"offset\":165912,\"bytes\":8},{\"offset\":165984,\"bytes\":8},{\"offset\":166008,\"bytes\":8}],\"data_entry_location\":{\"offset\":166032,\"bytes\":16},\"code_page\":0,\"reserved\":0,\"payload\":{\"rva\":197616,\"location\":{\"offset\":166896,\"bytes\":597},\"sha256\":\"0ee23e40ea5cc6d065c8854ee4891bd1bbc864d81cad1235917eac884c49422e\"}}],\"icon_groups\":[],\"coverage\":{\"status\":\"complete\",\"examined_entries\":6,\"resources\":2},\"limitations\":[\"Static PE32/PE32+ type/name/language resource inventory; payloads other than RT_GROUP_ICON remain opaque.\",\"Icon candidates are resource-table relationships. Language fallback, image decoding and actual shell/window loading are not observed.\",\"Exact shared byte ranges are retained; non-identical overlapping resource structures or payloads are rejected.\"]},\"confidence\":\"observed\",\"authority\":\"shipped-artifact\",\"environment\":null,\"limitations\":[\"Static PE32/PE32+ type/name/language resource inventory; payloads other than RT_GROUP_ICON remain opaque.\",\"Icon candidates are resource-table relationships. Language fallback, image decoding and actual shell/window loading are not observed.\",\"Exact shared byte ranges are retained; non-identical overlapping resource structures or payloads are rejected.\"],\"locations\":[{\"kind\":\"artifact-path\",\"path\":\"C:\\\\Program Files\\\\VideoLAN\\\\VLC\\\\libvlc.dll\"}],\"evidence_links\":[]}"
+    }
+  ],
+  "structuredContent": {
+    "evidence_id": "ev_9625a00b7ec135db069881983ec28ca9b2322cd7acc8bed1130aa32e95fd0b68",
+    "subject": {
+      "name": "C:\\Program Files\\VideoLAN\\VLC\\libvlc.dll",
+      "digest": {
+        "sha256": "8ae9f16a72441f43fb4ae8f72c843736726e067ea4a8def2646748631cc4e872"
+      },
+      "format": "pe",
+      "architecture": null,
+      "local_path": "C:\\Program Files\\VideoLAN\\VLC\\libvlc.dll"
+    },
+    "provider": {
+      "id": "rea-pe-resources",
+      "name": "REA PE resource parser",
+      "version": "1"
+    },
+    "analysis_profile": null,
+    "predicate_type": "rea.analysis",
+    "operation": "inspect_pe_resources",
+    "parameters": {
+      "path": "C:\\Program Files\\VideoLAN\\VLC\\libvlc.dll",
+      "max_file_bytes": 67108864,
+      "max_entries": 4096
+    },
+    "raw_result": null,
+    "normalized_result": {
+      "artifact": {
+        "path": "C:\\Program Files\\VideoLAN\\VLC\\libvlc.dll",
+        "sha256": "8ae9f16a72441f43fb4ae8f72c843736726e067ea4a8def2646748631cc4e872",
+        "bytes": 192408
+      },
+      "format": "pe32-plus",
+      "machine": 34404,
+      "directory": {
+        "rva": 196608,
+        "location": {
+          "offset": 165888,
+          "bytes": 1608
+        },
+        "data_directory_location": {
+          "offset": 280,
+          "bytes": 8
+        }
+      },
+      "directories": [
+        {
+          "location": {
+            "offset": 165888,
+            "bytes": 32
+          },
+          "characteristics": 0,
+          "timestamp": 0,
+          "major_version": 0,
+          "minor_version": 0,
+          "named_entries": 0,
+          "id_entries": 2
+        },
+        {
+          "location": {
+            "offset": 165920,
+            "bytes": 24
+          },
+          "characteristics": 0,
+          "timestamp": 0,
+          "major_version": 0,
+          "minor_version": 0,
+          "named_entries": 0,
+          "id_entries": 1
+        },
+        {
+          "location": {
+            "offset": 165944,
+            "bytes": 24
+          },
+          "characteristics": 0,
+          "timestamp": 0,
+          "major_version": 0,
+          "minor_version": 0,
+          "named_entries": 0,
+          "id_entries": 1
+        },
+        {
+          "location": {
+            "offset": 165968,
+            "bytes": 24
+          },
+          "characteristics": 0,
+          "timestamp": 0,
+          "major_version": 0,
+          "minor_version": 0,
+          "named_entries": 0,
+          "id_entries": 1
+        },
+        {
+          "location": {
+            "offset": 165992,
+            "bytes": 24
+          },
+          "characteristics": 0,
+          "timestamp": 0,
+          "major_version": 0,
+          "minor_version": 0,
+          "named_entries": 0,
+          "id_entries": 1
+        }
+      ],
+      "resources": [
+        {
+          "index": 0,
+          "type": {
+            "kind": "id",
+            "id": 16
+          },
+          "name": {
+            "kind": "id",
+            "id": 1
+          },
+          "language": {
+            "kind": "id",
+            "id": 1033
+          },
+          "entry_locations": [
+            {
+              "offset": 165904,
+              "bytes": 8
+            },
+            {
+              "offset": 165936,
+              "bytes": 8
+            },
+            {
+              "offset": 165960,
+              "bytes": 8
+            }
+          ],
+          "data_entry_location": {
+            "offset": 166016,
+            "bytes": 16
+          },
+          "code_page": 0,
+          "reserved": 0,
+          "payload": {
+            "rva": 196768,
+            "location": {
+              "offset": 166048,
+              "bytes": 844
+            },
+            "sha256": "66775f2c001e2a00e256b1cd7893e7b4bc79c0e175fabc9be17da47c637e3988"
+          }
+        },
+        {
+          "index": 1,
+          "type": {
+            "kind": "id",
+            "id": 24
+          },
+          "name": {
+            "kind": "id",
+            "id": 2
+          },
+          "language": {
+            "kind": "id",
+            "id": 1033
+          },
+          "entry_locations": [
+            {
+              "offset": 165912,
+              "bytes": 8
+            },
+            {
+              "offset": 165984,
+              "bytes": 8
+            },
+            {
+              "offset": 166008,
+              "bytes": 8
+            }
+          ],
+          "data_entry_location": {
+            "offset": 166032,
+            "bytes": 16
+          },
+          "code_page": 0,
+          "reserved": 0,
+          "payload": {
+            "rva": 197616,
+            "location": {
+              "offset": 166896,
+              "bytes": 597
+            },
+            "sha256": "0ee23e40ea5cc6d065c8854ee4891bd1bbc864d81cad1235917eac884c49422e"
+          }
+        }
+      ],
+      "icon_groups": [],
+      "coverage": {
+        "status": "complete",
+        "examined_entries": 6,
+        "resources": 2
+      },
+      "limitations": [
+        "Static PE32/PE32+ type/name/language resource inventory; payloads other than RT_GROUP_ICON remain opaque.",
+        "Icon candidates are resource-table relationships. Language fallback, image decoding and actual shell/window loading are not observed.",
+        "Exact shared byte ranges are retained; non-identical overlapping resource structures or payloads are rejected."
+      ]
+    },
+    "confidence": "observed",
+    "authority": "shipped-artifact",
+    "environment": null,
+    "limitations": [
+      "Static PE32/PE32+ type/name/language resource inventory; payloads other than RT_GROUP_ICON remain opaque.",
+      "Icon candidates are resource-table relationships. Language fallback, image decoding and actual shell/window loading are not observed.",
+      "Exact shared byte ranges are retained; non-identical overlapping resource structures or payloads are rejected."
+    ],
+    "locations": [
+      {
+        "kind": "artifact-path",
+        "path": "C:\\Program Files\\VideoLAN\\VLC\\libvlc.dll"
+      }
+    ],
+    "evidence_links": []
+  }
+}

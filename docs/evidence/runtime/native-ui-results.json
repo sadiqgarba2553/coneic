@@ -1,0 +1,46 @@
+{
+    "checks": [
+        {
+            "name": "Branded native main window",
+            "passed": true
+        },
+        {
+            "name": "Preferences",
+            "passed": true
+        },
+        {
+            "name": "Effects and filters",
+            "passed": true
+        },
+        {
+            "name": "Disc workflow",
+            "passed": true
+        },
+        {
+            "name": "Network workflow",
+            "passed": true
+        },
+        {
+            "name": "Capture workflow",
+            "passed": true
+        },
+        {
+            "name": "Bookmarks",
+            "passed": true
+        },
+        {
+            "name": "VLM broadcast manager",
+            "passed": true
+        },
+        {
+            "name": "Stream entry dialog",
+            "passed": true
+        },
+        {
+            "name": "Conversion entry dialog",
+            "passed": true
+        }
+    ],
+    "passed": true,
+    "scope": "Native UI opening, rendering, branding and menu inventory. Devices, network transmission and protected discs are not exercised."
+}

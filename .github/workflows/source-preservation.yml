@@ -1,0 +1,19 @@
+name: Source preservation
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - name: Fetch exact upstream baseline
+        run: git fetch --no-tags --depth=1 https://github.com/videolan/vlc.git 6de05adcbaf2e8b85fe86aad4169393098628119
+      - name: Audit retained source and APIs
+        run: python3 coneic/tests/verify_parity.py --repo . --allow modules/gui/qt/coneic_smoke.hpp --json validation/source.json --markdown validation/source.md
+      - name: Check Coneic tooling syntax
+        run: |
+          python3 -m py_compile coneic/tests/*.py
+          for helper in coneic/*.sh; do bash -n "$helper"; done
