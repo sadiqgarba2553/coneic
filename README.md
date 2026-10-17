@@ -2,6 +2,8 @@
 
 # Coneic
 
+Coneic is a project of **[BLUECLOUD](https://bluecloudai.online)**, its parent company.
+
 Coneic is a Windows x64 media player built as a source fork of **VideoLAN VLC 3.0.24**. It retains the existing media engine and workflows, adds the supplied Coneic logo and icon, and gives the native Qt interface a restrained dark theme with orange accents.
 
 **Status: development preview.** Source and package preservation checks pass. Tested native workflows work, with an unresolved standalone libVLC embedding failure documented below. Complete runtime feature parity is not certified.
@@ -41,6 +43,12 @@ These inventories establish preservation, not successful execution of every code
 - [Design and supplied artwork](docs/DESIGN.md)
 - [Contribution guide](CONTRIBUTING.md)
 - [Detailed fork notes](CONEIC.md)
+
+## Parent company
+
+<a href="https://bluecloudai.online"><img src="docs/branding/bluecloud.png" width="320" alt="BLUECLOUD parent company logo"></a>
+
+**BLUECLOUD** is Coneic's parent company. Visit [bluecloudai.online](https://bluecloudai.online).
 
 ## Upstream and licensing
 
