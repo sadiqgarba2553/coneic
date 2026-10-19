@@ -177,7 +177,14 @@ void RecentsMRL::setTime( const QString &mrl, const int64_t time )
 {
     int i_index = recents.indexOf( mrl );
     if( i_index != -1 )
-        times[i_index] = QString::number( time / 1000 );
+    {
+        const QString next = QString::number( time > 0 ? time / 1000 : -1 );
+        if( times.value(i_index) != next ) {
+            times[i_index] = next;
+            save();
+            getSettings()->sync();
+        }
+    }
 }
 
 int Open::openMRL( intf_thread_t *p_intf,

@@ -2,7 +2,7 @@
 
 # Coneic
 
-**Windows 0.5.0:** coordinated BlueCloud release with a minimal glass interface, floating playback controls, a standalone installer, portable ZIP, Windows default-player registration and custom icons for 134 media formats. The retained media engine remains VLC 3.0.24. See [Windows file associations](docs/WINDOWS-FILE-ASSOCIATIONS.md) and [build instructions](docs/BUILD.md).
+**Windows 0.6.0:** crash-resistant playback resume, direct audio/speed controls, fullscreen keyboard improvements, a minimal glass interface, and Windows defaults with custom icons for 134 formats. The media engine remains VLC 3.0.24. See [release notes](RELEASE-NOTES.md), [Windows defaults](docs/WINDOWS-FILE-ASSOCIATIONS.md), and [build instructions](docs/BUILD.md).
 
 Coneic is a project of **[BLUECLOUD](https://bluecloudai.online)**, its parent company.
 

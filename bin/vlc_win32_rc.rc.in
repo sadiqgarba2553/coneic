@@ -1,7 +1,7 @@
 /* Coneic product version is independent of the retained VLC engine version.
  * Keep these values aligned with coneic/windows/product.json. */
-#define VERSION_NUMBER 0,5,0,0
-#define VERSION_NUMBER_STR "0.5.0"
+#define VERSION_NUMBER 0,6,0,0
+#define VERSION_NUMBER_STR "0.6.0"
 
 #include <winuser.h>
 
@@ -22,7 +22,7 @@ BEGIN
       VALUE "ProductVersion", VERSION_NUMBER_STR
       VALUE "InternalName", "Coneic"
       VALUE "OriginalFilename", "Coneic.exe"
-      VALUE "FileVersion", "0.5.0.0"
+      VALUE "FileVersion", "0.6.0.0"
       VALUE "FileDescription", "Coneic media player (VLC source fork)"
       VALUE "LegalCopyright", "Copyright \251 @COPYRIGHT_YEARS@ VideoLAN and VLC Authors"
       VALUE "LegalTrademarks", "VLC media player, VideoLAN and x264 are registered trademarks from VideoLAN"

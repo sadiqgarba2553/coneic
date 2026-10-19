@@ -7,6 +7,7 @@
 #include "actions_manager.hpp"
 #include "dialogs_provider.hpp"
 #include "menus.hpp"
+#include "recents.hpp"
 #include "util/input_slider.hpp"
 #include "adapters/seekpoints.hpp"
 #include "components/controller.hpp"
@@ -36,6 +37,11 @@
 #include <QCursor>
 #include <QPropertyAnimation>
 #include <QPainterPath>
+#include <QKeyEvent>
+#include <QLineEdit>
+#include <QTextEdit>
+#include <QMessageBox>
+#include <QActionGroup>
 #include <functional>
 
 namespace ConeicPlayback {
@@ -119,6 +125,7 @@ public:
             QFont font=this->font();font.setPixelSize(8);font.setWeight(QFont::DemiBold);p.setFont(font);p.drawText(QRectF(-7,-6,14,14),Qt::AlignCenter,"10");
         }
         else if(glyph=="subtitles"){p.drawRoundedRect(QRectF(-9,-7,18,14),3,3);p.drawLine(QPointF(-5,2),QPointF(-2,2));p.drawLine(QPointF(1,2),QPointF(5,2));p.drawLine(QPointF(-5,-2),QPointF(5,-2));}
+        else if(glyph=="audio"){p.drawArc(QRectF(-8,-9,16,18),0,180*16);p.drawRoundedRect(QRectF(-9,-1,4,9),2,2);p.drawRoundedRect(QRectF(5,-1,4,9),2,2);}
         else if(glyph=="fullscreen"){for(int i=0;i<4;i++){p.rotate(90);p.drawLine(QPointF(-8,-3),QPointF(-8,-8));p.drawLine(QPointF(-8,-8),QPointF(-3,-8));}}
         else if(glyph=="more"){p.setPen(Qt::NoPen);p.setBrush(ink);for(int y=-6;y<=6;y+=6)p.drawEllipse(QPointF(0,y),1.5,1.5);}
         else if(glyph.startsWith("volume")) {
@@ -169,7 +176,7 @@ class ConeicGlassPlayer : public QObject {
     QPropertyAnimation *fade;
     QPointer<ConeicPlayback::FrameWorker> worker;
     QPoint pointer;
-    qint64 lastInteraction=0,lastSample=-1000,feedbackUntil=0;
+    qint64 lastInteraction=0,lastSample=-1000,feedbackUntil=0,lastCheckpoint=0;
     int generation=0;
     bool floating=false,shown=true,keyboardFocus=false;
     QString currentTitle;
@@ -195,6 +202,14 @@ class ConeicGlassPlayer : public QObject {
         input_thread_t *input=MainInputManager::getInstance(intf)->getInput();
         if(input && var_GetBool(input,"can-seek"))var_SetInteger(input,"time",qMax<int64_t>(0,var_GetInteger(input,"time")+int64_t(seconds)*CLOCK_FREQ));
         reveal(true);
+    }
+    void checkpoint() {
+        auto input=MainInputManager::getInstance(intf)->getInput();if(!input)return;
+        auto item=input_GetItem(input);if(!item||item->i_type!=ITEM_TYPE_FILE)return;
+        const int64_t length=var_GetInteger(input,"length"),time=var_GetInteger(input,"time");
+        if(length<10*CLOCK_FREQ||time<2*CLOCK_FREQ||time>=length-3*CLOCK_FREQ)return;
+        char *uri=input_item_GetURI(item);if(!uri)return;
+        RecentsMRL::getInstance(intf)->setTime(qfu(uri),time);free(uri);lastCheckpoint=clock.elapsed();
     }
     void sample() {
         if(worker || !floating || !bar->isVisible() || !qApp->property("coneicTransparency").toBool() || clock.elapsed()-lastSample<500)return;
@@ -247,7 +262,15 @@ class ConeicGlassPlayer : public QObject {
     bool eventFilter(QObject *object,QEvent *event) override {
         if(event->type()==QEvent::KeyPress && main->isVisible()) {
             auto widget=qobject_cast<QWidget*>(object);
-            if(widget && (widget==main || main->isAncestorOf(widget) || widget==bar || bar->isAncestorOf(widget))){keyboardFocus=true;reveal(true);}
+            if(widget && (widget==main || main->isAncestorOf(widget) || widget==bar || bar->isAncestorOf(widget))){
+                keyboardFocus=true;reveal(true);auto key=static_cast<QKeyEvent*>(event);
+                const bool editing=qobject_cast<QLineEdit*>(widget)||qobject_cast<QTextEdit*>(widget)||qobject_cast<QAbstractSlider*>(widget);
+                if(!editing && (floating || widget==bar || bar->isAncestorOf(widget)) && !QApplication::activePopupWidget() && !QApplication::activeModalWidget() && MainInputManager::getInstance(intf)->getIM()->hasInput() && key->modifiers()==Qt::NoModifier){
+                    if(key->key()==Qt::Key_Space){MainInputManager::getInstance(intf)->togglePlayPause();return true;}
+                    if(key->key()==Qt::Key_Left||key->key()==Qt::Key_Right){jump(key->key()==Qt::Key_Left?-10:10);return true;}
+                    if(key->key()==Qt::Key_F || (key->key()==Qt::Key_Escape && main->isFullScreen())){ActionsManager::getInstance(intf)->doAction(FULLSCREEN_ACTION);return true;}
+                }
+            }
         }else if(event->type()==QEvent::MouseButtonPress){keyboardFocus=false;}
         else if(event->type()==QEvent::MouseMove){auto widget=qobject_cast<QWidget*>(object);if(widget && (main->isAncestorOf(widget) || bar->isAncestorOf(widget)))reveal();}
         return false;
@@ -264,7 +287,7 @@ public:
         auto manager=MainInputManager::getInstance(intf);auto input=manager->getIM();
         connect(input,&InputManager::positionUpdated,seek,&SeekSlider::setPosition);connect(seek,&SeekSlider::sliderDragged,input,&InputManager::sliderUpdate);connect(input,&InputManager::inputCanSeek,seek,&SeekSlider::setSeekable);connect(input,&InputManager::cachingChanged,seek,&SeekSlider::updateBuffering);
         auto chapters=new SeekPoints(this,intf);seek->setChapters(chapters);connect(input,&InputManager::chapterChanged,chapters,&SeekPoints::update);
-        connect(input,&InputManager::positionUpdated,this,[this](float,int64_t elapsed,int duration){time->setText(stamp(int(elapsed/CLOCK_FREQ))+" / "+stamp(duration));});
+        connect(input,&InputManager::positionUpdated,this,[this](float,int64_t elapsed,int duration){time->setText(stamp(int(elapsed/CLOCK_FREQ))+" / "+stamp(duration));if(clock.elapsed()-lastCheckpoint>=5000)checkpoint();});
         auto buttons=new QHBoxLayout;buttons->setSpacing(5);
         play=new ConeicPlayback::GlyphButton("play",qtr("Play or pause"),bar);play->setObjectName("ConeicGlassPlay");play->primary=true;play->setFixedSize(40,40);buttons->addWidget(play);connect(play,&QToolButton::clicked,manager,&MainInputManager::togglePlayPause);
         auto back=new ConeicPlayback::GlyphButton("back",qtr("Back 10 seconds"),bar);back->setObjectName("ConeicGlassBack");buttons->addWidget(back);connect(back,&QToolButton::clicked,this,[this](){jump(-10);});
@@ -278,14 +301,29 @@ public:
         auto captions=new ConeicPlayback::GlyphButton("subtitles",qtr("Subtitles"),bar);captions->setObjectName("ConeicGlassSubtitles");buttons->addWidget(captions);
         for(auto action:main->menuBar()->actions())if(action->text()==qtr("Subti&tle") && action->menu()){captions->setMenu(action->menu());break;}
         captions->setPopupMode(QToolButton::InstantPopup);
+        auto audio=new ConeicPlayback::GlyphButton("audio",qtr("Audio tracks and output"),bar);audio->setObjectName("ConeicGlassAudio");buttons->addWidget(audio);
+        for(auto action:main->menuBar()->actions())if(action->text()==qtr("&Audio") && action->menu()){audio->setMenu(action->menu());break;}
+        audio->setPopupMode(QToolButton::InstantPopup);
+        auto speed=new QToolButton(bar);speed->setObjectName("ConeicGlassSpeed");speed->setAccessibleName(qtr("Playback speed"));speed->setText("1x");speed->setPopupMode(QToolButton::InstantPopup);buttons->addWidget(speed);
+        auto speedMenu=new QMenu(speed);speed->setMenu(speedMenu);auto rateGroup=new QActionGroup(speedMenu);rateGroup->setExclusive(true);
+        connect(speedMenu,&QMenu::aboutToShow,this,[this,speedMenu,rateGroup](){speedMenu->clear();auto input=MainInputManager::getInstance(intf)->getInput();const float current=input?var_GetFloat(input,"rate"):1.f;
+            for(double rate:{.5,.75,1.,1.25,1.5,2.}){auto action=speedMenu->addAction(QString::number(rate)+"x");action->setCheckable(true);action->setChecked(qAbs(current-rate)<.01);rateGroup->addAction(action);connect(action,&QAction::triggered,this,[this,rate](){auto input=MainInputManager::getInstance(intf)->getInput();if(input)var_SetFloat(input,"rate",rate);reveal(true);});}});
+        connect(input,&InputManager::rateChanged,this,[speed](float rate){speed->setText(QString::number(rate,'g',3)+"x");});
         auto fullscreen=new ConeicPlayback::GlyphButton("fullscreen",qtr("Toggle fullscreen"),bar);fullscreen->setObjectName("ConeicGlassFullscreen");buttons->addWidget(fullscreen);connect(fullscreen,&QToolButton::clicked,this,[this](){ActionsManager::getInstance(intf)->doAction(FULLSCREEN_ACTION);reveal(true);});
         auto more=new ConeicPlayback::GlyphButton("more",qtr("More playback options"),bar);more->setObjectName("ConeicGlassMore");buttons->addWidget(more);auto menu=new QMenu(more);more->setMenu(menu);more->setPopupMode(QToolButton::InstantPopup);
-        connect(menu,&QMenu::aboutToShow,this,[this,menu](){menu->clear();auto open=menu->addAction(qtr("Open media"));connect(open,&QAction::triggered,DialogsProvider::getInstance(intf),&DialogsProvider::simpleOpenDialog);auto settings=menu->addAction(qtr("Settings"));connect(settings,&QAction::triggered,DialogsProvider::getInstance(intf),&DialogsProvider::prefsDialog);menu->addSeparator();menu->addActions(main->menuBar()->actions());});
+        connect(menu,&QMenu::aboutToShow,this,[this,menu](){
+            menu->clear();auto open=menu->addAction(qtr("Open media"));connect(open,&QAction::triggered,DialogsProvider::getInstance(intf),&DialogsProvider::simpleOpenDialog);
+            auto resume=menu->addMenu(qtr("Resume videos"));auto resumeGroup=new QActionGroup(resume);resumeGroup->setExclusive(true);
+            const QStringList modes={qtr("Start from the beginning"),qtr("Ask before resuming"),qtr("Always resume")};
+            for(int mode=0;mode<modes.size();mode++){auto action=resume->addAction(modes[mode]);action->setCheckable(true);action->setChecked(var_InheritInteger(intf,"qt-continue")==mode);resumeGroup->addAction(action);connect(action,&QAction::triggered,this,[this,mode](){config_PutInt(intf,"qt-continue",mode);config_SaveConfigFile(intf);});}
+            auto shortcuts=menu->addAction(qtr("Keyboard shortcuts"));shortcuts->setObjectName("ConeicPlaybackShortcuts");connect(shortcuts,&QAction::triggered,this,[this](){QMessageBox::information(main,qtr("Playback shortcuts"),qtr("Space: play or pause\nLeft / Right: back or forward 10 seconds\nF: fullscreen\nEsc: leave fullscreen\nM: mute\nV: next subtitle track\nB: next audio track\nCtrl+O: open media\n\nArrow keys keep their normal behavior while a slider is focused. Customize shortcuts in Settings > Controls."));});
+            auto settings=menu->addAction(qtr("Settings"));connect(settings,&QAction::triggered,DialogsProvider::getInstance(intf),&DialogsProvider::prefsDialog);menu->addSeparator();menu->addActions(main->menuBar()->actions());
+        });
         content->addLayout(buttons);advanced=new AdvControlsWidget(intf,bar);advanced->setVisible(intf->p_sys->mainSettings->value("MainWindow/adv-controls",false).toBool());content->addWidget(advanced);mainLayout->addWidget(bar);bar->hide();
         center=new ConeicPlayback::GlassSurface(main);center->circular=true;center->setObjectName("ConeicGlassFeedback");center->setWindowFlags(Qt::Tool|Qt::FramelessWindowHint|Qt::NoDropShadowWindowHint);center->setAttribute(Qt::WA_TranslucentBackground);center->setAttribute(Qt::WA_ShowWithoutActivating);
         auto centerLayout=new QVBoxLayout(center);centerLayout->setContentsMargins(13,13,13,13);centerPlay=new ConeicPlayback::GlyphButton("play",qtr("Resume playback"),center);centerPlay->setStyleSheet("QToolButton, QToolButton:hover, QToolButton:focus { background: transparent; border: 0; }");centerPlay->setFixedSize(60,60);centerLayout->addWidget(centerPlay);connect(centerPlay,&QToolButton::clicked,manager,&MainInputManager::togglePlayPause);center->hide();
         fade=new QPropertyAnimation(bar,"windowOpacity",this);QEasingCurve ease(QEasingCurve::BezierSpline);ease.addCubicBezierSegment(QPointF(.23,1),QPointF(.32,1),QPointF(1,1));fade->setEasingCurve(ease);connect(fade,&QPropertyAnimation::finished,this,[this](){if(!shown)bar->hide();});
-        connect(input,&InputManager::playingStatusChanged,this,[this](int status){play->setGlyph(status==PLAYING_S?"pause":"play");centerPlay->setGlyph(status==PLAYING_S?"pause":"play");feedbackUntil=clock.elapsed()+450;reveal(true);sync();});
+        connect(input,&InputManager::playingStatusChanged,this,[this](int status){if(status==PAUSE_S)checkpoint();play->setGlyph(status==PLAYING_S?"pause":"play");centerPlay->setGlyph(status==PLAYING_S?"pause":"play");feedbackUntil=clock.elapsed()+450;reveal(true);sync();});
         connect(input,&InputManager::nameChanged,this,[this](const QString &name){currentTitle=name;title->setText(name);bar->backdrop=QImage();center->backdrop=QImage();generation++;subtitle->setText(qtr("Now playing"));});
         connect(manager,&MainInputManager::inputChanged,this,[this](bool){generation++;reveal(true);sync();});
         qApp->installEventFilter(this);poll=new QTimer(this);poll->setInterval(100);connect(poll,&QTimer::timeout,this,[this](){sync();});poll->start();

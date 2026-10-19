@@ -38,6 +38,15 @@ inline void run(intf_thread_t *intf,const QString &directory,std::function<void(
     auto forward=main->findChild<QToolButton*>("ConeicGlassForward");
     auto fullscreen=main->findChild<QToolButton*>("ConeicGlassFullscreen");
     auto manager=MainInputManager::getInstance(intf);
+    auto audio=main->findChild<QToolButton*>("ConeicGlassAudio");auto speed=main->findChild<QToolButton*>("ConeicGlassSpeed");
+    check("Audio tracks remain directly available in the floating controls",audio&&audio->menu());
+    check("Playback speed has a keyboard-accessible menu",speed&&speed->menu());
+    if(speed&&speed->menu()){
+        QMetaObject::invokeMethod(speed->menu(),"aboutToShow",Qt::DirectConnection);
+        for(auto action:speed->menu()->actions())if(action->text()=="1.5x")action->trigger();
+        auto input=manager->getInput();check("Speed selection changes the native playback rate",input&&qAbs(var_GetFloat(input,"rate")-1.5)<.01);
+        for(auto action:speed->menu()->actions())if(action->text()=="1x")action->trigger();
+    }
     check("Glass controls float in a separate native window",bar&&bar->isWindow()&&bar->isVisible());
     check("Playback material uses live blur or the requested solid fallback",bar && (qApp->property("coneicTransparency").toBool()?bar->property("coneicLiveBackdrop").toBool():!bar->property("coneicLiveBackdrop").toBool()));
     check("Seek, subtitle and more controls remain accessible",main->findChild<QWidget*>("ConeicGlassSeek")&&main->findChild<QWidget*>("ConeicGlassSubtitles")&&main->findChild<QWidget*>("ConeicGlassMore"));
@@ -53,12 +62,14 @@ inline void run(intf_thread_t *intf,const QString &directory,std::function<void(
         QTimer::singleShot(220,qApp,[=](){
             auto input=manager->getInput();const int64_t after=input?var_GetInteger(input,"time"):0;
             check("10-second control seeks the native input",after>=before+8*CLOCK_FREQ);
-            play->click();fullscreen->click();
+            QKeyEvent space(QEvent::KeyPress,Qt::Key_Space,Qt::NoModifier);QCoreApplication::sendEvent(bar,&space);fullscreen->click();
             QTimer::singleShot(350,qApp,[=](){
                 check("Fullscreen retains the floating glass controls",main->isFullScreen()&&bar&&bar->isVisible());
                 capture(main,directory+"/glass-player-fullscreen.png");
-                fullscreen->click();
+                check("Space resumes playback from the glass surface",manager->getIM()->playingStatus()==PLAYING_S);
+                QKeyEvent escape(QEvent::KeyPress,Qt::Key_Escape,Qt::NoModifier);QCoreApplication::sendEvent(bar,&escape);
                 QTimer::singleShot(800,qApp,[=](){
+                    check("Escape leaves fullscreen while glass controls are focused",!main->isFullScreen());
                     QMetaObject::invokeMethod(main,"toggleMinimalView",Qt::DirectConnection,Q_ARG(bool,true));
                     QTimer::singleShot(180,qApp,[=](){
                     check("Native minimal-view action hides the floating transport",main->property("coneicMinimalView").toBool() && !bar->isVisible());

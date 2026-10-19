@@ -260,7 +260,7 @@ vlc_module_begin ()
               RECENTPLAY_TEXT, false )
     add_string( "qt-recentplay-filter", "",
                 RECENTPLAY_FILTER_TEXT, RECENTPLAY_FILTER_LONGTEXT, false )
-    add_integer( "qt-continue", 1, CONTINUE_PLAYBACK_TEXT, CONTINUE_PLAYBACK_TEXT, false )
+    add_integer( "qt-continue", 2, CONTINUE_PLAYBACK_TEXT, CONTINUE_PLAYBACK_TEXT, false )
             change_integer_list(i_continue_list, psz_continue_list_text )
     add_bool( "qt-dark-palette", true, QT_DARK_TEXT,
                   QT_DARK_LONGTEXT, false )

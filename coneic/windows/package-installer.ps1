@@ -11,6 +11,7 @@ foreach($name in @('Coneic.exe','Coneic.ico','COPYING.txt','Coneic-shell\registe
 }
 $info=[Diagnostics.FileVersionInfo]::GetVersionInfo((Join-Path $appRoot 'Coneic.exe'))
 if($info.ProductVersion -ne $product.displayVersion){throw 'The Coneic executable version does not match product.json.'}
+& (Join-Path $PSScriptRoot 'sign-windows.ps1') -Files @((Join-Path $appRoot 'Coneic.exe'),(Join-Path $appRoot 'vlc.exe'))
 if(-not $MakeNsis){
     $cache=Join-Path $env:LOCALAPPDATA 'electron-builder\Cache\nsis'
     $tool=Get-ChildItem -LiteralPath $cache -Recurse -Filter makensis.exe | Where-Object {$_.Directory.Name -eq 'Bin'} | Select-Object -First 1
@@ -40,4 +41,5 @@ try{
     & $MakeNsis '/V2' "/DAPPDIR=$appRoot" "/DOUTFILE=$installer" "/DPRODUCT_VERSION=$($product.displayVersion)" "/DFILE_VERSION=$($product.fileVersion)" "/DDELETE_INCLUDE=$deleteInclude" (Join-Path $PSScriptRoot 'installer.nsi')
     if($LASTEXITCODE -ne 0){throw 'Coneic installer compilation failed.'}
 }finally{$env:NSISDIR=$previousNsisDir}
+& (Join-Path $PSScriptRoot 'sign-windows.ps1') -Files @($installer)
 Get-Item -LiteralPath $installer | Select-Object FullName,Length
