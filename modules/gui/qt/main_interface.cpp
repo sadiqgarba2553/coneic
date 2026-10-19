@@ -47,6 +47,7 @@
 #include "recents.hpp"                          // RecentItems when DnD
 #include "coneic_home.hpp"
 #include "coneic_menubar.hpp"
+#include "coneic_glass_player.hpp"
 
 #include <QCloseEvent>
 #include <QKeyEvent>
@@ -265,7 +266,7 @@ MainInterface::MainInterface( intf_thread_t *_p_intf ) : QVLCMW( _p_intf )
     if( settings->value( "MainWindow/playlist-visible", false ).toBool() )
         togglePlaylist();
 
-    QVLCTools::restoreWidgetPosition( settings, this, QSize(960, 640) );
+    QVLCTools::restoreWidgetPosition( settings, this, QSize(1100, 720) );
 
     b_interfaceFullScreen = isFullScreen();
 
@@ -280,6 +281,7 @@ MainInterface::MainInterface( intf_thread_t *_p_intf ) : QVLCMW( _p_intf )
 
 MainInterface::~MainInterface()
 {
+    delete glassPlayer;glassPlayer=nullptr;
     /* Unsure we hide the videoWidget before destroying it */
     if( stackCentralOldWidget == videoWidget )
         showTab( bgWidget );
@@ -346,6 +348,7 @@ void MainInterface::recreateToolbars()
     mainLayout->insertWidget( 3, inputC );
     mainLayout->insertWidget( settings->value( "MainWindow/ToolbarPos", false ).toBool() ? 0: 2,
                               controls );
+    if(glassPlayer)glassPlayer->setLegacy(controls,inputC);
 
     if( fullscreenControls )
     {
@@ -538,6 +541,11 @@ void MainInterface::createMainWidget( QSettings *creationSettings )
         controls );
     mainLayout->removeWidget(resumePanel);
     mainLayout->insertWidget(mainLayout->indexOf(stackCentralW)+1,resumePanel);
+    glassPlayer=new ConeicGlassPlayer(p_intf,this,videoWidget,mainLayout,[this](){
+        QWidget *home=bgWidget->findChild<QWidget*>(QStringLiteral("ConeicHome"));
+        if(home)home->show();showTab(bgWidget);
+    });
+    glassPlayer->setLegacy(controls,inputC);
 
     /* Visualisation, disabled for now, they SUCK */
     #if 0
@@ -1169,6 +1177,7 @@ void MainInterface::displayNormalView()
  */
 void MainInterface::setMinimalView( bool b_minimal )
 {
+    setProperty("coneicMinimalView",b_minimal);
     bool b_menuBarVisible = menuBar()->isVisible();
     bool b_controlsVisible = controls->isVisible();
 #ifndef QT_NO_STATUSBAR
@@ -1201,6 +1210,7 @@ void MainInterface::setMinimalView( bool b_minimal )
     statusBar()->setVisible( !b_minimal && b_statusbarVisible );
 #endif
     inputC->setVisible( !b_minimal );
+    if(glassPlayer){controls->hide();inputC->hide();}
 
     if( !isFullScreen() && !isMaximized() && !b_minimal && !b_isWindowTiled )
     {

@@ -28,7 +28,13 @@ The wrapper requires `ENABLE_NLS` and all four VP8/VP9 encode/decode flags. Afte
 
 The upstream portable package is staged under `win64/vlc-3.0.24`. Debug ZIP generation is provided by the wrapper. For the delivered preview, debug data was stripped from copied player binaries, `vlc.exe` was copied to `Coneic.exe`, and the supplied installer baseline's `axvlc.dll` was retained byte-for-byte. The ActiveX component was not rebuilt or registered.
 
-Use the original installer as a local comparison input, not as a source file to commit. The portable package does not install shell extensions or file associations. Run `python coneic/stage-notices.py --app App` after staging to include font/design license notices. Generate the final Windows plugin cache with `vlc-cache-gen.exe plugins` after staging DLLs.
+Use the original installer as a local comparison input, not as a source file to commit. Run `python coneic/stage-notices.py --app App` after staging to include font/design license notices. Generate the final Windows plugin cache with `vlc-cache-gen.exe plugins` after staging DLLs.
+
+Stage Windows file associations with `python coneic/windows/stage-shell.py --app App` (build dependency: Pillow). This adds 134 format-specific ICO/PNG assets and per-user registration helpers. Run **Set Coneic as default.cmd**, or choose **Set Coneic as default player** in General Settings, then confirm the desired defaults in Windows Settings. BlueCloud Launcher registers a staged package during installation and repairs its paths after updates. The registration leaves existing defaults and other apps' entries intact. The removal helper unregisters only the owning installation. Store MSIX packaging declares the same catalog and individual format icons in its manifest; Windows manages those registrations.
+
+For a native Windows release, `python coneic/windows/prepare_payload.py --app ValidatedApp --stage App --report validation/payload.json --qt-plugin RebuiltQt.dll` updates product metadata and the explicitly rebuilt presentation DLL while checking that the input and engine files stay intact. Build a per-user NSIS installer with `powershell -NoProfile -File coneic/windows/package-installer.ps1 -App App -OutputDirectory release`. It discovers the NSIS compiler cached by electron-builder, or accepts `-MakeNsis`. On a clean standalone-install test profile, `test-installer.ps1 -Installer release/Coneic-Setup-0.5.0-x64.exe -Workspace validation` checks installation, registration and removal while preserving a user-created file and restoring the previous portable registration.
+
+Validate shell integration with `powershell -NoProfile -File coneic/windows/test-file-associations.ps1 -App App`; the checks use an isolated registry subtree. Subtitle sidecars and generic archive/configuration extensions are excluded because they are not independently playable media file types.
 
 ## Local checks
 

@@ -1,0 +1,2 @@
+import {test} from 'node:test';import assert from 'node:assert/strict';import {assertDestination} from './release.mjs';
+test('publishing stays in this app repository',()=>{assertDestination('sadiqgarba2553/coneic','https://github.com/sadiqgarba2553/coneic.git');assert.throws(()=>assertDestination('sadiqgarba2553/coneic','https://github.com/sadiqgarba2553/bluecloud-website.git'));assert.throws(()=>assertDestination('sadiqgarba2553/bluecloud-website','https://github.com/sadiqgarba2553/bluecloud-website.git'));});

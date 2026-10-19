@@ -152,7 +152,7 @@ class ConeicPersonalDialog : public QDialog
     }
 public:
     explicit ConeicPersonalDialog(intf_thread_t *p,QWidget *parent=nullptr):QDialog(parent),intf(p),store(ConeicPersonalStore::instance(p)) {
-        setObjectName("ConeicPersonalDialog");setWindowTitle(qtr("Your space · Coneic 0.2.1 Alpha"));setAttribute(Qt::WA_DeleteOnClose);setMinimumSize(560,480);
+        setObjectName("ConeicPersonalDialog");setWindowTitle(qtr("Your space · Coneic 0.5.0"));setAttribute(Qt::WA_DeleteOnClose);setMinimumSize(560,480);
         const QRect screen=QGuiApplication::primaryScreen()->availableGeometry();resize(qMin(940,screen.width()-48),qMin(720,screen.height()-64));
         auto layout=new QVBoxLayout(this);layout->setContentsMargins(24,20,24,20);layout->setSpacing(16);
         auto headingRow=new QHBoxLayout;auto heading=new QLabel(qtr("Your space"),this);heading->setObjectName("ConeicHomeTitle");headingRow->addWidget(heading,1);auto tools=new QPushButton(qtr("Library tools"),this);headingRow->addWidget(tools);layout->addLayout(headingRow);connect(tools,&QPushButton::clicked,this,[this](){ConeicLibraryTools::open(intf,this);});

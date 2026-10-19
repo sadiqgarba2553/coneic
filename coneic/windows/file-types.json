@@ -1,0 +1,538 @@
+[
+  {
+    "extension": ".3g2",
+    "kind": "video"
+  },
+  {
+    "extension": ".3ga",
+    "kind": "audio"
+  },
+  {
+    "extension": ".3gp",
+    "kind": "video"
+  },
+  {
+    "extension": ".3gp2",
+    "kind": "video"
+  },
+  {
+    "extension": ".3gpp",
+    "kind": "video"
+  },
+  {
+    "extension": ".669",
+    "kind": "audio"
+  },
+  {
+    "extension": ".a52",
+    "kind": "audio"
+  },
+  {
+    "extension": ".aac",
+    "kind": "audio"
+  },
+  {
+    "extension": ".ac3",
+    "kind": "audio"
+  },
+  {
+    "extension": ".adt",
+    "kind": "audio"
+  },
+  {
+    "extension": ".adts",
+    "kind": "audio"
+  },
+  {
+    "extension": ".aif",
+    "kind": "audio"
+  },
+  {
+    "extension": ".aifc",
+    "kind": "audio"
+  },
+  {
+    "extension": ".aiff",
+    "kind": "audio"
+  },
+  {
+    "extension": ".amb",
+    "kind": "audio"
+  },
+  {
+    "extension": ".amr",
+    "kind": "audio"
+  },
+  {
+    "extension": ".amv",
+    "kind": "video"
+  },
+  {
+    "extension": ".aob",
+    "kind": "audio"
+  },
+  {
+    "extension": ".ape",
+    "kind": "audio"
+  },
+  {
+    "extension": ".asf",
+    "kind": "video"
+  },
+  {
+    "extension": ".asx",
+    "kind": "playlist"
+  },
+  {
+    "extension": ".au",
+    "kind": "audio"
+  },
+  {
+    "extension": ".avi",
+    "kind": "video"
+  },
+  {
+    "extension": ".awb",
+    "kind": "audio"
+  },
+  {
+    "extension": ".b4s",
+    "kind": "playlist"
+  },
+  {
+    "extension": ".bik",
+    "kind": "video"
+  },
+  {
+    "extension": ".caf",
+    "kind": "audio"
+  },
+  {
+    "extension": ".crf",
+    "kind": "video"
+  },
+  {
+    "extension": ".cue",
+    "kind": "playlist"
+  },
+  {
+    "extension": ".dav",
+    "kind": "video"
+  },
+  {
+    "extension": ".divx",
+    "kind": "video"
+  },
+  {
+    "extension": ".drc",
+    "kind": "video"
+  },
+  {
+    "extension": ".dts",
+    "kind": "audio"
+  },
+  {
+    "extension": ".dv",
+    "kind": "video"
+  },
+  {
+    "extension": ".dvr-ms",
+    "kind": "video"
+  },
+  {
+    "extension": ".evo",
+    "kind": "video"
+  },
+  {
+    "extension": ".f4v",
+    "kind": "video"
+  },
+  {
+    "extension": ".flac",
+    "kind": "audio"
+  },
+  {
+    "extension": ".flv",
+    "kind": "video"
+  },
+  {
+    "extension": ".gvi",
+    "kind": "video"
+  },
+  {
+    "extension": ".gxf",
+    "kind": "video"
+  },
+  {
+    "extension": ".ifo",
+    "kind": "playlist"
+  },
+  {
+    "extension": ".iso",
+    "kind": "video"
+  },
+  {
+    "extension": ".it",
+    "kind": "audio"
+  },
+  {
+    "extension": ".kar",
+    "kind": "audio"
+  },
+  {
+    "extension": ".m1v",
+    "kind": "video"
+  },
+  {
+    "extension": ".m2t",
+    "kind": "video"
+  },
+  {
+    "extension": ".m2ts",
+    "kind": "video"
+  },
+  {
+    "extension": ".m2v",
+    "kind": "video"
+  },
+  {
+    "extension": ".m3u",
+    "kind": "playlist"
+  },
+  {
+    "extension": ".m3u8",
+    "kind": "playlist"
+  },
+  {
+    "extension": ".m4a",
+    "kind": "audio"
+  },
+  {
+    "extension": ".m4b",
+    "kind": "audio"
+  },
+  {
+    "extension": ".m4p",
+    "kind": "audio"
+  },
+  {
+    "extension": ".m4v",
+    "kind": "video"
+  },
+  {
+    "extension": ".m5p",
+    "kind": "audio"
+  },
+  {
+    "extension": ".mid",
+    "kind": "audio"
+  },
+  {
+    "extension": ".mka",
+    "kind": "audio"
+  },
+  {
+    "extension": ".mkv",
+    "kind": "video"
+  },
+  {
+    "extension": ".mlp",
+    "kind": "audio"
+  },
+  {
+    "extension": ".mod",
+    "kind": "audio"
+  },
+  {
+    "extension": ".mov",
+    "kind": "video"
+  },
+  {
+    "extension": ".mp1",
+    "kind": "audio"
+  },
+  {
+    "extension": ".mp2",
+    "kind": "video"
+  },
+  {
+    "extension": ".mp2v",
+    "kind": "video"
+  },
+  {
+    "extension": ".mp3",
+    "kind": "audio"
+  },
+  {
+    "extension": ".mp4",
+    "kind": "video"
+  },
+  {
+    "extension": ".mp4v",
+    "kind": "video"
+  },
+  {
+    "extension": ".mpa",
+    "kind": "audio"
+  },
+  {
+    "extension": ".mpc",
+    "kind": "audio"
+  },
+  {
+    "extension": ".mpe",
+    "kind": "video"
+  },
+  {
+    "extension": ".mpeg",
+    "kind": "video"
+  },
+  {
+    "extension": ".mpeg1",
+    "kind": "video"
+  },
+  {
+    "extension": ".mpeg2",
+    "kind": "video"
+  },
+  {
+    "extension": ".mpeg4",
+    "kind": "video"
+  },
+  {
+    "extension": ".mpg",
+    "kind": "video"
+  },
+  {
+    "extension": ".mpga",
+    "kind": "audio"
+  },
+  {
+    "extension": ".mpv2",
+    "kind": "video"
+  },
+  {
+    "extension": ".mts",
+    "kind": "video"
+  },
+  {
+    "extension": ".mtv",
+    "kind": "video"
+  },
+  {
+    "extension": ".mus",
+    "kind": "audio"
+  },
+  {
+    "extension": ".mxf",
+    "kind": "video"
+  },
+  {
+    "extension": ".mxg",
+    "kind": "video"
+  },
+  {
+    "extension": ".nsv",
+    "kind": "video"
+  },
+  {
+    "extension": ".nuv",
+    "kind": "video"
+  },
+  {
+    "extension": ".oga",
+    "kind": "audio"
+  },
+  {
+    "extension": ".ogg",
+    "kind": "video"
+  },
+  {
+    "extension": ".ogm",
+    "kind": "video"
+  },
+  {
+    "extension": ".ogv",
+    "kind": "video"
+  },
+  {
+    "extension": ".ogx",
+    "kind": "video"
+  },
+  {
+    "extension": ".oma",
+    "kind": "audio"
+  },
+  {
+    "extension": ".opus",
+    "kind": "audio"
+  },
+  {
+    "extension": ".pls",
+    "kind": "playlist"
+  },
+  {
+    "extension": ".ps",
+    "kind": "video"
+  },
+  {
+    "extension": ".qcp",
+    "kind": "audio"
+  },
+  {
+    "extension": ".ra",
+    "kind": "audio"
+  },
+  {
+    "extension": ".ram",
+    "kind": "playlist"
+  },
+  {
+    "extension": ".rec",
+    "kind": "video"
+  },
+  {
+    "extension": ".rm",
+    "kind": "video"
+  },
+  {
+    "extension": ".rmi",
+    "kind": "audio"
+  },
+  {
+    "extension": ".rmvb",
+    "kind": "video"
+  },
+  {
+    "extension": ".rpl",
+    "kind": "video"
+  },
+  {
+    "extension": ".s3m",
+    "kind": "audio"
+  },
+  {
+    "extension": ".sdp",
+    "kind": "playlist"
+  },
+  {
+    "extension": ".sid",
+    "kind": "audio"
+  },
+  {
+    "extension": ".spx",
+    "kind": "audio"
+  },
+  {
+    "extension": ".tak",
+    "kind": "audio"
+  },
+  {
+    "extension": ".thd",
+    "kind": "audio"
+  },
+  {
+    "extension": ".thp",
+    "kind": "video"
+  },
+  {
+    "extension": ".tod",
+    "kind": "video"
+  },
+  {
+    "extension": ".tp",
+    "kind": "video"
+  },
+  {
+    "extension": ".ts",
+    "kind": "video"
+  },
+  {
+    "extension": ".tta",
+    "kind": "audio"
+  },
+  {
+    "extension": ".tts",
+    "kind": "video"
+  },
+  {
+    "extension": ".txd",
+    "kind": "video"
+  },
+  {
+    "extension": ".vlc",
+    "kind": "playlist"
+  },
+  {
+    "extension": ".vob",
+    "kind": "video"
+  },
+  {
+    "extension": ".voc",
+    "kind": "audio"
+  },
+  {
+    "extension": ".vqf",
+    "kind": "audio"
+  },
+  {
+    "extension": ".vro",
+    "kind": "video"
+  },
+  {
+    "extension": ".w64",
+    "kind": "audio"
+  },
+  {
+    "extension": ".wav",
+    "kind": "audio"
+  },
+  {
+    "extension": ".wax",
+    "kind": "playlist"
+  },
+  {
+    "extension": ".webm",
+    "kind": "video"
+  },
+  {
+    "extension": ".wm",
+    "kind": "video"
+  },
+  {
+    "extension": ".wma",
+    "kind": "audio"
+  },
+  {
+    "extension": ".wmv",
+    "kind": "video"
+  },
+  {
+    "extension": ".wtv",
+    "kind": "video"
+  },
+  {
+    "extension": ".wv",
+    "kind": "audio"
+  },
+  {
+    "extension": ".wvx",
+    "kind": "playlist"
+  },
+  {
+    "extension": ".xa",
+    "kind": "audio"
+  },
+  {
+    "extension": ".xesc",
+    "kind": "video"
+  },
+  {
+    "extension": ".xm",
+    "kind": "audio"
+  },
+  {
+    "extension": ".xspf",
+    "kind": "playlist"
+  }
+]

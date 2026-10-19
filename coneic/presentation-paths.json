@@ -1,5 +1,5 @@
 {
-  "scope": "Exact Qt presentation paths for the Juxtopposed reference adaptation. Engine, plugin options, APIs and action manager are not covered by this allowance.",
+  "scope": "Exact Qt presentation paths for the Coneic 0.5 glass interface and earlier Juxtopposed reference adaptation. Engine, plugin options, APIs and action manager are not covered by this allowance.",
   "design": "https://www.figma.com/community/file/1691465999134370980/vlc-redesign",
   "paths": [
     "modules/gui/qt/Makefile.am",
@@ -10,6 +10,9 @@
     "modules/gui/qt/components/simple_preferences.hpp",
     "modules/gui/qt/coneic_command_palette.hpp",
     "modules/gui/qt/coneic_design.hpp",
+    "modules/gui/qt/coneic_glass_material.hpp",
+    "modules/gui/qt/coneic_glass_player.hpp",
+    "modules/gui/qt/coneic_glass_smoke.hpp",
     "modules/gui/qt/coneic_home.hpp",
     "modules/gui/qt/coneic_home_options.hpp",
     "modules/gui/qt/coneic_library_smoke.hpp",
@@ -30,6 +33,7 @@
     "modules/gui/qt/fonts/coneic/LICENSE.txt",
     "modules/gui/qt/fonts/coneic/README.md",
     "modules/gui/qt/main_interface.cpp",
+    "modules/gui/qt/main_interface.hpp",
     "modules/gui/qt/pixmaps/coneic-reference/ATTRIBUTION.md",
     "modules/gui/qt/pixmaps/coneic-reference/README.md",
     "modules/gui/qt/pixmaps/coneic-reference/add.svg",

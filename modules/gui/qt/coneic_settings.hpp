@@ -7,6 +7,7 @@
 #include "components/preferences_widgets.hpp"
 #include "components/simple_preferences.hpp"
 #include "coneic_design.hpp"
+#include "coneic_windows_associations.hpp"
 #include <vlc_modules.h>
 #include <vlc_plugin.h>
 #include <vlc_config_cat.h>
@@ -50,6 +51,8 @@ class ConeicGlobalSettings : public QWidget
     QPalette originalPalette;
     QString originalStylesheet;
     QWidget *languageRow = nullptr;
+    QWidget *materialRow = nullptr;
+    int originalMaterial=0,pendingMaterial=-1;
 #ifdef _WIN32
     SPrefsPanel *platformPreferences = nullptr;
 #endif
@@ -165,10 +168,22 @@ class ConeicGlobalSettings : public QWidget
         heading->setText(query.isEmpty() ? titles[category] + " " + qtr("Settings") : qtr("Search settings"));
         QString section;
         int count=0, advancedCount=0, matches=0;
+#ifdef _WIN32
+        if((query.isEmpty() && category==0) || (!query.isEmpty() && QStringLiteral("default apps file associations formats").contains(query,Qt::CaseInsensitive))) {
+            QPushButton *defaults=new QPushButton(qtr("Set Coneic as default player"),body);
+            defaults->setObjectName("ConeicDefaultApps");
+            defaults->setToolTip(qtr("Choose Coneic for audio, video and playlists in Windows Settings."));
+            connect(defaults,&QPushButton::clicked,this,[this](){coneicOpenDefaultApps(this);});
+            contents->addWidget(defaults);count++;
+        }
+#endif
         if(languageRow && ((query.isEmpty() && category==0) || (!query.isEmpty() && qtr("Interface language").contains(query,Qt::CaseInsensitive)))) {
             section=query.isEmpty()?qtr("Appearance"):qtr("General");
             QLabel *label=new QLabel(section,body);label->setObjectName("ConeicSectionTitle");contents->addWidget(label);
             contents->addWidget(languageRow);languageRow->show();count++;
+        }
+        if(materialRow && ((query.isEmpty() && category==0) || (!query.isEmpty() && QStringLiteral("surface material frosted glass transparency solid").contains(query,Qt::CaseInsensitive)))) {
+            contents->addWidget(materialRow);materialRow->show();count++;
         }
         QSet<QString> keyControls;
         for (const Option &option : options) {
@@ -215,20 +230,33 @@ public:
     {
         setObjectName("ConeicGlobalSettings");
         originalPalette=qApp->palette();originalStylesheet=qApp->styleSheet();
-        QHBoxLayout *layout=new QHBoxLayout(this); layout->setContentsMargins(0,0,0,0);layout->setSpacing(0);
+        originalMaterial=qApp->property("coneicMaterialMode").toInt();
+        QHBoxLayout *layout=new QHBoxLayout(this); layout->setContentsMargins(14,12,14,12);layout->setSpacing(12);
         QWidget *sidebar=new QWidget(this);sidebar->setObjectName("ConeicSettingsSidebar"); sidebar->setFixedWidth(200);
         QVBoxLayout *side=new QVBoxLayout(sidebar);side->setContentsMargins(10,10,10,10);
         search=new QLineEdit(sidebar);search->setPlaceholderText(qtr("Search"));search->setAccessibleName(qtr("Search all settings"));
         search->setClearButtonEnabled(true);side->addWidget(search);
         navigation=new QListWidget(sidebar);navigation->setObjectName("ConeicSettingsNavigation");navigation->setFrameShape(QFrame::NoFrame);
         const QStringList icons={"general","interface","privacy","controls","playback","video","audio","subtitles","library","network","performance","recording","extensions"};
-        for(int i=0;i<titles.size();i++) {auto item=new QListWidgetItem(QIcon(":/coneic/settings-"+icons[i]+".svg"),titles[i],navigation);item->setSizeHint(QSize(180,36));}
+        for(int i=0;i<titles.size();i++) {auto item=new QListWidgetItem(QIcon(":/coneic/settings-"+icons[i]+".svg"),titles[i],navigation);item->setSizeHint(QSize(180,40));}
         side->addWidget(navigation,1);auto company=new QLabel(QStringLiteral("Made by <a href=\"https://bluecloudai.online\">BLUECLOUD</a>"),sidebar);company->setObjectName("ConeicCompanyLink");company->setOpenExternalLinks(true);company->setWordWrap(true);QFont creditFont=company->font();creditFont.setPointSizeF(8.5);company->setFont(creditFont);company->setContentsMargins(8,12,8,4);side->addWidget(company);layout->addWidget(sidebar);
         QWidget *right=new QWidget(this);QVBoxLayout *content=new QVBoxLayout(right);content->setContentsMargins(24,16,24,16);
         heading=new QLabel(right);heading->setObjectName("ConeicSettingsHeading");content->addWidget(heading);
         scroll=new QScrollArea(right);scroll->setFrameShape(QFrame::NoFrame);scroll->setWidgetResizable(true);
         body=new QWidget;contents=new QVBoxLayout(body);contents->setContentsMargins(0,8,8,8);contents->setSpacing(2);
         scroll->setWidget(body);content->addWidget(scroll,1);layout->addWidget(right,1);
+        materialRow=new QWidget(body);materialRow->setProperty("coneicOption","__surface-material");
+        auto materialLayout=new QHBoxLayout(materialRow);materialLayout->setContentsMargins(0,8,0,8);
+        auto materialLabel=new QLabel(qtr("Surface material"),materialRow);
+        auto material=new QComboBox(materialRow);material->setObjectName("ConeicSurfaceMaterial");
+        material->addItems({qtr("Follow system"),qtr("Frosted glass"),qtr("Solid")});
+        material->setCurrentIndex(qBound(0,originalMaterial,2));material->setAccessibleName(materialLabel->text());materialLabel->setBuddy(material);
+        material->setToolTip(qtr("Choose a material for Coneic. Windows high contrast always uses solid system colors."));
+        materialLayout->addWidget(materialLabel,1);materialLayout->addWidget(material);
+        connect(material,QOverload<int>::of(&QComboBox::currentIndexChanged),this,[this](int mode){
+            pendingMaterial=mode;qApp->setProperty("coneicMaterialMode",mode);
+            ConeicDesign::apply(*qApp,qApp->property("coneicDark").toBool(),false);
+        });
 #ifdef _WIN32
         // Keep VLC's native Windows language selection and persistence, separately
         // from engine options. Its existing bindings remain attached to the combo.
@@ -311,11 +339,14 @@ public:
 #endif
         applyOptions();
         if(pendingTheme>=0)intf->p_sys->mainSettings->setValue("Coneic/theme-mode",pendingTheme);
+        if(pendingMaterial>=0)intf->p_sys->mainSettings->setValue("Coneic/material-mode",pendingMaterial);
         committed=true;
     }
     void applyOptions() {for(auto i=rows.begin();i!=rows.end();++i) if(i.value().dirty)i.value().control->doApply();}
     ~ConeicGlobalSettings() {
+        if(pendingMaterial>=0 && !committed)qApp->setProperty("coneicMaterialMode",originalMaterial);
         if(themePreview && !committed){qApp->setPalette(originalPalette);qApp->setStyleSheet(originalStylesheet);qApp->setProperty("coneicDark",originalPalette.color(QPalette::Window).lightness()<128);}
+        if(!committed && (themePreview || pendingMaterial>=0))ConeicDesign::apply(*qApp,originalPalette.color(QPalette::Window).lightness()<128,false);
         if(themePreview)qApp->setProperty("coneicThemePreview",false);
         for(const Row &row:rows)delete row.control;for(auto config:configurations)module_config_free(config);
     }

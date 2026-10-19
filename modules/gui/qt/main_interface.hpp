@@ -54,6 +54,7 @@ class QSize;
 class QScreen;
 class QTimer;
 class StandardPLPanel;
+class ConeicGlassPlayer;
 struct vout_window_t;
 
 class MainInterface : public QVLCMW
@@ -147,6 +148,7 @@ protected:
     ControlsWidget      *controls;
     InputControlsWidget *inputC;
     FullscreenControllerWidget *fullscreenControls;
+    ConeicGlassPlayer *glassPlayer = nullptr;
 
     /* Widgets */
     QStackedWidget      *stackCentralW;

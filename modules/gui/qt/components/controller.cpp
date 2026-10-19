@@ -924,6 +924,7 @@ void FullscreenControllerWidget::centerFSC( int number )
  */
 void FullscreenControllerWidget::showFSC()
 {
+    if(qApp->property("coneicGlassPlayback").toBool())return;
     restoreFSC();
 
 #if HAVE_TRANSPARENCY

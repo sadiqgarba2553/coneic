@@ -20,6 +20,7 @@
 #include <QStyleOption>
 #include <QCheckBox>
 #include <QGroupBox>
+#include "coneic_glass_material.hpp"
 #ifdef Q_OS_WIN
 # include <windows.h>
 #endif
@@ -32,7 +33,7 @@ public:
     int pixelMetric(PixelMetric m, const QStyleOption *o=nullptr, const QWidget *w=nullptr) const override
     {
         if(w && (qobject_cast<const QCheckBox*>(w) || qobject_cast<const QGroupBox*>(w))) {
-            if(m==PM_IndicatorWidth) return 46;
+            if(m==PM_IndicatorWidth) return 36;
             if(m==PM_IndicatorHeight) return 22;
         }
         if(m==PM_ScrollBarExtent)return 10;
@@ -48,15 +49,11 @@ public:
             QRectF r=o->rect.adjusted(1,2,-1,-2);
             if(!(o->state&State_Enabled))p->setOpacity(.4);
             p->setPen(Qt::NoPen);p->setBrush(on?accent.darker(180):(dark?QColor("#292929"):QColor("#dddddd")));
-            p->drawRoundedRect(r,3,3);
+            p->drawRoundedRect(r,10,10);
             QRectF knob(r.left()+2,r.top()+2,14,r.height()-4);
             if(on)knob.moveRight(r.right()-2);
             p->setBrush(on?accent:(dark?QColor("#707070"):QColor("#999999")));
-            p->drawRoundedRect(knob,2,2);
-            QFont f=w->font();f.setPixelSize(8);p->setFont(f);
-            p->setPen(on?accent:o->palette.color(QPalette::WindowText));
-            QRectF caption=r.adjusted(on?0:16,0,on?-16:0,0);
-            p->drawText(caption,Qt::AlignCenter,mixed?QStringLiteral("—"):(on?QStringLiteral("ON"):QStringLiteral("OFF")));
+            p->drawRoundedRect(knob,7,7);
             if(o->state&State_HasFocus){p->setBrush(Qt::NoBrush);p->setPen(QPen(accent,1));p->drawRoundedRect(o->rect.adjusted(0,0,-1,-1),3,3);}
             p->restore();return;
         }
@@ -116,9 +113,24 @@ inline bool systemDark()
 inline void apply(QApplication &app, bool dark, bool useDefaultStyle)
 {
     // Keep native high-contrast colors and focus cues intact.
-    if (highContrast())
+    if (highContrast()) {
+        app.setProperty("coneicGlassEnabled",false);
+        app.setProperty("coneicTransparency",false);
+        app.setStyleSheet(QString());
         return;
+    }
     app.setProperty("coneicDark",dark);
+    bool transparency=true;
+#ifdef Q_OS_WIN
+    QSettings material(QStringLiteral("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize"),QSettings::NativeFormat);
+    transparency=material.value(QStringLiteral("EnableTransparency"),1).toBool();
+#endif
+    const int materialMode=app.property("coneicMaterialMode").toInt();
+    if(materialMode==1)transparency=true;
+    else if(materialMode==2)transparency=false;
+    app.setProperty("coneicTransparency",transparency);
+    app.setProperty("coneicGlassEnabled",true);
+    ConeicGlass::installAmbient(app);
 
     if (useDefaultStyle)
         app.setStyle(new ReferenceStyle);
@@ -140,13 +152,13 @@ inline void apply(QApplication &app, bool dark, bool useDefaultStyle)
         font.setPointSizeF(10.0);
     app.setFont(font);
 
-    const QColor surface = dark ? QColor("#101010") : QColor("#f5f5f5");
-    const QColor raised = dark ? QColor("#202020") : QColor("#ffffff");
-    const QColor field = dark ? QColor("#090909") : QColor("#ffffff");
+    const QColor surface = dark ? QColor("#101e2b") : QColor("#edf2f7");
+    const QColor raised = dark ? QColor("#20313f") : QColor("#f5f8fc");
+    const QColor field = dark ? QColor("#12202d") : QColor("#ffffff");
     const QColor text = dark ? QColor("#f5f5f7") : QColor("#1d1d1f");
-    const QColor secondary = dark ? QColor("#a1a1aa") : QColor("#5e5e67");
-    const QColor accent = dark ? QColor("#d37918") : QColor("#a95200");
-    const QColor accentText = dark ? QColor("#20150e") : QColor("#ffffff");
+    const QColor secondary = dark ? QColor("#aebfcd") : QColor("#536a7c");
+    const QColor accent = dark ? QColor("#b7dcef") : QColor("#326a89");
+    const QColor accentText = dark ? QColor("#142331") : QColor("#ffffff");
     const QString border = dark ? QStringLiteral("#48484d") : QStringLiteral("#c7c7cf");
     const QString hover = dark ? QStringLiteral("#3a3a3e") : QStringLiteral("#e8e8ed");
     const QString press = dark ? QStringLiteral("#48484e") : QStringLiteral("#d8d8e1");
@@ -173,102 +185,8 @@ inline void apply(QApplication &app, bool dark, bool useDefaultStyle)
 
     // Native Qt slider tracking, keyboard navigation, focus and accessibility
     // remain in place. Press/hover feedback never waits for a transition.
-    const QString stylesheet = QStringLiteral(
-        "QMainWindow, QDialog { background: %1; color: %2; }"
-        "QMenuBar { background: %1; padding: 5px 8px; spacing: 3px; }"
-        "QMenuBar::item { padding: 6px 10px; border-radius: 5px; }"
-        "QMenuBar::item:selected { background: %3; }"
-        "QMenu { background: %4; border: 1px solid %5; padding: 5px; }"
-        "QMenu::item { padding: 7px 26px 7px 14px; border-radius: 5px; }"
-        "QMenu::item:selected { background: %6; color: %9; }"
-        "QMenu::separator { height: 1px; background: %5; margin: 5px 8px; }"
-        "QPushButton { background: %4; color: %2; border: 1px solid %5;"
-        " border-radius: 7px; padding: 6px 14px; min-height: 20px; }"
-        "QPushButton:hover, QToolButton:hover { background: %3; }"
-        "QPushButton:pressed, QToolButton:pressed { background: %7; }"
-        "QPushButton:default { background: %6; color: %9; border-color: %6; }"
-        "QPushButton:focus, QToolButton:focus, QLineEdit:focus, QComboBox:focus,"
-        " QSpinBox:focus, QDoubleSpinBox:focus { border: 2px solid %6; }"
-        "QToolButton { border: 1px solid transparent; border-radius: 7px; padding: 5px; }"
-        "QToolButton:checked { background: %3; border-color: %6; }"
-        "QLineEdit, QComboBox, QSpinBox, QDoubleSpinBox { background: %8;"
-        " color: %2; border: 1px solid %5; border-radius: 6px; padding: 5px; }"
-        "QComboBox QAbstractItemView { background: %4; color: %2;"
-        " selection-background-color: %6; selection-color: %9; }"
-        "QTreeView, QListView, QTableView { background: %8;"
-        " alternate-background-color: %4; border: 0; outline: 0; }"
-        "QTreeView::item, QListView::item { min-height: 25px; padding: 3px; }"
-        "QTreeView::item:selected, QListView::item:selected { background: %6; color: %9; }"
-        "QHeaderView::section { background: %1; color: %2; border: 0;"
-        " border-bottom: 1px solid %5; padding: 8px; }"
-        "QTabWidget::pane { border: 1px solid %5; border-radius: 8px; }"
-        "QTabBar::tab { background: %1; padding: 8px 15px; border-radius: 5px; }"
-        "QTabBar::tab:selected { background: %4; color: %2; }"
-        "QGroupBox { border: 1px solid %5; border-radius: 8px;"
-        " margin-top: 14px; padding: 12px 9px 8px; }"
-        "QGroupBox::title { subcontrol-origin: margin; left: 12px; padding: 0 5px; }"
-        "QStatusBar { background: %1; padding: 4px; }"
-        "QToolTip { background: %4; color: %2; border: 1px solid %5;"
-        " padding: 7px; border-radius: 5px; }"
-    ).arg(surface.name(), text.name(), hover, raised.name(), border,
-          accent.name(), press, field.name(), accentText.name());
-    app.setStyleSheet(stylesheet + QStringLiteral(
-        "QPushButton, QToolButton { border-radius: 3px; }"
-        "QPushButton { border: 1px solid transparent; min-height: 22px; }"
-        "QToolButton { padding: 3px; }"
-        "QPushButton:focus, QToolButton:focus, QLineEdit:focus, QComboBox:focus, QSpinBox:focus, QDoubleSpinBox:focus { border: 1px solid %1; }"
-        "QLineEdit, QComboBox, QSpinBox, QDoubleSpinBox { border-radius: 3px; border: 1px solid %2; padding: 5px 8px; }"
-        "QGroupBox { border: 0; border-radius: 3px; margin-top: 22px; padding: 12px 8px 8px; }"
-        "QGroupBox::title { left: 8px; color: %3; }"
-        "QTabWidget::pane { border: 0; border-top: 1px solid %2; border-radius: 0; }"
-        "QTabBar::tab { border-radius: 3px; margin: 3px; padding: 7px 12px; color: %3; }"
-        "QTabBar::tab:selected { color: %1; }"
-        "QCheckBox, QRadioButton { spacing: 9px; min-height: 24px; }"
-        "QScrollBar:vertical { background: transparent; width: 8px; margin: 0; }"
-        "QScrollBar:horizontal { background: transparent; height: 8px; margin: 0; }"
-        "QScrollBar::handle { background: %2; min-height: 28px; min-width: 28px; border-radius: 4px; }"
-        "QScrollBar::add-line, QScrollBar::sub-line { width: 0; height: 0; }"
-        "QScrollBar::add-page, QScrollBar::sub-page { background: transparent; }"
-        "QSlider::groove:horizontal { background: %2; height: 5px; border-radius: 2px; }"
-        "QSlider::sub-page:horizontal { background: %1; border-radius: 2px; }"
-        "QSlider::handle:horizontal { background: %1; width: 12px; margin: -4px 0; border-radius: 3px; }"
-        "QWidget#ConeicSettingsSidebar { background: %4; border-right: 1px solid %2; }"
-        "QWidget#ConeicHome { background: %4; }"
-        "QWidget#ConeicLibrarySidebar { background: %4; border-right: 1px solid %2; }"
-        "QLabel#ConeicBrand { color: %1; font-size: 20px; font-weight: 600; padding: 0 8px 18px; }"
-        "QLabel#ConeicHomeTitle { font-size: 24px; font-weight: 600; }"
-        "QListWidget#ConeicLibraryNavigation { background: transparent; border: 0; outline: 0; }"
-        "QListWidget#ConeicLibraryNavigation::item { padding: 0 8px; margin: 1px 0; border-radius: 3px; color: %3; }"
-        "QListWidget#ConeicLibraryNavigation::item:selected { background: %5; color: %1; }"
-        "QListWidget#ConeicMediaCards { background: transparent; border: 0; }"
-        "QListWidget#ConeicMediaCards::item { border-radius: 3px; padding: 4px; }"
-        "QListWidget#ConeicMediaCards::item:selected { background: %5; color: %1; }"
-        "QListWidget#ConeicMomentCards, QListWidget#ConeicStudyNotes, QListWidget#ConeicCollectionMedia { background: transparent; border: 0; }"
-        "QListWidget#ConeicMomentCards::item, QListWidget#ConeicStudyNotes::item, QListWidget#ConeicCollectionMedia::item { background: %4; border-radius: 6px; padding: 8px 12px; }"
-        "QListWidget#ConeicMomentCards::item:selected, QListWidget#ConeicStudyNotes::item:selected, QListWidget#ConeicCollectionMedia::item:selected { background: %5; color: %3; border: 1px solid %1; }"
-        "QPlainTextEdit#ConeicNoteText { background: %4; border: 1px solid %2; border-radius: 6px; padding: 10px; }"
-        "QPushButton#ConeicCaptureMoment, QPushButton#ConeicSaveNote { background: %1; color: %8; border: 1px solid %1; }"
-        "QListWidget#ConeicCommandResults { background: transparent; border: 0; }"
-        "QListWidget#ConeicCommandResults::item { background: %4; border-radius: 6px; padding: 6px 10px; }"
-        "QListWidget#ConeicCommandResults::item:selected { background: %5; color: %3; border: 1px solid %1; }"
-        "QLabel#ConeicLibraryEmpty { color: %3; font-size: 15px; }"
-        "QListWidget#ConeicSettingsNavigation { background: transparent; border: 0; outline: 0; }"
-        "QListWidget#ConeicSettingsNavigation::item { padding: 0 8px; margin: 1px 0; border-radius: 3px; color: %3; }"
-        "QListWidget#ConeicSettingsNavigation::item:selected { background: %5; color: %1; }"
-        "QLabel#ConeicSettingsHeading { font-size: 18px; padding: 2px 0 10px; }"
-        "QGroupBox#ConeicSettingsMode { margin: 0; padding: 0; }"
-        "QComboBox::drop-down { border: 0; width: 22px; background: transparent; }"
-        "QLabel#ConeicSectionTitle { font-weight: 600; padding: 14px 0 6px; }"
-        "QToolButton#ConeicAdvancedDisclosure { background: %4; padding: 7px; margin: 10px 0; }"
-        "QFrame#ConeicTransport, QFrame#ConeicSeekRow { background: %4; border: 0; }"
-        "QToolButton#ConeicPlayButton, QPushButton#ConeicOpenFile, QPushButton#ConeicResumeContinue { background: %1; color: %8; border: 1px solid %1; }"
-        "QToolButton#ConeicPlayButton:hover, QPushButton#ConeicOpenFile:hover { background: %6; }"
-        "QToolButton#ConeicPlayButton:pressed, QPushButton#ConeicOpenFile:pressed { background: %7; }"
-        "QMenuBar { padding: 1px 8px; }"
-        "QMenuBar::item { padding: 5px 9px; border-radius: 3px; }"
-        "QMenu { border: 1px solid %2; padding: 5px; }"
-        "QMenu::item { border-radius: 3px; padding: 8px 28px 8px 20px; }"
-    ).arg(accent.name(),border,secondary.name(),raised.name(),dark?"#342718":"#fff0e0",accent.lighter(115).name(),accent.darker(115).name(),accentText.name()));
+    app.setStyleSheet(ConeicGlass::stylesheet(dark,transparency));
+    for(auto window:app.topLevelWidgets())ConeicGlass::nativeFrame(window,dark);
 
     // Independently honor Windows' reduced-motion setting; there are no
     // timer-delayed actions, parallax or looping decorative animations.

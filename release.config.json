@@ -1,0 +1,30 @@
+{
+  "appId": "coneic",
+  "repository": "sadiqgarba2553/coneic",
+  "version": "0.5.0",
+  "sourceName": "Coneic",
+  "title": "Coneic Player 0.5.0 \u00b7 Windows",
+  "notes": "Local audio and video playback \u00c2\u00b7 Saved moments and study notes \u00c2\u00b7 Smart collections and command palette \u00c2\u00b7 Library backup and media relinking \u00c2\u00b7 Windows defaults and custom icons for 134 media formats",
+  "migration": {
+    "source": "https://github.com/sadiqgarba2553/bluecloud-website/releases/download/v0.5.0",
+    "assets": [
+      {
+        "name": "coneic-0.5.0-win-x64.zip",
+        "size": 89990582,
+        "sha256": "0a10757278cf1800300036b5a7437eaa2f40e0c39fd21bfb006610d0bb91e921"
+      },
+      {
+        "name": "Coneic-Setup-0.5.0-x64.exe",
+        "size": 52663897,
+        "sha256": "b5acb3b1940d47bca9a42a77bd7ad508ada70e44f77f3bc398e93740150b682b"
+      }
+    ]
+  },
+  "package": {
+    "name": "coneic-0.5.0-win-x64.zip",
+    "type": "zip",
+    "minimumLauncher": "0.5.0",
+    "executable": "Coneic.exe",
+    "unpackedSize": 206500870
+  }
+}

@@ -249,7 +249,7 @@ vlc_module_begin ()
     add_float_with_range( "qt-fs-opacity", 0.8, 0.1, 1., OPACITY_FS_TEXT,
                           OPACITY_FS_LONGTEXT, false )
 
-    add_bool( "qt-video-autoresize", true, KEEPSIZE_TEXT,
+    add_bool( "qt-video-autoresize", false, KEEPSIZE_TEXT,
               KEEPSIZE_LONGTEXT, false )
     add_bool( "qt-name-in-title", true, TITLE_TEXT,
               TITLE_LONGTEXT, false )
@@ -703,6 +703,7 @@ static void *ThreadPlatform( void *obj, char *platform_name )
     if (isDarkPaletteEnabled(p_intf))
         applyDarkPalette();
     const bool followSystem=getSettings()->value("Coneic/theme-mode",-1).toInt()==2;
+    app.setProperty("coneicMaterialMode",getSettings()->value("Coneic/material-mode",0).toInt());
     ConeicDesign::apply(app,followSystem?ConeicDesign::systemDark():isDarkPaletteEnabled(p_intf),s_style.isEmpty());
     auto themeTimer=new QTimer(&app);
     themeTimer->setInterval(1000);

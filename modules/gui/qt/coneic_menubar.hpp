@@ -7,6 +7,7 @@
 #include "dialogs_provider.hpp"
 #include "coneic_personal.hpp"
 #include "coneic_command_palette.hpp"
+#include "coneic_glass_material.hpp"
 #include <QMenuBar>
 #include <QMenu>
 #include <QPainter>
@@ -40,7 +41,7 @@ class ConeicMenuBar : public QMenuBar
         for(QAction *action:original)if(action->menu())complete->addMenu(action->menu());
     }
 protected:
-    void paintEvent(QPaintEvent *) override {QPainter p(this);p.fillRect(rect(),palette().color(QPalette::Window));}
+    void paintEvent(QPaintEvent *) override {QPainter p(this);if(qApp->property("coneicGlassEnabled").toBool())ConeicGlass::ambient(p,rect(),qApp->property("coneicDark").toBool());else p.fillRect(rect(),palette().color(QPalette::Window));}
     void resizeEvent(QResizeEvent *event) override
     {
         QMenuBar::resizeEvent(event);if(header){header->setGeometry(rect());header->raise();}
@@ -57,8 +58,8 @@ public:
         connect(popup,&QMenu::aboutToShow,this,[this](){rebuildMenu();});layout->addWidget(menu);
         QToolButton *home=new QToolButton(header);home->setIcon(QIcon(":/coneic/home.svg"));home->setToolTip(qtr("Open library"));home->setAccessibleName(qtr("Open library"));home->setFixedSize(32,32);
         connect(home,&QToolButton::clicked,this,[library](){library();});layout->addWidget(home);
-        QLabel *title=new QLabel(QStringLiteral("Coneic 0.2.1 Alpha"),header);title->setTextFormat(Qt::PlainText);title->setSizePolicy(QSizePolicy::Ignored,QSizePolicy::Preferred);layout->addWidget(title,1);
-        connect(MainInputManager::getInstance(intf)->getIM(),&InputManager::nameChanged,title,[title](const QString &name){title->setText(name.isEmpty()?QStringLiteral("Coneic 0.2.1 Alpha"):name);});
+        QLabel *title=new QLabel(QStringLiteral("Coneic 0.5.0"),header);title->setTextFormat(Qt::PlainText);title->setSizePolicy(QSizePolicy::Ignored,QSizePolicy::Preferred);layout->addWidget(title,1);
+        connect(MainInputManager::getInstance(intf)->getIM(),&InputManager::nameChanged,title,[title](const QString &name){title->setText(name.isEmpty()?QStringLiteral("Coneic 0.5.0"):name);});
         auto space=new QToolButton(header);space->setIcon(QIcon(":/coneic/bookmarks.svg"));space->setAccessibleName(qtr("Your space"));space->setToolTip(qtr("Your space: Moments, Study and Collections"));space->setFixedSize(32,32);layout->addWidget(space);connect(space,&QToolButton::clicked,this,[this](){ConeicPersonalDialog::open(intf,parentWidget());});
         auto add=new QToolButton(header);add->setIcon(QIcon(":/coneic/add.svg"));add->setToolTip(qtr("Open media"));add->setAccessibleName(qtr("Open media"));add->setFixedSize(32,32);
         connect(add,&QToolButton::clicked,DialogsProvider::getInstance(intf),&DialogsProvider::simpleOpenDialog);layout->addWidget(add);

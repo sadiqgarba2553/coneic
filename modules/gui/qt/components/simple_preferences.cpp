@@ -29,6 +29,7 @@
 
 #include "qt.hpp"
 #include "components/simple_preferences.hpp"
+#include "coneic_windows_associations.hpp"
 #include "components/preferences_widgets.hpp"
 
 #include <vlc_config_cat.h>
@@ -1323,119 +1324,7 @@ bool SPrefsPanel::addType( const char * psz_ext, QTreeWidgetItem* current,
 
 void SPrefsPanel::assoDialog()
 {
-    HRESULT hr;
-
-    hr = CoInitializeEx( NULL, COINIT_APARTMENTTHREADED );
-    if( SUCCEEDED(hr) )
-    {
-        void *p;
-
-        hr = CoCreateInstance(CLSID_ApplicationAssociationRegistrationUI,
-                              NULL, CLSCTX_INPROC_SERVER,
-                              IID_IApplicationAssociationRegistrationUI, &p);
-        if( SUCCEEDED(hr) )
-        {
-            IApplicationAssociationRegistrationUI *p_regui =
-                (IApplicationAssociationRegistrationUI *)p;
-
-            hr = p_regui->LaunchAdvancedAssociationUI(L"VLC" );
-            p_regui->Release();
-        }
-        CoUninitialize();
-    }
-
-    if( SUCCEEDED(hr) )
-        return;
-
-    QDialog *d = new QDialog( this );
-    d->setWindowTitle( qtr( "File associations" ) );
-    QGridLayout *assoLayout = new QGridLayout( d );
-
-    QTreeWidget *filetypeList = new QTreeWidget;
-    assoLayout->addWidget( filetypeList, 0, 0, 1, 4 );
-    filetypeList->header()->hide();
-
-    QVLCRegistry qvReg( HKEY_CLASSES_ROOT );
-
-    QTreeWidgetItem *audioType = new QTreeWidgetItem( QStringList( qtr( "Audio Files" ) ) );
-    QTreeWidgetItem *videoType = new QTreeWidgetItem( QStringList( qtr( "Video Files" ) ) );
-    QTreeWidgetItem *otherType = new QTreeWidgetItem( QStringList( qtr( "Playlist Files" ) ) );
-
-    filetypeList->addTopLevelItem( audioType );
-    filetypeList->addTopLevelItem( videoType );
-    filetypeList->addTopLevelItem( otherType );
-
-    audioType->setExpanded( true ); audioType->setCheckState( 0, Qt::Unchecked );
-    videoType->setExpanded( true ); videoType->setCheckState( 0, Qt::Unchecked );
-    otherType->setExpanded( true ); otherType->setCheckState( 0, Qt::Unchecked );
-
-    QTreeWidgetItem *currentItem = NULL;
-
-    int i_temp = 0;
-#define aTa( name ) i_temp += addType( name, currentItem, audioType, &qvReg )
-#define aTv( name ) i_temp += addType( name, currentItem, videoType, &qvReg )
-#define aTo( name ) i_temp += addType( name, currentItem, otherType, &qvReg )
-
-    aTa( ".3ga" ); aTa( ".669" ); aTa( ".a52" ); aTa( ".aac" ); aTa( ".ac3" );
-    aTa( ".adt" ); aTa( ".adts" ); aTa( ".aif" ); aTa( ".aifc" ); aTa( ".aiff" );
-    aTa( ".au" ); aTa( ".amr" ); aTa( ".aob" ); aTa( ".ape" ); aTa( ".caf" );
-    aTa( ".cda" ); aTa( ".dts" ); aTa( ".flac" ); aTa( ".it" ); aTa( ".m4a" );
-    aTa( ".m4p" ); aTa( ".mid" ); aTa( ".mka" ); aTa( ".mlp" ); aTa( ".mod" );
-    aTa( ".mp1" ); aTa( ".mp2" ); aTa( ".mp3" ); aTa( ".mpc" ); aTa( ".mpga" );
-    aTa( ".oga" ); aTa( ".oma" ); aTa( ".opus" ); aTa( ".qcp" ); aTa( ".ra" );
-    aTa( ".rmi" ); aTa( ".snd" ); aTa( ".s3m" ); aTa( ".spx" ); aTa( ".tta" );
-    aTa( ".voc" ); aTa( ".vqf" ); aTa( ".w64" ); aTa( ".wav" ); aTa( ".wma" );
-    aTa( ".wv" ); aTa( ".xa" ); aTa( ".xm" );
-    audioType->setCheckState( 0, ( i_temp > 0 ) ?
-                              ( ( i_temp == audioType->childCount() ) ?
-                               Qt::Checked : Qt::PartiallyChecked )
-                            : Qt::Unchecked );
-
-    i_temp = 0;
-    aTv( ".3g2" ); aTv( ".3gp" ); aTv( ".3gp2" ); aTv( ".3gpp" ); aTv( ".amv" );
-    aTv( ".asf" ); aTv( ".avi" ); aTv( ".bik" ); aTv( ".divx" ); aTv( ".drc" );
-    aTv( ".dv" ); aTv( ".f4v" ); aTv( ".flv" ); aTv( ".gvi" ); aTv( ".gxf" );
-    aTv( ".m1v" ); aTv( ".m2t" ); aTv( ".m2v" ); aTv( ".m2ts" ); aTv( ".m4v" );
-    aTv( ".mkv" ); aTv( ".mov" ); aTv( ".mp2v" ); aTv( ".mp4" ); aTv( ".mp4v" );
-    aTv( ".mpa" ); aTv( ".mpe" ); aTv( ".mpeg" ); aTv( ".mpeg1" ); aTv( ".mpeg2" );
-    aTv( ".mpeg4" ); aTv( ".mpg" ); aTv( ".mpv2" ); aTv( ".mts" ); aTv( ".mtv" );
-    aTv( ".mxf" ); aTv( ".nsv" ); aTv( ".nuv" ); aTv( ".ogg" ); aTv( ".ogm" );
-    aTv( ".ogx" ); aTv( ".ogv" ); aTv( ".rec" ); aTv( ".rm" ); aTv( ".rmvb" );
-    aTv( ".rpl" ); aTv( ".thp" ); aTv( ".tod" ); aTv( ".ts" ); aTv( ".tts" );
-    aTv( ".vob" ); aTv( ".vro" ); aTv( ".webm" ); aTv( ".wmv" ); aTv( ".xesc" );
-    videoType->setCheckState( 0, ( i_temp > 0 ) ?
-                              ( ( i_temp == videoType->childCount() ) ?
-                               Qt::Checked : Qt::PartiallyChecked )
-                            : Qt::Unchecked );
-
-    i_temp = 0;
-    aTo( ".asx" ); aTo( ".b4s" ); aTo( ".cue" ); aTo( ".ifo" ); aTo( ".m3u" );
-    aTo( ".m3u8" ); aTo( ".pls" ); aTo( ".ram" ); aTo( ".sdp" ); aTo( ".vlc" );
-    aTo( ".wvx" ); aTo( ".xspf" );
-    otherType->setCheckState( 0, ( i_temp > 0 ) ?
-                              ( ( i_temp == otherType->childCount() ) ?
-                               Qt::Checked : Qt::PartiallyChecked )
-                            : Qt::Unchecked );
-
-#undef aTo
-#undef aTv
-#undef aTa
-
-    connect( filetypeList, &QTreeWidget::itemChanged, this, &SPrefsPanel::updateCheckBoxes );
-
-    QDialogButtonBox *buttonBox = new QDialogButtonBox( d );
-    QPushButton *closeButton = new QPushButton( qtr( "&Apply" ) );
-    QPushButton *clearButton = new QPushButton( qtr( "&Cancel" ) );
-    buttonBox->addButton( closeButton, QDialogButtonBox::AcceptRole );
-    buttonBox->addButton( clearButton, QDialogButtonBox::ActionRole );
-
-    assoLayout->addWidget( buttonBox, 1, 2, 1, 2 );
-
-    connect( closeButton, &QPushButton::clicked, this, &SPrefsPanel::saveAsso );
-    connect( clearButton, &QPushButton::clicked, d, &QDialog::reject );
-    d->resize( 300, 400 );
-    d->exec();
-    listAsso.clear();
+    coneicOpenDefaultApps(this);
 }
 
 void SPrefsPanel::updateCheckBoxes(QTreeWidgetItem* item, int column)

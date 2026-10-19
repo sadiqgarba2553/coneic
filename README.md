@@ -2,9 +2,11 @@
 
 # Coneic
 
+**Windows 0.5.0:** coordinated BlueCloud release with a minimal glass interface, floating playback controls, a standalone installer, portable ZIP, Windows default-player registration and custom icons for 134 media formats. The retained media engine remains VLC 3.0.24. See [Windows file associations](docs/WINDOWS-FILE-ASSOCIATIONS.md) and [build instructions](docs/BUILD.md).
+
 Coneic is a project of **[BLUECLOUD](https://bluecloudai.online)**, its parent company.
 
-Coneic is a desktop media player for Windows x64 and Ubuntu 24.04 x64 built as a source fork of **VideoLAN VLC 3.0.24**. It retains the existing media engine and workflows, adds the supplied Coneic logo and icon, and redesigns the native Qt interface around Juxtopposed's VLC Redesign, with the signature orange accent.
+Coneic is a desktop media player for Windows x64 and Ubuntu 24.04 x64 built as a source fork of **VideoLAN VLC 3.0.24**. It retains the existing media engine and workflows, adds the supplied Coneic logo and icon, and uses a minimal glass Qt interface. Earlier library and settings work adapts Juxtopposed's VLC Redesign; attribution remains bundled.
 
 **Status: development preview.** Source and package preservation checks pass. Tested native workflows work, with an unresolved Windows standalone libVLC embedding failure documented below. Complete runtime feature parity is not certified.
 
@@ -24,7 +26,7 @@ This is the native VLC/Qt source fork. The earlier WPF prototype is superseded a
 
 ## Redesigned interface
 
-Compact menu and transport, Inter typography, reference SVG icons, an orange seek bar below playback controls, dark/light/system appearance, a folder-backed media Home screen, local video thumbnails, and seek preview frames. Global settings use 13 categories, searchable native VLC options and expandable advanced controls. Original full preferences remain available.
+The 0.5 Windows interface uses rounded translucent surfaces, Inter typography, an inset media library, minimal vector controls and a floating transport above native video. Its backdrop samples and blurs live video in memory on a bounded worker; no screenshot files are written. Controls fade after pointer inactivity and remain available while paused or using the keyboard. General Settings offers Follow system, Frosted glass and Solid materials, alongside dark/light/system themes. Windows high contrast and reduced motion are respected. A folder-backed media Home screen, local thumbnails and seek preview frames remain available. Global settings use 13 categories, searchable native VLC options and expandable advanced controls. Original full preferences remain available.
 
 This preview adapts the video to VLC 3 Qt. Some effects/open dialogs keep their original layout with the new theme and icons. The video's subtitle timeline, folder presets, music artist/album views and every conceptual panel are not implemented. It is not pixel-for-pixel complete.
 
@@ -38,7 +40,9 @@ These inventories establish preservation, not successful execution of every code
 
 ## Validation
 
-The entries below describe Windows baseline checks. The newer Alpha and Linux validation are documented in [Alpha refinements](docs/ALPHA-0.2.1-REFINEMENTS.md) and [Linux](docs/LINUX.md).
+The 0.5 native acceptance runner (`python coneic/tests/validate_glass.py --app <payload> --output <new-evidence-folder>`) uses a separate profile and checks 26 interface behaviors plus the floating native player. Use `--material solid` for the opaque fallback or `--playback <video>` for repeated GUI playback and clean shutdown. It never changes Windows transparency preferences.
+
+The entries below describe earlier Windows baseline checks. The newer Alpha and Linux validation are documented in [Alpha refinements](docs/ALPHA-0.2.1-REFINEMENTS.md) and [Linux](docs/LINUX.md).
 
 - 21 native UI checks cover the media Home screen, all 13 settings categories, advanced search, a real configuration binding, effects tabs, playback, thumbnails and seek previews, plus retained workflow dialogs.
 - 13 MJPEG/WAV engine control checks, including pause/resume, seek, rate, subtitles, equalizer and clean shutdown.
